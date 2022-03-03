@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>6279c845-92f8-4333-ab99-3d213163593c</ProjectGuid>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.Common.Default.props" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.Common.props" />
+  <PropertyGroup />
+  <Import Project="AxisUno.Shared.projitems" Label="Shared" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.CSharp.targets" />
+  <ItemGroup>
+    <_Globbed_Compile Remove="Resources\Converters\DateTimeFormatConverter.cs" />
+    <_Globbed_Compile Remove="Resources\Converters\DecimalConverter.cs" />
+    <_Globbed_Compile Remove="Resources\Converters\NullToVisibilityConverter.cs" />
+    <_Globbed_Compile Remove="Resources\Converters\ObjectToImageConverter.cs" />
+    <_Globbed_Compile Remove="ViewModels\MainViewModel.cs" />
+    <_Globbed_Compile Remove="Views\MainPage.xaml.cs" />
+    <_Globbed_Compile Remove="Views\MainView.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <_Globbled_Page Remove="ResourceDictionary1.xaml" />
+    <_Globbled_Page Remove="Resources\ConvertersRegistration.xaml" />
+    <_Globbled_Page Remove="Resources\Converters\StylesRegistration.xaml" />
+    <_Globbled_Page Remove="Resources\Styles\NavigationViewStyle.xaml" />
+    <_Globbled_Page Remove="Resources\Styles\_FontSizes.xaml" />
+    <_Globbled_Page Remove="Resources\Styles\_Thicknesses.xaml" />
+    <_Globbled_Page Remove="Views\MainView.xaml" />
+  </ItemGroup>
+</Project>

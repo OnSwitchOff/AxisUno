@@ -1,0 +1,14 @@
+{
+  "solution": {
+    "path": "AxisUno.sln",
+    "projects": [
+		"AxisUno.Shared\\AxisUno.Shared.shproj",
+
+		"AxisUno.Mobile\\AxisUno.Mobile.csproj",
+
+		"AxisUno.Wasm\\AxisUno.Wasm.csproj",
+
+		"AxisUno.Skia.Gtk\\AxisUno.Skia.Gtk.csproj",
+    ]
+  }
+}
