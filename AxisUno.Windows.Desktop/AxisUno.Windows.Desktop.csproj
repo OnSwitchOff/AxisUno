@@ -47,8 +47,4 @@
 	</ItemGroup>
 
 	<Import Project="..\AxisUno.Shared\AxisUno.Shared.projitems" Label="Shared" />
-
-	<ItemGroup>
-	  <_Globbed_Compile Remove="InvalidCommandException.cs" />
-	</ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using BuildingBlocks.Application.Validation;
+using FluentValidation;
 using MediatR.Pipeline;
 using System;
 using System.Collections.Generic;
