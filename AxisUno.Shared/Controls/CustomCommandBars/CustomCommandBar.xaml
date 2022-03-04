@@ -1,0 +1,89 @@
+﻿<UserControl
+    x:Class="AxisUno.Controls.CustomCommandBars.CustomCommandBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AxisUno.Controls.CustomCommandBars"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:triggers="using:CommunityToolkit.WinUI.UI.Triggers"
+    xmlns:ccb="using:AxisUno.Controls.CustomCommandBars"
+    mc:Ignorable="d">
+
+    <CommandBar
+        Height="46"
+        DefaultLabelPosition="Right">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="CommandBarModeVisualState">
+                <VisualState x:Name="EditDeleteMode">
+                    <VisualState.StateTriggers>
+                        <triggers:IsEqualStateTrigger Value="{x:Bind CommandBarMode, Mode=OneWay}" >
+                            <triggers:IsEqualStateTrigger.To>
+                                <ccb:CommandBarMode>EditDelete</ccb:CommandBarMode>
+                            </triggers:IsEqualStateTrigger.To>
+                        </triggers:IsEqualStateTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="addButton.Visibility" Value="Collapsed" />
+                        <Setter Target="cancelButton.Visibility" Value="Collapsed" />
+                        <Setter Target="saveButton.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="AddEditDeleteMode">
+                    <VisualState.StateTriggers>
+                        <triggers:IsEqualStateTrigger Value="{x:Bind CommandBarMode, Mode=OneWay}" >
+                            <triggers:IsEqualStateTrigger.To>
+                                <ccb:CommandBarMode>AddEditDelete</ccb:CommandBarMode>
+                            </triggers:IsEqualStateTrigger.To>
+                        </triggers:IsEqualStateTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="cancelButton.Visibility" Value="Collapsed" />
+                        <Setter Target="saveButton.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="CancelSaveMode">
+                    <VisualState.StateTriggers>
+                        <triggers:IsEqualStateTrigger Value="{x:Bind CommandBarMode, Mode=OneWay}" >
+                            <triggers:IsEqualStateTrigger.To>
+                                <ccb:CommandBarMode>CancelSave</ccb:CommandBarMode>
+                            </triggers:IsEqualStateTrigger.To>
+                        </triggers:IsEqualStateTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="addButton.Visibility" Value="Collapsed" />
+                        <Setter Target="editButton.Visibility" Value="Collapsed" />
+                        <Setter Target="deleteButton.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <AppBarButton x:Name="addButton" Label="Add" HorizontalAlignment="Left" Command="{x:Bind AddCommand}">
+            <AppBarButton.Icon>
+                <BitmapIcon UriSource="ms-appx:///Assets/Icons/Add.png" ShowAsMonochrome="False"/>
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <AppBarButton x:Name="editButton" Label="Edit" HorizontalAlignment="Left" Command="{x:Bind EditCommand}">
+            <AppBarButton.Icon>
+                <BitmapIcon UriSource="ms-appx:///Assets/Icons/Edit.png" ShowAsMonochrome="False"/>
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <AppBarButton x:Name="cancelButton" Label="Cancel" HorizontalAlignment="Left" Command="{x:Bind CancelCommand}">
+            <AppBarButton.Icon>
+                <BitmapIcon UriSource="ms-appx:///Assets/Icons/Cancel.png" ShowAsMonochrome="False"/>
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <AppBarButton x:Name="saveButton" Label="Save" HorizontalAlignment="Left" Command="{x:Bind CancelCommand}">
+            <AppBarButton.Icon>
+                <BitmapIcon UriSource="ms-appx:///Assets/Icons/Save.png" ShowAsMonochrome="False"/>
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <AppBarButton x:Name="deleteButton" Label="Delete" HorizontalAlignment="Left" Command="{x:Bind DeleteCommand}">
+            <AppBarButton.Icon>
+                <BitmapIcon UriSource="ms-appx:///Assets/Icons/Delete.png" ShowAsMonochrome="False"/>
+            </AppBarButton.Icon>
+        </AppBarButton>
+
+    </CommandBar>
+</UserControl>

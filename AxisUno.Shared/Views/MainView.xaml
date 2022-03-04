@@ -5,11 +5,21 @@
     xmlns:local="using:AxisUno.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <NavigationView x:Name="navigationView">
+    xmlns:mainViewModels="using:AxisUno.ViewModels"
+    xmlns:extensions="using:AxisUno.Extensions"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity" 
+    xmlns:behaviors="using:AxisUno.Behaviors.NavigationViewHeader"
+    mc:Ignorable="d">
+    <NavigationView
+        x:Name="navigationView"
+        IsBackButtonVisible="Visible"
+        IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
+        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}" 
+        Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}"
+        Style="{StaticResource NavigationViewStyle}" >
         <NavigationView.MenuItems>
-            <NavigationViewItem Content="Home">
+            <NavigationViewItem Content="Home"
+                                extensions:NavigationExtension.NavigateTo="AxisUno.ViewModels.DashboardViewModel" >
                 <NavigationViewItem.Icon>
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Home.png" ShowAsMonochrome="False"/>
                 </NavigationViewItem.Icon>
@@ -24,7 +34,8 @@
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Order.png" ShowAsMonochrome="False"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
-            <NavigationViewItem Content="Products">
+            <NavigationViewItem Content="Products"
+                extensions:NavigationExtension.NavigateTo="AxisUno.ViewModels.ProductsViewModel">
                 <NavigationViewItem.Icon>
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Lamp.png" ShowAsMonochrome="False"/>
                 </NavigationViewItem.Icon>
@@ -37,7 +48,8 @@
         </NavigationView.MenuItems>
 
         <NavigationView.FooterMenuItems>
-            <NavigationViewItem Content="Settings">
+            <NavigationViewItem Content="Settings"
+                extensions:NavigationExtension.NavigateTo="AxisUno.ViewModels.SettingsViewModel">
                 <NavigationViewItem.Icon>
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False"/>
                 </NavigationViewItem.Icon>
@@ -47,10 +59,25 @@
         <NavigationView.HeaderTemplate>
             <DataTemplate>
                 <Grid>
-                    <TextBlock Text="NavigationView.Header"/>
+                    <TextBlock Text="{Binding}"/>
                 </Grid>
             </DataTemplate>
         </NavigationView.HeaderTemplate>
+
+        <interactivity:Interaction.Behaviors>
+            <behaviors:NavigationViewHeaderBehavior
+                DefaultHeader="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
+                <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding}" />
+                            <!--Style="{ThemeResource TitleTextBlockStyle}"
+                                       Margin="{StaticResource SmallLeftRightMargin}"-->
+                        </Grid>
+                    </DataTemplate>
+                </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+            </behaviors:NavigationViewHeaderBehavior>
+        </interactivity:Interaction.Behaviors>
 
         <Frame x:Name="frame" />
 

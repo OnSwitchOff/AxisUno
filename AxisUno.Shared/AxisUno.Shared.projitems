@@ -25,11 +25,20 @@
     <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\MediatorModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\NavigationModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\ProcessingModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\NavigationViewHeader\NavigationViewHeaderBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\NavigationViewHeader\NavigationViewHeaderMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\AddNewProduct\AddNewProductCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\AddNewProduct\AddNewProductCommandHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\AddNewProduct\AddNewProductCommandValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\CommandBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ICommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ICommandHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configurations\ProductEntityTypeConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configurations\ProductGroupEntityTypeConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomCommandBars\CommandBarMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomCommandBars\CustomCommandBar.xaml.cs">
+      <DependentUpon>CustomCommandBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Documents\Document.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Monney\CurrenciesExchange\ConversionRate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Monney\CurrenciesExchange\Currency.cs" />
@@ -52,6 +61,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Payments\Payment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductCodes\ProductCode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\Events\ProductGroupDiscountChangedEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\GroupPathGenerator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\IGroupPathGenerator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\IProductGroupRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\ProductGroup.cs" />
@@ -124,10 +134,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\NavigationViewService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\ViewsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ThemeSelector\IThemeSelectorService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ThemeSelector\ThemeSelectorService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TypedIdValueBase\TypedIdValueBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\InvalidCommandException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DashboardViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GenericCollectionViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GenericDetailsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\OperationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProductsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProductViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
@@ -138,8 +156,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ProductsView.xaml.cs">
       <DependentUpon>ProductsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\CustomCommandBars\CustomCommandBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Resources\ConvertersRegistration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -173,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\ProductsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -18,6 +18,7 @@ namespace AxisUno.Services.Navigation
             Configure<MainViewModel, MainView>();
             Configure<ProductsViewModel, ProductsView>();
             Configure<DashboardViewModel, DashboardView>();
+            Configure<SettingsViewModel, SettingsView>();
         }
 
         public Type GetViewType(string key)
