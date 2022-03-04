@@ -18,13 +18,125 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\ApplicationServicesModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\DatabaseModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\Helpers\MediatorAssemblies.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\LoggingModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\MediatorModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\NavigationModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\ProcessingModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\CommandBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ICommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ICommandHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configurations\ProductEntityTypeConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configurations\ProductGroupEntityTypeConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Documents\Document.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Monney\CurrenciesExchange\ConversionRate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Monney\CurrenciesExchange\Currency.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Monney\CurrenciesExchange\ICurrenciesExchange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Monney\Extensions\SumExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Monney\MoneyValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Monney\Rules\MoneyValueOperationMustBePerformedOnTheSameCurrencyRule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\OperationDetails\OperationDetail.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\OperationHeaders\IAcctProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\OperationHeaders\OperationHeader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Operations\Events\SaveOperationEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Operations\Operation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Operations\OperationType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Operations\Revaluations\Revaluation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Operations\Rules\AmountOfProductsCannotBeZeroRule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Operations\Rules\QuantityCannotBeLessThanOneRule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Operations\Sale\IUniqueSaleNumberProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\PartnersGroups\PartnersGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Partners\Partner.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Payments\Payment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductCodes\ProductCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\Events\ProductGroupDiscountChangedEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\IGroupPathGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\IProductGroupRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\ProductGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\Rules\DiscountCanNotBeNegativeRule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\Rules\NameMustNotBeEmptyRule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\Rules\PathMustNotBeEmptyRule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Enums\ProductStatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Enums\ProductType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Events\ProductCreatedEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\IProductRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Measures\Measure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\OperationProduct.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\ProductRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Rules\NameMustNotBeEmptyRule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Registration\IRegistrationRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Registration\Registration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Stores\Store.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ValueObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Migrations\20220225124749_InitialCreate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Migrations\20220225124749_InitialCreate.Designer.cs">
+      <DependentUpon>20220225124749_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Migrations\DatabaseContextModelSnapshot.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Decorators\DiagnosticQueryHandlerDecorator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Decorators\DomainEventsDispatcherNotificationHandlerDecorator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Decorators\LoggingRequestHandlerDecorator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Decorators\UnitOfWorkCommandHandlerDecorator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DomainEvents\IDomainEventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\DomainEventBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\BusinessRuleValidationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\ActivationHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\DefaultActivationHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\IActivationHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BusinessRules\IBusinessRule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\DatabaseContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Entity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Product.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\IDomainEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\DataStorage\DataStorage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\DataStorage\IDataStorage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\DomainEventsDispatching\DomainEventsDispatcher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\DomainEventsDispatching\DomainEventsProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\DomainEventsDispatching\IDomainEventsDispatcher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\DomainEventsDispatching\IDomainEventsProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\IUnitOfWork.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\UnitOfWork.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PipeLines\Validation\ValidationRequestPreProcessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Queries\IQuery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Queries\IQueryHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Queries\QueryBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\IRequestIdentity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\RequestBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DataBaseMigration\DatabaseMigrationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DataBaseMigration\IDatabaseMigrationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configurations\DatabaseConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configurations\StartUp.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\FrameExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\NavigationExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\Converters\DateTimeFormatConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\Converters\DecimalConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\Converters\NullToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Resources\Converters\ObjectToImageConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\ActivationModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Activation\ActivationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Activation\IActivationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\INavigationAware.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\INavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\INavigationViewService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\IViewsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\NavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\NavigationViewService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\ViewsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\InvalidCommandException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DashboardViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProductsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\DashboardView.xaml.cs">
+      <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ProductsView.xaml.cs">
+      <DependentUpon>ProductsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -52,7 +164,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\DashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\ProductsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -88,10 +208,12 @@
       <DependentUpon>%(Filename)</DependentUpon>
     </_Globbed_Compile>
     <_Globbed_Compile Include="$(MSBuildThisFileDirectory)**/*.cs" Exclude="@(Compile);@(_Globbed_Compile)" />
-    <Compile Include="@(_Globbed_Compile)" />
     <_Globbed_PRIResource Include="$(MSBuildThisFileDirectory)**/*.resw" Exclude="@(PRIResource)" />
     <PRIResource Include="@(_Globbed_PRIResource)" />
     <_Globbed_Content Include="$(MSBuildThisFileDirectory)Assets/**/*.*" Exclude="@(Content)" />
     <Content Include="@(_Globbed_Content)" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Measures\" />
   </ItemGroup>
 </Project>

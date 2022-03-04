@@ -12,6 +12,8 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using AxisUno.ViewModels;
+using CommunityToolkit.Mvvm.DependencyInjection;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -26,6 +28,12 @@ namespace AxisUno.Views
         public MainView()
         {
             this.InitializeComponent();
+
+            ViewModel = Ioc.Default.GetRequiredService<MainViewModel>();
+            ViewModel.NavigationService.Frame = frame;
+            ViewModel.NavigationViewService.Initialize(navigationView);
         }
+
+        public MainViewModel ViewModel { get; }
     }
 }
