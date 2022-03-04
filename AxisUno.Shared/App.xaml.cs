@@ -54,15 +54,17 @@ namespace AxisUno
 
 #if NET6_0_OR_GREATER && WINDOWS
             _window = new Window();
+            
+            _window.Activate();
+#else
+			_window = Microsoft.UI.Xaml.Window.Current;
+#endif
+
             App.MainWindow = _window;
             Ioc.Default.ConfigureServices(Startup.ConfigureServices());
             var navServ = Ioc.Default.GetRequiredService<INavigationService>();
             var activationService = Ioc.Default.GetRequiredService<IActivationService>();
             await activationService.ActivateAsync(args);
-            _window.Activate();
-#else
-			_window = Microsoft.UI.Xaml.Window.Current;
-#endif
 
             var rootFrame = _window.Content as Frame;
 
