@@ -29,7 +29,7 @@ namespace AxisUno.Services.Navigation
 
         public NavigationViewItem? GetSelectedItem(Type pageType)
         {
-            return GetSelectedItem(_navigationView.MenuItems, pageType);
+            return GetSelectedItem(_navigationView.MenuItems, pageType, _navigationView.FooterMenuItems);
         }
 
         public void Initialize(NavigationView navigationView)
@@ -45,7 +45,7 @@ namespace AxisUno.Services.Navigation
             _navigationView.ItemInvoked -= OnItemInvoked;
         }
 
-        private NavigationViewItem? GetSelectedItem(IEnumerable<object> menuItems, Type viewType)
+        private NavigationViewItem? GetSelectedItem(IEnumerable<object> menuItems, Type viewType, IEnumerable<object>? footerMenuItems = null)
         {
             foreach (var item in menuItems.OfType<NavigationViewItem>())
             {
@@ -63,6 +63,24 @@ namespace AxisUno.Services.Navigation
                 }
             }
 
+            if (footerMenuItems != null)
+            {
+                foreach (var item in footerMenuItems.OfType<NavigationViewItem>())
+                {
+                    if (MenuItemHasViewType(item, viewType))
+                    {
+                        return item;
+                    }
+
+                    // If navigation view item contains child collection
+                    var selectedChild = GetSelectedItem(item.MenuItems, viewType);
+
+                    if (selectedChild is not null)
+                    {
+                        return selectedChild;
+                    }
+                }
+            }
             return null;
         }
 
