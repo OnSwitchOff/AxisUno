@@ -97,7 +97,6 @@ namespace AxisUno.Services.Navigation
             {
                 return _viewsService.GetViewType(pageKey) == sourcePageType;
             }
-
             return false;
         }
 

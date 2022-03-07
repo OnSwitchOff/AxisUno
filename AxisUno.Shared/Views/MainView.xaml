@@ -12,8 +12,9 @@
     <NavigationView
         x:Name="navigationView"
         IsBackButtonVisible="Visible"
-        IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
-        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}" 
+        IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=TwoWay}"
+        SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}" 
+        Header="{x:Bind ViewModel.Selected.Content, Mode=TwoWay}"
         Style="{StaticResource NavigationViewStyle}" >
         <NavigationView.MenuItems>
             <NavigationViewItem Content="Home"
@@ -60,9 +61,8 @@
                     <TextBlock Text="{Binding}"/>
                 </Grid>
             </DataTemplate>
-        </NavigationView.HeaderTemplate>
-
-       
+        </NavigationView.HeaderTemplate>         
+ 
 
         <Frame x:Name="frame" />
 

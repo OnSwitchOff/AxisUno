@@ -10,6 +10,6 @@
     xmlns:behaviors="using:AxisUno.Behaviors.NavigationViewHeader"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Always">
     <Grid>
-
+        <TextBlock>Products Page</TextBlock>
     </Grid>
 </Page>
