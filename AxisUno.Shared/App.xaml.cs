@@ -57,7 +57,7 @@ namespace AxisUno
             string arg2 = "-d HL-1110-series test.jpeg";
             string rez0 = RunCommand("date", string.Empty);
             var res1 = RunCommand("lpinfo","-v");
-            var res11 = RunCommand("lpstat"," -p -d").Split('\n');
+            var res11 = RunCommand("lpstat","-e").Split('\n');
             //var res2 = RunCommand("lp",filename);
             var res3 = RunCommand("lp",arg2);
             await activationService.ActivateAsync(args);
