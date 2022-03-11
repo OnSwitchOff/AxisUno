@@ -9,6 +9,6 @@
     mc:Ignorable="d">
 
     <Grid>
-        <Button Command="{x:Bind ViewModel.ClickCommand}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <WebView  Source="https://www.microsoft.com"></WebView>
     </Grid>
 </Page>

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AxisUno.Controls.CustomCommandBars
 {
-    internal enum CommandBarMode
+    public enum CommandBarMode
     {
         EditDelete,
         AddEditDelete,

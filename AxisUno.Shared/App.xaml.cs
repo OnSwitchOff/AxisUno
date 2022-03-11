@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using System.Security;
 using Microsoft.Extensions.Logging;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -50,7 +52,38 @@ namespace AxisUno
             Ioc.Default.ConfigureServices(Startup.ConfigureServices());
             var navServ = Ioc.Default.GetRequiredService<INavigationService>();
             var activationService = Ioc.Default.GetRequiredService<IActivationService>();
+
+            string filename = "Test_PDF.pdf";
+            string arg2 = "-d HL-1110-series test.jpeg";
+            string rez0 = RunCommand("date", string.Empty);
+            var res1 = RunCommand("lpinfo","-v");
+            var res11 = RunCommand("lpstat"," -p -d").Split('\n');
+            //var res2 = RunCommand("lp",filename);
+            var res3 = RunCommand("lp",arg2);
             await activationService.ActivateAsync(args);
+        }
+        
+        string RunCommand(string command, string args)
+        {
+            var process = new Process()
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = command,
+                    Arguments = args,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                }
+            };
+            process.Start();
+            string output = process.StandardOutput.ReadToEnd();
+            string error = process.StandardError.ReadToEnd();
+            process.WaitForExit();
+
+            if (string.IsNullOrEmpty(error)) { return output; }
+            else { return error; }
         }
     }
 }

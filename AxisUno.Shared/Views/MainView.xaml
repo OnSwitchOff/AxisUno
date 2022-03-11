@@ -14,6 +14,7 @@
         IsBackButtonVisible="Visible"
         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}" 
+        Header="{x:Bind ViewModel.Selected.Content, Mode=OneWay}" 
         Style="{StaticResource NavigationViewStyle}" >
         <NavigationView.MenuItems>
             <NavigationViewItem Content="Home"

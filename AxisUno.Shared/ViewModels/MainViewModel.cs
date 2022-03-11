@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.UI.Xaml.Controls;
 
 namespace AxisUno.ViewModels
 {
@@ -16,7 +17,7 @@ namespace AxisUno.ViewModels
         private bool isBackEnabled;
 
         [ObservableProperty]
-        private object? selected;
+        private NavigationViewItem? selected;
 
         public MainViewModel(INavigationService navigationService, INavigationViewService navigationViewService)
         {
