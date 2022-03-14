@@ -31,11 +31,17 @@ namespace AxisUno.Views
         {
             ViewModel = Ioc.Default.GetRequiredService<SaleViewModel>();
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+            ViewModel.OperationItemsList.Add(new Models.OperationItemModel());
             this.InitializeComponent();
+
             DataGrid dg = new DataGrid();
 
-            gr.Children.Add(dg);
-            Grid.SetRow()
+            //dg.ItemsSource = ViewModel.OperationItemsList;
+            //dg.AutoGenerateColumns = true;
+         
+
+            //gr.Children.Add(dg);
+            //Grid.SetRow(dg, 2);
         }
 
         private void ViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)

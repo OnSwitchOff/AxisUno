@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:controls="CommunityToolkit.WinUI.UI.Controls"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:DataContext="{x:Bind ViewModel}">
 
@@ -55,7 +55,10 @@
                 <TextBlock VerticalAlignment="Center" Grid.Column="3"  Width="120px" Text="{x:Bind ViewModel.TotalAmountTitle}"/>
                 <TextBlock VerticalAlignment="Center" Grid.Column="4"  Width="80px" Text="{x:Bind ViewModel.TotalAmountString}"/>
             </Grid>
-  
+
+            <controls:DataGrid Grid.Row="2" ItemsSource="{x:Bind ViewModel.OperationItemsList}" AutoGenerateColumns="True" Background="Green"  Height="500px">
+                
+            </controls:DataGrid>  
         </Grid>
         
     </Grid>

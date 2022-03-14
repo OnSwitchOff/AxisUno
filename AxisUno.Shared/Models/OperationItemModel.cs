@@ -7,5 +7,7 @@ namespace AxisUno.Models
 {
     public partial class OperationItemModel : ObservableObject
     {
+        [ObservableProperty]
+        private string name;
     }
 }
