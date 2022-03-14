@@ -6,16 +6,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:controls="CommunityToolkit.WinUI.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:DataContext="{x:Bind ViewModel}">
 
-    <Grid>
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80*"/>
-            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="30*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
+        <Grid x:Name="gr" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30px"/>
                 <RowDefinition Height="30px"/>
@@ -44,14 +45,17 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock   Text="Партнёр"/>
-                <TextBox Grid.Column="1" Background="Transparent" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSelectedPartnerLocked}" Text="{x:Bind ViewModel.SelectedPartnerString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Grid.Column="1" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSelectedPartnerLockedCommand}" >
+                <TextBlock VerticalAlignment="Center" Padding="10,0" Text="{x:Bind ViewModel.TitlePartnerString}" Width="70px"/>
+                <TextBox Grid.Column="1" Width="200px" Background="Transparent" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSelectedPartnerLocked}" Text="{x:Bind ViewModel.SelectedPartnerString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Column="1" Background="Transparent" HorizontalAlignment="Right" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSelectedPartnerLockedCommand}" >
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False"/>
                 </Button>
-
+                <TextBlock VerticalAlignment="Center" Grid.Column="3"  Width="120px" Text="{x:Bind ViewModel.TotalAmountTitle}"/>
+                <TextBlock VerticalAlignment="Center" Grid.Column="4"  Width="80px" Text="{x:Bind ViewModel.TotalAmountString}"/>
             </Grid>
+  
         </Grid>
         
     </Grid>

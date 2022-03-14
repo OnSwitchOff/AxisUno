@@ -16,16 +16,22 @@ namespace AxisUno.ViewModels
 
         #region DataRegion
         [ObservableProperty]
-        private string saleTitle;
+        private string saleTitle = "Покупка";
 
         [ObservableProperty]
-        private string selectedPartnerString;
+        private string titlePartnerString = "Партнёр:";
+
+        [ObservableProperty]
+        private string selectedPartnerString = "Базовый партнёр";
 
         [ObservableProperty]
         private decimal totalAmount;
 
+        
         [ObservableProperty]
-        private string totalAmountString;
+        private string totalAmountTitle = "Общая сумма:";
+        [ObservableProperty]
+        private string totalAmountString = "0.00";
 
         public ObservableCollection<OperationItemModel> OperationItemsList { get; set; } = new();
 

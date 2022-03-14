@@ -14,6 +14,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using AxisUno.ViewModels;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.WinUI.UI.Controls;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,6 +32,10 @@ namespace AxisUno.Views
             ViewModel = Ioc.Default.GetRequiredService<SaleViewModel>();
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
             this.InitializeComponent();
+            DataGrid dg = new DataGrid();
+
+            gr.Children.Add(dg);
+            Grid.SetRow()
         }
 
         private void ViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
