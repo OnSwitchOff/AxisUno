@@ -19,11 +19,13 @@ namespace AxisUno.ViewModels
         private string saleTitle;
 
         [ObservableProperty]
-        private PartnerModel selectedPartner;
-
+        private string selectedPartnerString;
 
         [ObservableProperty]
         private decimal totalAmount;
+
+        [ObservableProperty]
+        private string totalAmountString;
 
         public ObservableCollection<OperationItemModel> OperationItemsList { get; set; } = new();
 
@@ -37,9 +39,18 @@ namespace AxisUno.ViewModels
 
         public ObservableCollection<GroupModel> PartnersGroupsList { get; set; } = new ObservableCollection<GroupModel>();
 
+        [ObservableProperty]
+        private ItemModel selectedGroup;
+
         public ObservableCollection<PartnerModel> PartnersList { get; set; } = new ObservableCollection<PartnerModel>();
 
+        [ObservableProperty]
+        private PartnerModel selectedPartner;
+
         public ObservableCollection<ItemModel> ItemsList { get; set; } = new ObservableCollection<ItemModel>();
+
+        [ObservableProperty]
+        private ItemModel selectedItem;
 
         [ObservableProperty]
         private string filterString;
@@ -59,6 +70,12 @@ namespace AxisUno.ViewModels
 
         [ICommand]
         private void ChangeSaleTitleReadOnly()
+        {
+
+        }
+
+        [ICommand]
+        private void CloseSalePage()
         {
 
         }
