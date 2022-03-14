@@ -17,6 +17,12 @@
         Header="{x:Bind ViewModel.Selected.Content, Mode=TwoWay}"
         Style="{StaticResource NavigationViewStyle}" >
         <NavigationView.MenuItems>
+            <NavigationViewItem Content="Sale"
+                                extensions:NavigationExtension.NavigateTo="AxisUno.ViewModels.SaleViewModel">
+                <NavigationViewItem.Icon>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Home.png" ShowAsMonochrome="False"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
             <NavigationViewItem Content="Home"
                                 extensions:NavigationExtension.NavigateTo="AxisUno.ViewModels.DashboardViewModel" >
                 <NavigationViewItem.Icon>

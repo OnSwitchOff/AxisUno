@@ -14,6 +14,7 @@ namespace AxisUno.AutofacModules
             builder.RegisterType<ProductsViewModel>().InstancePerDependency();
             builder.RegisterType<ProductViewModel>().InstancePerDependency();
             builder.RegisterType<SettingsViewModel>().InstancePerDependency();
+            builder.RegisterType<SaleViewModel>().InstancePerDependency();
             builder.RegisterType<ThemeSelectorService>().As<IThemeSelectorService>().InstancePerDependency();
             builder.RegisterType<GroupPathGenerator>().As<IGroupPathGenerator>().InstancePerDependency();
 

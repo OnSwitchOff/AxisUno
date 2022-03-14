@@ -108,6 +108,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\DomainEventsDispatching\IDomainEventsProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\IUnitOfWork.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\UnitOfWork.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GroupModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ItemModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OperationItemModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PartnerModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PipeLines\Validation\ValidationRequestPreProcessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Queries\IQuery.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Queries\IQueryHandler.cs" />
@@ -146,6 +150,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\OperationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProductsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProductViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SaleViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
@@ -155,6 +160,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\ProductsView.xaml.cs">
       <DependentUpon>ProductsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SaleView.xaml.cs">
+      <DependentUpon>SaleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
@@ -198,6 +206,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\ProductsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SaleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
