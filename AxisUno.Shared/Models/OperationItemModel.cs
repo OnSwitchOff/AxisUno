@@ -19,7 +19,6 @@ namespace AxisUno.Models
         private double qty;
         private ObservableCollection<ItemCodeModel> measures;
         private ItemCodeModel selectedMeasure;
-        private decimal selectedMultiplier;
         private double partnerDiscount;
         private double itemDiscount;
         private double discount;
@@ -40,7 +39,6 @@ namespace AxisUno.Models
             this.selectedMeasure = new ItemCodeModel();
             this.measures = new ObservableCollection<ItemCodeModel>();
             this.measures.Add(this.selectedMeasure);
-            this.selectedMultiplier = 1;
             this.partnerDiscount = 0;
             this.itemDiscount = 0;
             this.discount = 0;
@@ -117,16 +115,6 @@ namespace AxisUno.Models
         {
             get => this.selectedMeasure;
             set => this.SetProperty(ref this.selectedMeasure, value);
-        }
-
-        /// <summary>
-        /// Gets or sets selected multiplier.
-        /// </summary>
-        /// <date>15.03.2022.</date>
-        public decimal SelectedMultiplier
-        {
-            get => this.selectedMultiplier;
-            set => this.SetProperty(ref this.selectedMultiplier, value);
         }
 
         /// <summary>

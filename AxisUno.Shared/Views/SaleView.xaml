@@ -71,8 +71,8 @@
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate x:DataType="models:OperationItemModel">
                                 <Grid Background="Transparent">
-                                    <ComboBox HorizontalAlignment="Stretch" BorderThickness="0" Background="Transparent" ItemsSource="{x:Bind MeasureList, Mode=TwoWay}"
-                                              SelectedItem="{x:Bind SelectedMeasure, Mode=TwoWay}" />
+                                    <ComboBox HorizontalAlignment="Stretch" BorderThickness="0" Background="Transparent" ItemsSource="{x:Bind Measures, Mode=TwoWay}"
+                                              SelectedItem="{x:Bind SelectedMeasure, Mode=TwoWay}" DisplayMemberPath="Measure" />
                                 </Grid>
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>                        

@@ -13,8 +13,6 @@ namespace AxisUno.ViewModels
     [Inject]
     public partial class SaleViewModel : ObservableObject
     {
-        public ObservableCollection<string> MeasureList = new ObservableCollection<string> { "шт.", "бут." };
-
         private string saleTitle = "Покупка";
         private string titlePartnerString = "Партнёр:";
         private string selectedPartnerString = "Базовый партнёр";
@@ -93,8 +91,8 @@ namespace AxisUno.ViewModels
         {
             OperationItemModel operationItem = new OperationItemModel();
             operationItem.Name = "Product1";
-            operationItem.MeasureList.Add("asd."+MeasureList.Count);
-            operationItem.SelectedMeasure = operationItem.MeasureList[0];
+            operationItem.Measures.Add(new ItemCodeModel { Measure = "Asd2"});
+            operationItem.SelectedMeasure = operationItem.Measures[0];
             OperationItemsList.Add(operationItem);
             SelectedOperationItem = operationItem;
         }
