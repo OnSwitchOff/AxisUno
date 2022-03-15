@@ -109,9 +109,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\IUnitOfWork.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\UnitOfWork.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\GroupModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ItemCodeModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ItemModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\OperationItemModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\PartnerModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\VATGroupModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PipeLines\Validation\ValidationRequestPreProcessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Queries\IQuery.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Queries\IQueryHandler.cs" />
