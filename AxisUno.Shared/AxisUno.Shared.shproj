@@ -87,6 +87,9 @@
     <_Globbed_Compile Remove="Infrastructure\Domain\UnitOfWorks\DataStorage\DataStorage.cs" />
     <_Globbed_Compile Remove="Infrastructure\Domain\UnitOfWorks\DomainEventsDispatching\DomainEventsProvider.cs" />
     <_Globbed_Compile Remove="Infrastructure\Domain\UnitOfWorks\IUnitOfWork.cs" />
+    <_Globbed_Compile Remove="Models\GroupModel.cs" />
+    <_Globbed_Compile Remove="Models\ItemCodeModel.cs" />
+    <_Globbed_Compile Remove="Models\VATGroupModel.cs" />
     <_Globbed_Compile Remove="PipeLines\Validation\ValidationRequestPreProcessor.cs" />
     <_Globbed_Compile Remove="Resources\Converters\DateTimeFormatConverter.cs" />
     <_Globbed_Compile Remove="Resources\Converters\DecimalConverter.cs" />
