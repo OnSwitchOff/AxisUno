@@ -6,16 +6,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:models="using:AxisUno.Models"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:DataContext="{x:Bind ViewModel}">
 
-    <Grid>
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80*"/>
-            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="30*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
+        <Grid x:Name="gr" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30px"/>
                 <RowDefinition Height="30px"/>
@@ -29,7 +31,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Background="Transparent" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSaleTitleReadOnly}" Text="{x:Bind ViewModel.SaleTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Background="Transparent" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSaleTitleReadOnly}" Text="{x:Bind ViewModel.SaleTitle, Mode=OneWay}"/>
                 <Button Grid.Column="1" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSaleTitleReadOnlyCommand}" >
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False"/>
                 </Button>
@@ -44,14 +46,39 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock   Text="Партнёр"/>
-                <TextBox Grid.Column="1" Background="Transparent" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSelectedPartnerLocked}" Text="{x:Bind ViewModel.SelectedPartnerString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Grid.Column="1" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSelectedPartnerLockedCommand}" >
+                <TextBlock VerticalAlignment="Center" Padding="10,0" Text="{x:Bind ViewModel.TitlePartnerString}" Width="70px"/>
+                <TextBox Grid.Column="1" Width="200px" Background="Transparent" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSelectedPartnerLocked}" Text="{x:Bind ViewModel.SelectedPartnerString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Column="1" Background="Transparent" HorizontalAlignment="Right" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSelectedPartnerLockedCommand}" >
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False"/>
                 </Button>
-
+                <TextBlock VerticalAlignment="Center" Grid.Column="3"  Width="120px" Text="{x:Bind ViewModel.TotalAmountTitle}"/>
+                <TextBlock VerticalAlignment="Center" Grid.Column="4"  Width="80px" Text="{x:Bind ViewModel.TotalAmountString}"/>
             </Grid>
+
+            <controls:DataGrid Grid.Row="2"
+                               ItemsSource="{x:Bind ViewModel.OperationItemsList}"
+                               SelectedItem="{x:Bind ViewModel.SelectedOperationItem}"
+                               AutoGenerateColumns="False">
+                <controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn Header="{x:Bind ViewModel.OperationItemNameColumnHeader}"
+                                                 Binding="{Binding Name}"/>
+                    <!--<controls:DataGridComboBoxColumn Header="{x:Bind ViewModel.OperationItemMeasureColumnHeader}"
+                                                 ItemsSource="{x:Bind ViewModel.SelectedOperationItem.MeasureList,Mode=OneWay}"
+                                                 Binding="{Binding SelectedMeasure, Mode=TwoWay}"/>-->
+                    <controls:DataGridTemplateColumn Header="{x:Bind ViewModel.OperationItemMeasureColumnHeader}">
+                        <controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate x:DataType="models:OperationItemModel">
+                                <Grid Background="Transparent">
+                                    <ComboBox HorizontalAlignment="Stretch" BorderThickness="0" Background="Transparent" ItemsSource="{x:Bind MeasureList, Mode=TwoWay}"
+                                              SelectedItem="{x:Bind SelectedMeasure, Mode=TwoWay}" />
+                                </Grid>
+                            </DataTemplate>
+                        </controls:DataGridTemplateColumn.CellTemplate>                        
+                    </controls:DataGridTemplateColumn>
+                </controls:DataGrid.Columns>
+            </controls:DataGrid>  
         </Grid>
         
     </Grid>

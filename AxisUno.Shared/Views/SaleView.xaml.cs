@@ -14,6 +14,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using AxisUno.ViewModels;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.WinUI.UI.Controls;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -25,7 +26,6 @@ namespace AxisUno.Views
     /// </summary>
     public sealed partial class SaleView : Page
     {
-
         public SaleView()
         {
             ViewModel = Ioc.Default.GetRequiredService<SaleViewModel>();
