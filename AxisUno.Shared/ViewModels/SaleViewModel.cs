@@ -25,6 +25,7 @@ namespace AxisUno.ViewModels
         private string operationItemPriceInColumnHeader = "Закупочная цена";
         private string operationItemDiscountColumnHeader = "Скидка";
         private string operationItemTotalAmountColumnHeader = "Общая стоимость";
+        private Visibility operationItemTotalAmountColumnVisibility = Visibility.Collapsed;
         private string searchString = string.Empty;
         private ItemModel? selectedGroup;
         private PartnerModel? selectedPartner;
@@ -85,6 +86,7 @@ namespace AxisUno.ViewModels
         public string OperationItemDiscountColumnHeader { get => operationItemDiscountColumnHeader; set => SetProperty(ref operationItemDiscountColumnHeader, value); }
 
         public string OperationItemTotalAmountColumnHeader { get => operationItemTotalAmountColumnHeader; set => SetProperty(ref operationItemTotalAmountColumnHeader, value); }
+        public Visibility OperationItemTotalAmountColumnVisibility { get => operationItemTotalAmountColumnVisibility; set => SetProperty(ref operationItemTotalAmountColumnVisibility, value); }
 
         [ICommand]
         private void ChangeSaleTitleReadOnly()
@@ -95,6 +97,7 @@ namespace AxisUno.ViewModels
             operationItem.SelectedMeasure = operationItem.Measures[0];
             OperationItemsList.Add(operationItem);
             SelectedOperationItem = operationItem;
+            OperationItemTotalAmountColumnVisibility = OperationItemTotalAmountColumnVisibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
         }
 
         [ICommand]

@@ -15,6 +15,7 @@ using Microsoft.UI.Xaml.Navigation;
 using AxisUno.ViewModels;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.WinUI.UI.Controls;
+using CommunityToolkit.WinUI.UI.Controls.Primitives;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -26,6 +27,7 @@ namespace AxisUno.Views
     /// </summary>
     public sealed partial class SaleView : Page
     {
+        public Type DataGridColumnHeaderType { get => typeof(DataGridColumnHeader); }
         public SaleView()
         {
             ViewModel = Ioc.Default.GetRequiredService<SaleViewModel>();
@@ -33,10 +35,17 @@ namespace AxisUno.Views
             this.InitializeComponent();
         }
 
+        private void Dg_Sorting(object? sender, DataGridColumnEventArgs e)
+        {
+            
+        }
+
         private void ViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             
         }
+
+
 
         public SaleViewModel ViewModel { get; }
     }

@@ -8,9 +8,13 @@
     mc:Ignorable="d"
     xmlns:models="using:AxisUno.Models"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:primitives="using:CommunityToolkit.WinUI.UI.Controls.Primitives"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:DataContext="{x:Bind ViewModel}">
-
+    <Page.Resources>
+        <SolidColorBrush x:Key="DataGridCellFocusVisualPrimaryBrush">Transparent</SolidColorBrush>
+        <SolidColorBrush x:Key="DataGridCellFocusVisualSecondaryBrush">Transparent</SolidColorBrush>
+    </Page.Resources>
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80*"/>
@@ -58,16 +62,48 @@
             </Grid>
 
             <controls:DataGrid Grid.Row="2"
+                               x:Name="dg"
                                ItemsSource="{x:Bind ViewModel.OperationItemsList}"
                                SelectedItem="{x:Bind ViewModel.SelectedOperationItem}"
-                               AutoGenerateColumns="False">
+                               CanUserSortColumns="True"
+                               Sorting="Dg_Sorting"
+                               AutoGenerateColumns="False"
+                               FrozenColumnCount="1"
+                               RowBackground="LightSlateGray"
+                               AlternatingRowBackground="LightGray"
+                               GridLinesVisibility="Vertical"
+                               BorderThickness="1"
+                               BorderBrush="Gray"
+                               >
+                <controls:DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="primitives:DataGridColumnHeader">
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="Padding" Value="10,10"/>
+                    </Style>
+                </controls:DataGrid.ColumnHeaderStyle>
+                <controls:DataGrid.CellStyle>
+                    <Style TargetType="controls:DataGridCell">
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="Padding" Value="10,10"/>
+                    </Style>
+                </controls:DataGrid.CellStyle>
                 <controls:DataGrid.Columns>
                     <controls:DataGridTextColumn Header="{x:Bind ViewModel.OperationItemNameColumnHeader}"
-                                                 Binding="{Binding Name}"/>
+                                                 Width="*"
+                                                 MinWidth="100"
+                                                 Binding="{Binding Name,Mode=TwoWay}"/>
                     <!--<controls:DataGridComboBoxColumn Header="{x:Bind ViewModel.OperationItemMeasureColumnHeader}"
                                                  ItemsSource="{x:Bind ViewModel.SelectedOperationItem.MeasureList,Mode=OneWay}"
                                                  Binding="{Binding SelectedMeasure, Mode=TwoWay}"/>-->
-                    <controls:DataGridTemplateColumn Header="{x:Bind ViewModel.OperationItemMeasureColumnHeader}">
+                    <controls:DataGridTemplateColumn Header="{x:Bind ViewModel.OperationItemMeasureColumnHeader}"
+                                                     MinWidth="100"
+                                                     SortDirection="Ascending">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate x:DataType="models:OperationItemModel">
                                 <Grid Background="Transparent">
@@ -77,6 +113,19 @@
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>                        
                     </controls:DataGridTemplateColumn>
+                    <controls:DataGridTextColumn Header="{x:Bind ViewModel.OperationItemQuantityColumnHeader}"  
+                                                 MinWidth="100"
+                                                 Binding="{Binding Qty,Mode=TwoWay}"/>
+                    <controls:DataGridTextColumn Header="{x:Bind ViewModel.OperationItemPriceInColumnHeader}"
+                                                 MinWidth="100"
+                                                 Binding="{Binding Price,Mode=TwoWay}"/>
+                    <controls:DataGridTextColumn Header="{x:Bind ViewModel.OperationItemDiscountColumnHeader}"
+                                                 MinWidth="100"
+                                                 Binding="{Binding Discount,Mode=TwoWay}"/>
+                    <controls:DataGridTextColumn Header="{x:Bind ViewModel.OperationItemTotalAmountColumnHeader}"
+                                                 MinWidth="100"
+                                                 Visibility="{x:Bind ViewModel.OperationItemTotalAmountColumnVisibility,Mode=OneWay}"
+                                                 Binding="{Binding Amount,Mode=TwoWay}"/>
                 </controls:DataGrid.Columns>
             </controls:DataGrid>  
         </Grid>
