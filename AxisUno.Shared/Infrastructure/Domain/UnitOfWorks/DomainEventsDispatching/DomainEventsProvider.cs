@@ -1,11 +1,11 @@
-﻿using AxisUno.DataBase;
+﻿
+
+using AxisUno.DataBase;
 using AxisUno.DataBase.Enteties;
 using AxisUno.Events;
 using HarabaSourceGenerators.Common.Attributes;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AxisUno.Infrastructure.Domain.UnitOfWorks.DomainEventsDispatching
 {
@@ -30,7 +30,7 @@ namespace AxisUno.Infrastructure.Domain.UnitOfWorks.DomainEventsDispatching
                     .Entries<Entity>()
                     .Where(x => x.Entity.DomainEvents is not null && x.Entity.DomainEvents.Any()).ToList();
 
-            return domainEntities
+            return (IReadOnlyCollection<IDomainEvent>)domainEntities
                 .SelectMany(x => x.Entity.DomainEvents)
                 .ToList();
         }

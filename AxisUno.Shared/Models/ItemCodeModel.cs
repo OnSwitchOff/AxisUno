@@ -4,7 +4,7 @@
 
 namespace AxisUno.Models
 {
-    using AxisUno.DataBase.Enteties.ProductCodes;
+    using AxisUno.DataBase.My100REnteties.ItemsCodes;
     using CommunityToolkit.Mvvm.ComponentModel;
 
     /// <summary>
@@ -73,7 +73,7 @@ namespace AxisUno.Models
         /// </summary>
         /// <param name="productCode">Data received from the database.</param>
         /// <date>15.03.2022.</date>
-        public static implicit operator ItemCodeModel(ProductCode productCode)
+        public static implicit operator ItemCodeModel(ItemsCode productCode)
         {
             ItemCodeModel itemCode = new ItemCodeModel();
 
