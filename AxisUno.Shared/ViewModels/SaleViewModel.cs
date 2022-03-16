@@ -45,13 +45,13 @@ namespace AxisUno.ViewModels
 
         public string TotalAmountTitle { get => totalAmountTitle; set => SetProperty(ref totalAmountTitle, value); }
 
-        public string TotalAmountString { get => TotalAmount.ToString("F"); }
+        public string TotalAmountString { get => TotalAmount.ToString("F2"); }
 
         public ObservableCollection<OperationItemModel> OperationItemsList = new ObservableCollection<OperationItemModel>();
 
         public OperationItemModel? SelectedOperationItem { get => selectedOperationItem; set => SetProperty(ref selectedOperationItem, value); }
 
-        public string SearchString { get=> searchString; set => SetProperty(ref searchString, value); }
+        public string SearchString { get => searchString; set => SetProperty(ref searchString, value); }
 
         public ObservableCollection<GroupModel> ItemsGroupsList { get; set; } = new ObservableCollection<GroupModel>();
 
