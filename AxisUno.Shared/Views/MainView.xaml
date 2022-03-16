@@ -12,9 +12,9 @@
     <NavigationView
         x:Name="navigationView"
         IsBackButtonVisible="Visible"
-        IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=TwoWay}"
-        SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}" 
-        Header="{x:Bind ViewModel.Selected.Content, Mode=TwoWay}"
+        IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
+        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}" 
+        Header="{x:Bind ViewModel.Selected.Content, Mode=OneWay}"
         Style="{StaticResource NavigationViewStyle}" >
         <NavigationView.MenuItems>
             <NavigationViewItem Content="Sale"
