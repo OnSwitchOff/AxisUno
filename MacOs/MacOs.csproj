@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<SingleProject>true</SingleProject>
+	<OutputType>Exe</OutputType>
+	<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0'">osx-x64</RuntimeIdentifier>
+	<UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>
+	<IsUnoHead>true</IsUnoHead>
+	<LangVersion>10</LangVersion>
+  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Uno.WinUI" Version="4.0.13" />
+		<PackageReference Include="Autofac" Version="6.3.0" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview1" />
+		<PackageReference Include="FluentValidation" Version="10.3.6" />
+		<PackageReference Include="HarabaSourceGenerators.Generators" Version="1.0.4" />
+		<PackageReference Include="Mapster" Version="7.3.0" />
+		<PackageReference Include="Mapster.Async" Version="2.0.0" />
+		<PackageReference Include="MediatR" Version="10.0.1" />
+		<PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="8.0.1" />
+		<PackageReference Include="Microinvest.CommonLibrary" Version="1.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.3">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.3" />
+
+
+		<PackageReference Include="Serilog" Version="2.10.0" />
+		<PackageReference Include="Serilog.Formatting.Compact" Version="1.1.0" />
+		<PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+
+		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Behaviors" Version="7.1.100-dev.7.g758154cb81" />
+		<PackageReference Include="Uno.Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.3.0" />
+		<PackageReference Include="Uno.WinUI.Skia.Gtk" Version="4.0.13" />
+		<PackageReference Include="Uno.WinUI.RemoteControl" Version="4.0.13" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.0.13" />
+		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.100-dev.7.g758154cb81" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\DataBase\DataBase.csproj" />
+	</ItemGroup>
+	<Import Project="..\AxisUno.Shared\AxisUno.Shared.projitems" Label="Shared" />
+</Project>
