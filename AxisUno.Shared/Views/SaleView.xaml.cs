@@ -30,9 +30,30 @@ namespace AxisUno.Views
         public Type DataGridColumnHeaderType { get => typeof(DataGridColumnHeader); }
         public SaleView()
         {
+
             ViewModel = Ioc.Default.GetRequiredService<SaleViewModel>();
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
             this.InitializeComponent();
+            if (sp.Children.Count == 0)
+            {
+                for (int i = 0; i < 255; i += 63)
+                {
+                    for (int j = 0; j < 255; j += 63)
+                    {
+                        for (int z = 0; z < 255; z += 63)
+                        {
+                            byte i1 = (byte)(i % 255);
+                            byte j1 = (byte)(j % 255);
+                            byte z1 = (byte)(z % 255);
+                            Button grid = new Button();
+                            grid.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255,i1 ,j1 ,z1 ));
+                            grid.Height = 30;
+                            grid.Content = $"Dynamic Button:{i1},{j1},{z1}";
+                            sp.Children.Add(grid);
+                        }
+                    }
+                }
+            }
         }
 
         private void Dg_Sorting(object? sender, DataGridColumnEventArgs e)
@@ -42,7 +63,7 @@ namespace AxisUno.Views
 
         private void ViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            
+
         }
 
 

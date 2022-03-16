@@ -25,11 +25,13 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="30px"/>
                 <RowDefinition Height="30px"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30px"/>                
                 <RowDefinition Height="30px"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Background="red">
+            <Grid Grid.Row="0" Background="#FF0000">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -127,7 +129,11 @@
                                                  Visibility="{x:Bind ViewModel.OperationItemTotalAmountColumnVisibility,Mode=OneWay}"
                                                  Binding="{Binding Amount,Mode=TwoWay}"/>
                 </controls:DataGrid.Columns>
-            </controls:DataGrid>  
+            </controls:DataGrid>
+            <ScrollViewer  Grid.Row="5">
+                <StackPanel x:Name="sp" Orientation="Vertical" MinHeight="200" MinWidth="300"  Background="Yellow"/>
+            </ScrollViewer>
+
         </Grid>
         
     </Grid>
