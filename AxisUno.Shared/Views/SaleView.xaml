@@ -11,43 +11,44 @@
     xmlns:primitives="using:CommunityToolkit.WinUI.UI.Controls.Primitives"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:DataContext="{x:Bind ViewModel}"
+    CornerRadius="0" 
     x:Name="page">
     <Page.Resources>
         <SolidColorBrush x:Key="DataGridCellFocusVisualPrimaryBrush">Transparent</SolidColorBrush>
         <SolidColorBrush x:Key="DataGridCellFocusVisualSecondaryBrush">Transparent</SolidColorBrush>
     </Page.Resources>
-    <Grid >
+    <Grid CornerRadius="0" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80*"/>
             <ColumnDefinition Width="30*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="gr" Grid.Column="0">
+        <Grid x:Name="gr" Grid.Column="0" BorderThickness ="0" BorderBrush="Black" Padding="0,0,5,0" Background="LightSteelBlue">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30px"/>
-                <RowDefinition Height="30px"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="30px"/>                
+                <RowDefinition Height="35px"/>
                 <RowDefinition Height="30px"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="40px"/>                
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Background="#FF0000">
+            <Grid Grid.Row="0" CornerRadius="0" Padding="5,3" Background="SteelBlue">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Background="Transparent" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSaleTitleReadOnly}" Text="{x:Bind ViewModel.SaleTitle, Mode=OneWay}"/>
-                <Button Grid.Column="1" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSaleTitleReadOnlyCommand}" >
+                <TextBox Background="Transparent" CornerRadius="0" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSaleTitleReadOnly}" Text="{x:Bind ViewModel.SaleTitle, Mode=OneWay}"/>
+                <Button Grid.Column="1" CornerRadius="0" Padding="0" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSaleTitleReadOnlyCommand}" >
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False"/>
                 </Button>
-                <Button Grid.Column="2" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.CloseSalePageCommand}">
+                <Button Grid.Column="2" CornerRadius="0" Padding="0" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.CloseSalePageCommand}">
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False"/>
                 </Button>
             </Grid>
 
-            <Grid Grid.Row="1" Background="SteelBlue">
+            <Grid Grid.Row="1" Background="LightSteelBlue" Margin="2,3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -56,8 +57,8 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock VerticalAlignment="Center" Padding="10,0" Text="{x:Bind ViewModel.TitlePartnerString}" Width="70px"/>
-                <TextBox Grid.Column="1" Width="200px" Background="Transparent" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSelectedPartnerLocked}" Text="{x:Bind ViewModel.SelectedPartnerString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Grid.Column="1" Background="Transparent" HorizontalAlignment="Right" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSelectedPartnerLockedCommand}" >
+                <TextBox Grid.Column="1" CornerRadius="0" FontSize="12" Width="200px" Background="White" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSelectedPartnerLocked}" Text="{x:Bind ViewModel.SelectedPartnerString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Column="1" CornerRadius="0" Margin="0" Padding="0"  Background="Transparent" HorizontalAlignment="Right" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSelectedPartnerLockedCommand}" >
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False"/>
                 </Button>
                 <TextBlock VerticalAlignment="Center" Grid.Column="3"  Width="120px" Text="{x:Bind ViewModel.TotalAmountTitle}"/>
@@ -75,8 +76,9 @@
                                RowBackground="LightSlateGray"
                                AlternatingRowBackground="LightGray"
                                GridLinesVisibility="Vertical"
-                               BorderThickness="1"
+                               BorderThickness="0"
                                BorderBrush="Gray"
+                               Background="White"
                                >
                 <controls:DataGrid.ColumnHeaderStyle>
                     <Style TargetType="primitives:DataGridColumnHeader">
@@ -131,27 +133,108 @@
                                                  Binding="{Binding Amount,Mode=TwoWay}"/>
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
-            <ScrollViewer  Grid.Row="5">
+
+            <Grid Grid.Row="3" Background="LightSteelBlue" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="1" Width="200px" Height="26" CornerRadius="0" Margin="0"  VerticalContentAlignment="Bottom" IsReadOnly="{x:Bind ViewModel.IsSaleTitleReadOnly}" Text="{x:Bind ViewModel.SaleTitle, Mode=OneWay}"/>
+                <BitmapIcon Grid.Column="1" UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False"  HorizontalAlignment="Right" Width="20" Height="20" Margin="0,0,7,0" />
+                <Button Grid.Column="2" Content="Сохранить" Width="120px" Height="32" VerticalContentAlignment="Center" FontSize="14" CornerRadius="0" Margin="5,0"/>
+            </Grid>
+            
+            <ScrollViewer  Grid.Row="5" Visibility="Collapsed">
                 <StackPanel x:Name="sp" Orientation="Vertical" MinHeight="200" MinWidth="300"  Background="Yellow"/>
             </ScrollViewer>
         </Grid>
 
-        <Grid Grid.Column="1" BorderThickness="1" BorderBrush="Black">
+        <Grid Grid.Column="1" BorderThickness="0" BorderBrush="Black" Background="LightSteelBlue" Padding="5,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30*"/>
                 <RowDefinition Height="80*"/>
+                
             </Grid.RowDefinitions>
-            <TreeView x:Name="tw"  ItemsSource="{x:Bind ViewModel.TreeViewSource,Mode=TwoWay}" SelectedItem="{x:Bind ViewModel.SelectedTreeViewItem, Mode=TwoWay}" >
-                <TreeView.ItemTemplate>
-                    <DataTemplate x:DataType="models:GroupModel">
-                        <TreeViewItem ItemsSource="{x:Bind SubGroups}"
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30px"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Группы партнёров" VerticalAlignment="Center" Padding="20,0"/>
+                <Grid  Grid.Row="1" Background="White" BorderThickness="0" BorderBrush="Black">
+                    <TreeView  x:Name="tw" ItemsSource="{x:Bind ViewModel.TreeViewSource,Mode=TwoWay}" SelectedItem="{x:Bind ViewModel.SelectedTreeViewItem, Mode=TwoWay}" >
+                        <TreeView.ItemTemplate>
+                            <DataTemplate x:DataType="models:GroupModel">
+                                <TreeViewItem ItemsSource="{x:Bind SubGroups}"
                                       Content="{x:Bind Name}"
                                       IsExpanded="{x:Bind IsExpanded, Mode=TwoWay}"/>
-                    </DataTemplate>
-                </TreeView.ItemTemplate>
-            </TreeView>
-            <Grid Grid.Row="1" BorderThickness="0,1" BorderBrush="Black">
+                            </DataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
+                </Grid>
+            </Grid>
+            
+            <Grid Grid.Row="1" BorderThickness="0" BorderBrush="Black">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30px"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40px"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Партнёры" VerticalAlignment="Center" Padding="20,0"/>
+                <controls:DataGrid x:Name="PartnersDG"
+                               Grid.Row="1"
+                               ItemsSource="{x:Bind ViewModel.PartnersList}"
+                               SelectedItem="{x:Bind ViewModel.SelectedPartner}"
+                               CanUserSortColumns="True"
+                               Sorting="Dg_Sorting"
+                               AutoGenerateColumns="False"
+                               FrozenColumnCount="1"
+                               RowBackground="LightSlateGray"
+                               AlternatingRowBackground="LightGray"
+                               GridLinesVisibility="Vertical"
+                               BorderThickness="0"
+                               Background="White"
+                               BorderBrush="Gray">
+                    <controls:DataGrid.Columns>
+                        <controls:DataGridTextColumn Header="Фирма"
+                                                 Width="*"
+                                                 MinWidth="100"
+                                                 Binding="{Binding Name,Mode=TwoWay}"/>
+                        <controls:DataGridTextColumn Header="МОЛ"
+                                                 Width="*"
+                                                 MinWidth="100"
+                                                 Binding="{Binding Name,Mode=TwoWay}"/>
+                    </controls:DataGrid.Columns>
+                </controls:DataGrid>
+
+                <Grid Grid.Row="1" BorderThickness="1" BorderBrush="Black" Background="LightGray" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Visible">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="Black" Background="Transparent" Width="50" Height="50" Padding="0" >
+                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False" Margin="0"/>
+                    </Button>
+                    <Button Grid.Column="1" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="Black" Background="Transparent" Width="50" Height="50"  Padding="0" >
+                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False" Margin="0"/>
+                    </Button>
+                    <Button Grid.Column="2" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="Black" Background="Transparent" Width="50" Height="50"  Padding="0" >
+                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False" Margin="0"/>
+                    </Button>
+                </Grid>
                 
+                <Grid Grid.Row="2" BorderBrush="Black" Background="LightSteelBlue">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox PlaceholderText="Поиск" Height="28" CornerRadius="0"  BorderThickness="0" BorderBrush="Black" Margin="2" />
+                    <Button Grid.Column="1" CornerRadius="0" BorderBrush="Black" BorderThickness="1" Background="LightGray" Width="40" Padding="0" >
+                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False" Margin="0"/>
+                    </Button>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

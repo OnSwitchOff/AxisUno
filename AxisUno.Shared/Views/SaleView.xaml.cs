@@ -95,7 +95,6 @@ namespace AxisUno.Views
             tw.Expanding += Tw_Expanding;
             tw.Collapsed += Tw_Collapsed;
 
-
             page.Loaded += Page_Loaded;
 
             page.DataContextChanged += Page_DataContextChanged;
@@ -126,7 +125,7 @@ namespace AxisUno.Views
 
         private async Task SelectTreeViewNodeAsync()
         {
-            await Task.Delay(100);
+            await Task.Delay(500);
 
             TreeViewNode SelectedNode = GetSelectedTreeViewNodeByName(ViewModel.SelectedTreeViewItem.Name, tw.RootNodes);
             if (SelectedNode != null)
