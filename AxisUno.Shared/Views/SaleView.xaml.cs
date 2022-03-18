@@ -16,6 +16,10 @@ using AxisUno.ViewModels;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.WinUI.UI.Controls;
 using CommunityToolkit.WinUI.UI.Controls.Primitives;
+using System.Collections.ObjectModel;
+using AxisUno.Models;
+using System.Threading;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -27,7 +31,6 @@ namespace AxisUno.Views
     /// </summary>
     public sealed partial class SaleView : Page
     {
-        public Type DataGridColumnHeaderType { get => typeof(DataGridColumnHeader); }
         public SaleView()
         {
 
@@ -54,6 +57,134 @@ namespace AxisUno.Views
                     }
                 }
             }
+
+
+            GroupModel group1 = new GroupModel() { Name = "gr1"};
+
+            GroupModel group10 = new GroupModel() { Name = "gr10", ParentGroup = group1 };
+
+            GroupModel group11 = new GroupModel() { Name = "gr11", ParentGroup = group1 };
+
+            group1.SubGroups.Add(group10);
+            group1.SubGroups.Add(group11);
+
+            GroupModel group2 = new GroupModel() { Name = "gr2"  };
+
+            GroupModel group20 = new GroupModel() { Name = "gr20", ParentGroup = group2 };
+
+            GroupModel group21 = new GroupModel() { Name = "gr21", ParentGroup = group2 };
+
+            GroupModel group200 = new GroupModel() { Name = "gr200", ParentGroup = group20 };
+
+            GroupModel group201 = new GroupModel() { Name = "gr201", ParentGroup = group20 };
+            group2.SubGroups.Add(group20);
+            group2.SubGroups.Add(group21);
+            group20.SubGroups.Add(group200);
+            group20.SubGroups.Add(group201);
+            //group11.SubGroups.Add(group2);
+            ViewModel.TreeViewSource.Add(group1);
+            ViewModel.TreeViewSource.Add(group2);
+
+            ViewModel.SelectedTreeViewItem = group201;
+
+            tw.ItemInvoked += Tw_ItemInvoked;
+     
+            tw.Loaded += Tw_Loaded;
+            page.BringIntoViewRequested += Page_BringIntoViewRequested;
+
+            tw.Expanding += Tw_Expanding;
+            tw.Collapsed += Tw_Collapsed;
+
+
+            page.Loaded += Page_Loaded;
+
+            page.DataContextChanged += Page_DataContextChanged;
+        }
+
+        private void Page_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (tw.RootNodes.Count == 0)
+            {
+                return;
+            }
+            var x = tw.RootNodes.Count;
+
+            GroupModel? parent = ViewModel.SelectedTreeViewItem.ParentGroup;
+            while (parent != null)
+            {
+                parent.IsExpanded = true;
+                parent = parent.ParentGroup;
+            }
+
+            await SelectTreeViewNodeAsync();
+        }
+
+        private async Task SelectTreeViewNodeAsync()
+        {
+            await Task.Delay(100);
+
+            TreeViewNode SelectedNode = GetSelectedTreeViewNodeByName(ViewModel.SelectedTreeViewItem.Name, tw.RootNodes);
+            if (SelectedNode != null)
+            {
+                tw.SelectedNode = SelectedNode;
+            }
+        }
+
+
+
+        private void Page_BringIntoViewRequested(UIElement sender, BringIntoViewRequestedEventArgs args)
+        {
+
+        }
+
+        private void Tw_Expanding(TreeView sender, TreeViewExpandingEventArgs args)
+        {
+
+        }
+
+        private void Tw_Collapsed(TreeView sender, TreeViewCollapsedEventArgs args)
+        {
+
+        }
+
+        private void Tw_Loaded(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private TreeViewNode GetSelectedTreeViewNodeByName(string name, IList<TreeViewNode> rootNodes)
+        {
+            TreeViewNode SelectedNode = rootNodes.Where(n => ((GroupModel)n.Content).Name == name).FirstOrDefault();
+            if (SelectedNode != null)
+            {
+                return SelectedNode;
+            }
+
+            foreach (TreeViewNode rootNode in rootNodes)
+            {
+                var rootName = ((GroupModel)rootNode.Content).Name;
+                var chCount = rootNode.Children.Count;
+                if (rootNode.Children.Count == 0)
+                {
+                    continue;
+                }
+                SelectedNode = GetSelectedTreeViewNodeByName(name, rootNode.Children);
+                if (SelectedNode != null)
+                {
+                    return SelectedNode;
+                }
+            }
+            return null;
+        }
+
+        private void Tw_ItemInvoked(TreeView sender, TreeViewItemInvokedEventArgs args)
+        {
+
         }
 
         private void Dg_Sorting(object? sender, DataGridColumnEventArgs e)

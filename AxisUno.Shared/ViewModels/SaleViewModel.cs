@@ -34,7 +34,7 @@ namespace AxisUno.ViewModels
         private bool isSaleTitleReadOnly;
         private bool isSelectedPartnerLocked;
         private Visibility editPanelVisibility;
-
+        private GroupModel selectedTreeViewItem;
         public string SaleTitle { get => saleTitle; set => SetProperty(ref saleTitle,value); }
 
         public string TitlePartnerString { get => titlePartnerString; set => SetProperty(ref titlePartnerString, value); }
@@ -86,7 +86,16 @@ namespace AxisUno.ViewModels
         public string OperationItemDiscountColumnHeader { get => operationItemDiscountColumnHeader; set => SetProperty(ref operationItemDiscountColumnHeader, value); }
 
         public string OperationItemTotalAmountColumnHeader { get => operationItemTotalAmountColumnHeader; set => SetProperty(ref operationItemTotalAmountColumnHeader, value); }
+       
         public Visibility OperationItemTotalAmountColumnVisibility { get => operationItemTotalAmountColumnVisibility; set => SetProperty(ref operationItemTotalAmountColumnVisibility, value); }
+
+        public ObservableCollection<GroupModel> TreeViewSource { get; set; } = new ObservableCollection<GroupModel>();
+        public GroupModel SelectedTreeViewItem { get => selectedTreeViewItem;
+            set
+            {
+                SetProperty(ref selectedTreeViewItem, value);
+            }
+        }
 
         [ICommand]
         private void ChangeSaleTitleReadOnly()

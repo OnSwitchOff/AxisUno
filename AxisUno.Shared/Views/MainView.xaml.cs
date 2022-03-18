@@ -33,7 +33,6 @@ namespace AxisUno.Views
             ViewModel.NavigationService.Frame = frame;
             ViewModel.NavigationViewService.Initialize(navigationView);
         }
-
         public MainViewModel ViewModel { get; }
     }
 }

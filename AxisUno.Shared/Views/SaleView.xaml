@@ -10,7 +10,8 @@
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:primitives="using:CommunityToolkit.WinUI.UI.Controls.Primitives"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    d:DataContext="{x:Bind ViewModel}">
+    d:DataContext="{x:Bind ViewModel}"
+    x:Name="page">
     <Page.Resources>
         <SolidColorBrush x:Key="DataGridCellFocusVisualPrimaryBrush">Transparent</SolidColorBrush>
         <SolidColorBrush x:Key="DataGridCellFocusVisualSecondaryBrush">Transparent</SolidColorBrush>
@@ -133,8 +134,25 @@
             <ScrollViewer  Grid.Row="5">
                 <StackPanel x:Name="sp" Orientation="Vertical" MinHeight="200" MinWidth="300"  Background="Yellow"/>
             </ScrollViewer>
-
         </Grid>
-        
+
+        <Grid Grid.Column="1" BorderThickness="1" BorderBrush="Black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="80*"/>
+            </Grid.RowDefinitions>
+            <TreeView x:Name="tw"  ItemsSource="{x:Bind ViewModel.TreeViewSource,Mode=TwoWay}" SelectedItem="{x:Bind ViewModel.SelectedTreeViewItem, Mode=TwoWay}" >
+                <TreeView.ItemTemplate>
+                    <DataTemplate x:DataType="models:GroupModel">
+                        <TreeViewItem ItemsSource="{x:Bind SubGroups}"
+                                      Content="{x:Bind Name}"
+                                      IsExpanded="{x:Bind IsExpanded, Mode=TwoWay}"/>
+                    </DataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+            <Grid Grid.Row="1" BorderThickness="0,1" BorderBrush="Black">
+                
+            </Grid>
+        </Grid>
     </Grid>
 </Page>
