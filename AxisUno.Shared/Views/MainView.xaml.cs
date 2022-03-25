@@ -14,6 +14,8 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using AxisUno.ViewModels;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using Microsoft.UI.Windowing;
+using Microsoft.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -25,6 +27,10 @@ namespace AxisUno.Views
     /// </summary>
     public sealed partial class MainView : Page
     {
+        private IntPtr hWnd = IntPtr.Zero;
+        private AppWindow appW = null;
+        private OverlappedPresenter presenter = null;
+
         public MainView()
         {
             this.InitializeComponent();
@@ -32,6 +38,12 @@ namespace AxisUno.Views
             ViewModel = Ioc.Default.GetRequiredService<MainViewModel>();
             ViewModel.NavigationService.Frame = frame;
             ViewModel.NavigationViewService.Initialize(navigationView);
+
+            hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            WindowId wndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
+            appW = AppWindow.GetFromWindowId(wndId);
+            presenter = appW.Presenter as OverlappedPresenter;
+            presenter.IsResizable = false;
         }
 
         public MainViewModel ViewModel { get; }

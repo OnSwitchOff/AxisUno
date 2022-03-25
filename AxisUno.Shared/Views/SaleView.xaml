@@ -8,10 +8,13 @@
     mc:Ignorable="d"
     xmlns:models="using:AxisUno.Models"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    d:DataContext="{x:Bind ViewModel}">
+    Background="Blue"
+    BorderBrush="Yellow"
+    BorderThickness="3"
+    d:DataContext="{x:Bind ViewModel}"
+    x:Name="testPage">
 
-    <Grid >
+    <Grid x:Name="TestGrid" Width="{Binding ElementName=testPage, Path=ActualWidth, Mode=OneWay}" Background="Gray" BorderThickness="3" BorderBrush="YellowGreen">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80*"/>
             <ColumnDefinition Width="30*"/>
@@ -31,7 +34,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Background="Transparent" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSaleTitleReadOnly}" Text="{x:Bind ViewModel.SaleTitle, Mode=OneWay}"/>
+                <TextBox TextChanged="TextBox_TextChanged" Background="Transparent" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSaleTitleReadOnly}" Text="{x:Bind ViewModel.SaleTitle, Mode=OneWay}"/>
                 <Button Grid.Column="1" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSaleTitleReadOnlyCommand}" >
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False"/>
                 </Button>

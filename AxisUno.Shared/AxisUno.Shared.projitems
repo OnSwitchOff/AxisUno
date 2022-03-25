@@ -19,17 +19,25 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\ApplicationServicesModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\AxisCloudModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\DatabaseModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\DocumentModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\Helpers\MediatorAssemblies.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\LoggingModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\MediatorModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\NavigationModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\PaymentModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\ProcessingModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\ScanningModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\SearchDataModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\SettingsModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\NavigationViewHeader\NavigationViewHeaderBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\NavigationViewHeader\NavigationViewHeaderMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\AddNewProduct\AddNewProductCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\AddNewProduct\AddNewProductCommandHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\AddNewProduct\AddNewProductCommandValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\AppSettings\UpdateCompanyProperties\UpdateCompanyDataCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\AppSettings\UpdateCompanyProperties\UpdateCompanyDataCommandHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\CommandBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ICommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ICommandHandler.cs" />
@@ -90,6 +98,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Decorators\LoggingRequestHandlerDecorator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Decorators\UnitOfWorkCommandHandlerDecorator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DomainEvents\IDomainEventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\EDocumentVersionsPrinting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\ESettingGroups.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\ESettingKeys.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\DomainEventBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\BusinessRuleValidationException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Handlers\ActivationHandler.cs" />
@@ -100,6 +111,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Entity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Product.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\IDomainEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\DataStorage\DataStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\DataStorage\IDataStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\DomainEventsDispatching\DomainEventsDispatcher.cs" />
@@ -108,11 +120,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\DomainEventsDispatching\IDomainEventsProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\IUnitOfWork.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\UnitOfWork.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ComboBoxItemModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DeviceSettingsModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\GroupModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ItemCodeModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ItemModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\OperationItemModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\PartnerModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CompanyModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\VATGroupModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PipeLines\Validation\ValidationRequestPreProcessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Queries\IQuery.cs" />
@@ -120,6 +135,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Queries\QueryBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Requests\IRequestIdentity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Requests\RequestBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\AxisCloudService\AxisCloudHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\AxisCloudService\AxisCloudService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\AxisCloudService\IAxisCloudService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\DataBaseMigration\DatabaseMigrationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\DataBaseMigration\IDatabaseMigrationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configurations\DatabaseConfiguration.cs" />
@@ -133,6 +151,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\ActivationModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Activation\ActivationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Activation\IActivationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Documents\DocumentService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Documents\IDocumentService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Documents\DocumentPageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\INavigationAware.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\INavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\INavigationViewService.cs" />
@@ -140,6 +161,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\NavigationViewService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigation\ViewsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Payment\DeviceSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Payment\IDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Payment\IPaymentService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Payment\PaymentService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Payment\RealDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Payment\NoDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Scanning\IScanningData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Scanning\ScanningService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SearchNomenclatureData\ISearchData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SearchNomenclatureData\SearchDataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\ISettingsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\SettingsItemModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\SettingsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\ThemeSelector\IThemeSelectorService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\ThemeSelector\ThemeSelectorService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TypedIdValueBase\TypedIdValueBase.cs" />
@@ -257,6 +291,10 @@
     <Content Include="@(_Globbed_Content)" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Commands\AppSettings\UpdateAxisCloudProperties\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Commands\AppSettings\UpdatePOSTerminalProperties\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Commands\AppSettings\UpdateFiscalDeviceProperties\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Commands\AppSettings\UpdateOperationsProperties\" />
     <Folder Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Measures\" />
   </ItemGroup>
 </Project>

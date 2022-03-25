@@ -34,6 +34,13 @@ namespace AxisUno.ViewModels
         private bool isSelectedPartnerLocked;
         private Visibility editPanelVisibility;
 
+        private double gridWidth;
+        public double GridWidth
+        {
+            get => gridWidth;
+            set => SetProperty(ref gridWidth, value);
+        }
+
         public string SaleTitle { get => saleTitle; set => SetProperty(ref saleTitle,value); }
 
         public string TitlePartnerString { get => titlePartnerString; set => SetProperty(ref titlePartnerString, value); }

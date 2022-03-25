@@ -151,5 +151,22 @@ namespace AxisUno.Models
             get => this.status;
             set => this.SetProperty(ref this.status, value);
         }
+
+        /// <summary>
+        /// Casts SearchService.Models.ProductModel object to ItemModel.
+        /// </summary>
+        /// <param name="productModel">Product data.</param>
+        /// <date>17.03.2022.</date>
+        public static implicit operator ItemModel(Microinvest.SearchService.Models.ProductModel productModel)
+        {
+            ItemModel product = new ItemModel()
+            {
+                Name = productModel.Name,
+                Barcode = productModel.Barcode.ToString(),
+                Measure = productModel.Measure,
+            };
+
+            return product;
+        }
     }
 }
