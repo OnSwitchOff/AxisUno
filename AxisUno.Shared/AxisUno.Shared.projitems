@@ -47,52 +47,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomCommandBars\CustomCommandBar.xaml.cs">
       <DependentUpon>CustomCommandBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Documents\Document.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Monney\CurrenciesExchange\ConversionRate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Monney\CurrenciesExchange\Currency.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Monney\CurrenciesExchange\ICurrenciesExchange.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Monney\Extensions\SumExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Monney\MoneyValue.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Monney\Rules\MoneyValueOperationMustBePerformedOnTheSameCurrencyRule.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\OperationDetails\OperationDetail.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\OperationHeaders\IAcctProvider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\OperationHeaders\OperationHeader.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Operations\Events\SaveOperationEvent.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Operations\Operation.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Operations\OperationType.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Operations\Revaluations\Revaluation.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Operations\Rules\AmountOfProductsCannotBeZeroRule.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Operations\Rules\QuantityCannotBeLessThanOneRule.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Operations\Sale\IUniqueSaleNumberProvider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\PartnersGroups\PartnersGroup.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Partners\Partner.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Payments\Payment.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductCodes\ProductCode.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\Events\ProductGroupDiscountChangedEvent.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\GroupPathGenerator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\IGroupPathGenerator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\IProductGroupRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\ProductGroup.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\Rules\DiscountCanNotBeNegativeRule.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\Rules\NameMustNotBeEmptyRule.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ProductGroups\Rules\PathMustNotBeEmptyRule.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Enums\ProductStatus.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Enums\ProductType.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Events\ProductCreatedEvent.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\IProductRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Measures\Measure.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\OperationProduct.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\ProductRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Rules\NameMustNotBeEmptyRule.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Registration\IRegistrationRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Registration\Registration.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Stores\Store.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\ValueObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Migrations\20220225124749_InitialCreate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Migrations\20220225124749_InitialCreate.Designer.cs">
-      <DependentUpon>20220225124749_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Decorators\DiagnosticQueryHandlerDecorator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Decorators\DomainEventsDispatcherNotificationHandlerDecorator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Decorators\LoggingRequestHandlerDecorator.cs" />
@@ -107,9 +61,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Handlers\DefaultActivationHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Handlers\IActivationHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BusinessRules\IBusinessRule.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\DatabaseContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Entity.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Product.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\IDomainEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Domain\UnitOfWorks\DataStorage\DataStorage.cs" />

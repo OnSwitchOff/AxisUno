@@ -16,6 +16,8 @@ namespace AxisUno.Models
         private string name;
         private string path;
         private double discount;
+        private bool isExpanded;
+        private GroupModel parentGroup;
         private ObservableCollection<GroupModel> subGroups;
 
         /// <summary>
@@ -27,6 +29,7 @@ namespace AxisUno.Models
             this.name = string.Empty;
             this.path = string.Empty;
             this.discount = 0;
+            this.isExpanded = false;
             this.subGroups = new ObservableCollection<GroupModel>();
         }
 
@@ -68,6 +71,26 @@ namespace AxisUno.Models
         {
             get => this.discount;
             set => this.SetProperty(ref this.discount, value);
+        }
+
+        /// <summary>
+        /// Gets or sets IsExpanded of group.
+        /// </summary>
+        /// <date>14.03.2022.</date>
+        public bool IsExpanded
+        {
+            get => this.isExpanded;
+            set => this.SetProperty(ref this.isExpanded, value);
+        }
+
+        /// <summary>
+        /// Gets or sets parent of group.
+        /// </summary>
+        /// <date>14.03.2022.</date>
+        public GroupModel ParentGroup
+        {
+            get => this.parentGroup;
+            set => this.SetProperty(ref this.parentGroup, value);
         }
 
         /// <summary>

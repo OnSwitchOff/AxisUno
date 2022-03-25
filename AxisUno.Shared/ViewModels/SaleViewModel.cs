@@ -25,6 +25,7 @@ namespace AxisUno.ViewModels
         private string operationItemPriceInColumnHeader = "Закупочная цена";
         private string operationItemDiscountColumnHeader = "Скидка";
         private string operationItemTotalAmountColumnHeader = "Общая стоимость";
+        private Visibility operationItemTotalAmountColumnVisibility = Visibility.Collapsed;
         private string searchString = string.Empty;
         private ItemModel? selectedGroup;
         private PartnerModel? selectedPartner;
@@ -33,14 +34,7 @@ namespace AxisUno.ViewModels
         private bool isSaleTitleReadOnly;
         private bool isSelectedPartnerLocked;
         private Visibility editPanelVisibility;
-
-        private double gridWidth;
-        public double GridWidth
-        {
-            get => gridWidth;
-            set => SetProperty(ref gridWidth, value);
-        }
-
+        private GroupModel selectedTreeViewItem;
         public string SaleTitle { get => saleTitle; set => SetProperty(ref saleTitle,value); }
 
         public string TitlePartnerString { get => titlePartnerString; set => SetProperty(ref titlePartnerString, value); }
@@ -51,13 +45,13 @@ namespace AxisUno.ViewModels
 
         public string TotalAmountTitle { get => totalAmountTitle; set => SetProperty(ref totalAmountTitle, value); }
 
-        public string TotalAmountString { get => TotalAmount.ToString("F"); }
+        public string TotalAmountString { get => TotalAmount.ToString("F2"); }
 
         public ObservableCollection<OperationItemModel> OperationItemsList = new ObservableCollection<OperationItemModel>();
 
         public OperationItemModel? SelectedOperationItem { get => selectedOperationItem; set => SetProperty(ref selectedOperationItem, value); }
 
-        public string SearchString { get=> searchString; set => SetProperty(ref searchString, value); }
+        public string SearchString { get => searchString; set => SetProperty(ref searchString, value); }
 
         public ObservableCollection<GroupModel> ItemsGroupsList { get; set; } = new ObservableCollection<GroupModel>();
 
@@ -92,6 +86,16 @@ namespace AxisUno.ViewModels
         public string OperationItemDiscountColumnHeader { get => operationItemDiscountColumnHeader; set => SetProperty(ref operationItemDiscountColumnHeader, value); }
 
         public string OperationItemTotalAmountColumnHeader { get => operationItemTotalAmountColumnHeader; set => SetProperty(ref operationItemTotalAmountColumnHeader, value); }
+       
+        public Visibility OperationItemTotalAmountColumnVisibility { get => operationItemTotalAmountColumnVisibility; set => SetProperty(ref operationItemTotalAmountColumnVisibility, value); }
+
+        public ObservableCollection<GroupModel> TreeViewSource { get; set; } = new ObservableCollection<GroupModel>();
+        public GroupModel SelectedTreeViewItem { get => selectedTreeViewItem;
+            set
+            {
+                SetProperty(ref selectedTreeViewItem, value);
+            }
+        }
 
         [ICommand]
         private void ChangeSaleTitleReadOnly()
@@ -102,6 +106,7 @@ namespace AxisUno.ViewModels
             operationItem.SelectedMeasure = operationItem.Measures[0];
             OperationItemsList.Add(operationItem);
             SelectedOperationItem = operationItem;
+            OperationItemTotalAmountColumnVisibility = OperationItemTotalAmountColumnVisibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
         }
 
         [ICommand]

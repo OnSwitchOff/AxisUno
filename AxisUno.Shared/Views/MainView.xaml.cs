@@ -45,7 +45,6 @@ namespace AxisUno.Views
             presenter = appW.Presenter as OverlappedPresenter;
             presenter.IsResizable = false;
         }
-
         public MainViewModel ViewModel { get; }
     }
 }

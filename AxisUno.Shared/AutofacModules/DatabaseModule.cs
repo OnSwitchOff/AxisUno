@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using AxisUno.DataBase;
-using AxisUno.DataBase.Enteties.Products;
+
 using AxisUno.Infrastructure.Domain.UnitOfWorks.DataStorage;
 using AxisUno.Infrastructure.Domain.UnitOfWorks.DomainEventsDispatching;
 using AxisUno.Services.DataBaseMigration;
@@ -28,7 +28,7 @@ namespace AxisUno.AutofacModules
             builder.RegisterType<DatabaseMigrationService>().As<IDatabaseMigrationService>().InstancePerLifetimeScope();
             builder.RegisterType<DataStorage>().As<IDataStorage>().InstancePerLifetimeScope();
 
-            builder.RegisterType<ProductRepository>().As<IProductRepository>().InstancePerLifetimeScope();
+            //builder.RegisterType<ProductRepository>().As<IProductRepository>().InstancePerLifetimeScope();
         }
     }
 }

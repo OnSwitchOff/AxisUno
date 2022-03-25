@@ -4,6 +4,7 @@
     <OutputType Condition="'$(Configuration)'=='Debug'">Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
 	 <Nullable>enable</Nullable>
+	  <LangVersion>10</LangVersion>
   </PropertyGroup>
   <ItemGroup Condition="exists('..\AxisUno.UWP')">
     <EmbeddedResource Include="..\AxisUno.UWP\Package.appxmanifest" LogicalName="Package.appxmanifest" />
@@ -36,8 +37,8 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.2" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.2" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.3" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.3" />
 
 	  
 	  <PackageReference Include="Serilog" Version="2.10.0" />
@@ -55,6 +56,9 @@
     <PackageReference Include="Uno.WinUI.RemoteControl" Version="4.0.13" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.0.13" />
 	<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.100-dev.7.g758154cb81" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataBase\DataBase.csproj" />
   </ItemGroup>
   <Import Project="..\AxisUno.Shared\AxisUno.Shared.projitems" Label="Shared" />
 </Project>
