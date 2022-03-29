@@ -153,7 +153,7 @@ namespace AxisUno.Services.Documents
         /// <date>18.03.2022.</date>
         public PartnerModel CustomerData
         {
-            set => this.pdfDocument.Client = (CompanyModel)value;
+            set => this.pdfDocument.Client = (Microinvest.PDFCreator.Models.CompanyModel)value;
         }
 
         /// <summary>

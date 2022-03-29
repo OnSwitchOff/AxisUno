@@ -5,6 +5,7 @@
 namespace AxisUno.Services.Settings
 {
     using System;
+    using AxisUno.DataBase.Repositories.Settings;
     using AxisUno.Enums;
     using Microinvest.CommonLibrary.Enums;
 
@@ -13,20 +14,23 @@ namespace AxisUno.Services.Settings
     /// </summary>
     public class SettingsItemModel
     {
-        private ESettingGroups group;
-        private ESettingKeys key;
+        private readonly ISettingsRepository settings;
+        private readonly ESettingGroups group;
+        private readonly ESettingKeys key;
+        private readonly string defaultValue;
         private string? value;
-        private string defaultValue;
         private bool valueIsChanged;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SettingsItemModel"/> class.
         /// </summary>
+        /// <param name="settings">Class to communicate with database.</param>
         /// <param name="key">Key to save and load setting from the database.</param>
         /// <param name="group">Group to classify setting in the database.</param>
         /// <param name="defaultValue">Default setting.</param>
-        public SettingsItemModel(ESettingKeys key, ESettingGroups group, string defaultValue)
+        public SettingsItemModel(ISettingsRepository settings, ESettingKeys key, ESettingGroups group, string defaultValue)
         {
+            this.settings = settings;
             this.key = key;
             this.group = group;
             this.value = null;
@@ -43,7 +47,7 @@ namespace AxisUno.Services.Settings
             {
                 if (this.value == null)
                 {
-                    this.value = this.defaultValue;
+                    this.value = this.settings.GetValue(this.group.ToString(), this.key.ToString(), this.defaultValue);
                 }
 
                 return (string)this.value;
@@ -77,9 +81,7 @@ namespace AxisUno.Services.Settings
         /// <date>16.03.2022.</date>
         public static explicit operator bool(SettingsItemModel settingsItem)
         {
-            bool result;
-
-            if (bool.TryParse(settingsItem.Value, out result))
+            if (bool.TryParse(settingsItem.Value, out bool result))
             {
                 return result;
             }
@@ -94,8 +96,7 @@ namespace AxisUno.Services.Settings
         /// <date>16.03.2022.</date>
         public static explicit operator int(SettingsItemModel settingsItem)
         {
-            int result;
-            if (int.TryParse(settingsItem.Value, out result))
+            if (int.TryParse(settingsItem.Value, out int result))
             {
                 return result;
             }
@@ -110,8 +111,7 @@ namespace AxisUno.Services.Settings
         /// <date>16.03.2022.</date>
         public static explicit operator DateTime(SettingsItemModel settingsItem)
         {
-            DateTime result;
-            if (DateTime.TryParse(settingsItem.Value, out result))
+            if (DateTime.TryParse(settingsItem.Value, out DateTime result))
             {
                 return result;
             }
@@ -156,8 +156,7 @@ namespace AxisUno.Services.Settings
         /// <date>16.03.2022.</date>
         public static explicit operator EOnlineShopTypes(SettingsItemModel settingsItem)
         {
-            int value;
-            if (int.TryParse(settingsItem.Value, out value) && Enum.IsDefined(typeof(EOnlineShopTypes), value))
+            if (int.TryParse(settingsItem.Value, out int value) && Enum.IsDefined(typeof(EOnlineShopTypes), value))
             {
                 return (EOnlineShopTypes)value;
             }
@@ -187,7 +186,8 @@ namespace AxisUno.Services.Settings
         {
             if (this.valueIsChanged)
             {
-                // TODO: write code to update settings item value
+                this.settings.UpdateValue(this.group.ToString(), this.key.ToString(), this.Value);
+
                 this.valueIsChanged = false;
             }
         }

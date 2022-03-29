@@ -17,6 +17,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AxisUno.Windows.Desktop", "AxisUno.Windows.Desktop\AxisUno.Windows.Desktop.csproj", "{1AA13270-F438-4864-9435-54FD806E10EA}"
 EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "AxisUno.Windows.Package", "AxisUno.Windows.Package\AxisUno.Windows.Package.wapproj", "{8A31811E-A9BD-4B8B-9582-5DB38146753F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8BB64DDC-6A5A-4DC2-9A0E-6C12F654BFF6} = {8BB64DDC-6A5A-4DC2-9A0E-6C12F654BFF6}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{051485B7-C6C4-4E69-A833-7A963188151E}"
 	ProjectSection(SolutionItems) = preProject
@@ -31,6 +34,7 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		AxisUno.Shared\AxisUno.Shared.projitems*{1aa13270-f438-4864-9435-54fd806e10ea}*SharedItemsImports = 5
 		AxisUno.Shared\AxisUno.Shared.projitems*{40ea03f7-8a22-4143-b251-79bac3eb13d2}*SharedItemsImports = 5
+		AxisUno.Shared\AxisUno.Shared.projitems*{6279c845-92f8-4333-ab99-3d213163593c}*SharedItemsImports = 13
 		AxisUno.Shared\AxisUno.Shared.projitems*{71c1a3b5-caa1-478f-9cfc-f2aa0e252a7d}*SharedItemsImports = 5
 		AxisUno.Shared\AxisUno.Shared.projitems*{8373b20b-3a3e-4882-a36c-9ede034803b1}*SharedItemsImports = 5
 		AxisUno.Shared\AxisUno.Shared.projitems*{a5b8155a-118f-4794-b551-c6f3cf7e5411}*SharedItemsImports = 5

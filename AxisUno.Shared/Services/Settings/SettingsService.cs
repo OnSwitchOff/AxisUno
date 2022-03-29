@@ -28,13 +28,13 @@ namespace AxisUno.Services.Settings
         /// </summary>
         public SettingsService()
         {
-            culture = CultureInfo.CurrentCulture;
-            priceFormat = String.Concat("N", culture.NumberFormat.CurrencyDecimalDigits);
-            qtyFormat = String.Concat("N", culture.NumberFormat.NumberDecimalDigits);
+            this.culture = CultureInfo.CurrentCulture;
+            this.priceFormat = string.Concat("N", this.culture.NumberFormat.CurrencyDecimalDigits);
+            this.qtyFormat = string.Concat("N", this.culture.NumberFormat.NumberDecimalDigits);
 
-            decimalSeparator = System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator[0];
+            this.decimalSeparator = System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator[0];
 
-            InitSettingsFromDatabase();
+            this.InitSettingsFromDatabase();
         }
 
         /// <summary>
@@ -43,17 +43,16 @@ namespace AxisUno.Services.Settings
         /// <date>16/03/2022.</date>
         public CultureInfo Culture
         {
-            get => culture;
+            get => this.culture;
         }
 
         /// <summary>
-        /// Decimal separator
+        /// Gets decimal separator.
         /// </summary>
-        /// <developer>Serhii Rozniuk</developer>
-        /// <date>24.02.2020</date>
+        /// <date>24.02.2020.</date>
         public char DecimalSeparator
         {
-            get => decimalSeparator;
+            get => this.decimalSeparator;
         }
 
         /// <summary>
@@ -75,7 +74,7 @@ namespace AxisUno.Services.Settings
         }
 
         /// <summary>
-        /// Path to company logo image.
+        /// Gets or sets path to company logo image.
         /// </summary>
         /// <date>18/03/2022.</date>
         public string LogoPath { get; set; }

@@ -39,11 +39,11 @@ namespace AxisUno.Views
             ViewModel.NavigationService.Frame = frame;
             ViewModel.NavigationViewService.Initialize(navigationView);
 
-            hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
-            WindowId wndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
-            appW = AppWindow.GetFromWindowId(wndId);
-            presenter = appW.Presenter as OverlappedPresenter;
-            presenter.IsResizable = false;
+            //hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            //WindowId wndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
+            //appW = AppWindow.GetFromWindowId(wndId);
+            //presenter = appW.Presenter as OverlappedPresenter;
+            //presenter.IsResizable = false;
         }
         public MainViewModel ViewModel { get; }
     }

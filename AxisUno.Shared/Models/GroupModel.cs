@@ -102,5 +102,77 @@ namespace AxisUno.Models
             get => this.subGroups;
             set => this.SetProperty(ref this.subGroups, value);
         }
+
+        /// <summary>
+        /// Casts GroupModel object to DataBase.My100REnteties.PartnersGroups.PartnersGroup.
+        /// </summary>
+        /// <param name="group">Data of group.</param>
+        /// <date>25.03.2022.</date>
+        public static explicit operator DataBase.My100REnteties.PartnersGroups.PartnersGroup(GroupModel group)
+        {
+            DataBase.My100REnteties.PartnersGroups.PartnersGroup partnersGroup = new DataBase.My100REnteties.PartnersGroups.PartnersGroup()
+            {
+                Id = group.Id,
+                Path = group.Path,
+                Name = group.Name,
+                Discount = (int)group.Discount,
+            };
+
+            return partnersGroup;
+        }
+
+        /// <summary>
+        /// Casts DataBase.My100REnteties.PartnersGroups.PartnersGroup object to GroupModel.
+        /// </summary>
+        /// <param name="partnersGroup">Data of group of partner from database.</param>
+        /// <date>25.03.2022.</date>
+        public static explicit operator GroupModel(DataBase.My100REnteties.PartnersGroups.PartnersGroup partnersGroup)
+        {
+            GroupModel group = new GroupModel()
+            {
+                Id = partnersGroup.Id,
+                Path = partnersGroup.Path,
+                Name = partnersGroup.Name,
+                Discount = partnersGroup.Discount,
+            };
+
+            return group;
+        }
+
+        /// <summary>
+        /// Casts GroupModel object to DataBase.My100REnteties.ItemsGroups.ItemsGroup.
+        /// </summary>
+        /// <param name="group">Data of group.</param>
+        /// <date>25.03.2022.</date>
+        public static explicit operator DataBase.My100REnteties.ItemsGroups.ItemsGroup(GroupModel group)
+        {
+            DataBase.My100REnteties.ItemsGroups.ItemsGroup itemGroup = new DataBase.My100REnteties.ItemsGroups.ItemsGroup()
+            {
+                Id = group.Id,
+                Path = group.Path,
+                Name = group.Name,
+                Discount = (int)group.Discount,
+            };
+
+            return itemGroup;
+        }
+
+        /// <summary>
+        /// Casts DataBase.My100REnteties.ItemsGroups.ItemsGroup object to GroupModel.
+        /// </summary>
+        /// <param name="itemGroup">Data of group of product from database.</param>
+        /// <date>25.03.2022.</date>
+        public static explicit operator GroupModel(DataBase.My100REnteties.ItemsGroups.ItemsGroup itemGroup)
+        {
+            GroupModel group = new GroupModel()
+            {
+                Id = itemGroup.Id,
+                Path = itemGroup.Path,
+                Name = itemGroup.Name,
+                Discount = itemGroup.Discount,
+            };
+
+            return group;
+        }
     }
 }

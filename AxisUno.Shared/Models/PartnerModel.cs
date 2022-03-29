@@ -237,5 +237,64 @@ namespace AxisUno.Models
 
             return company;
         }
+
+        /// <summary>
+        /// Casts PartnerModel object to DataBase.My100REnteties.Partners.Partner.
+        /// </summary>
+        /// <param name="partner">Data of partner.</param>
+        /// <date>25.03.2022.</date>
+        public static explicit operator DataBase.My100REnteties.Partners.Partner(PartnerModel partner)
+        {
+            DataBase.My100REnteties.Partners.Partner entityPartner = new DataBase.My100REnteties.Partners.Partner()
+            {
+                Company = partner.Name,
+                Principal = partner.Principal,
+                City = partner.City,
+                Address = partner.Address,
+                Phone = partner.Phone,
+                TaxNumber = partner.TaxNumber,
+                Vatnumber = partner.VATNumber,
+                BankName = partner.BankName,
+                BankBic = partner.BankBIC,
+                Iban = partner.IBAN,
+                DiscountCard = partner.DiscountCardNumber,
+                Email = partner.Email,
+                Group = (DataBase.My100REnteties.PartnersGroups.PartnersGroup)partner.Group,
+                Status = partner.Status,
+            };
+
+            return entityPartner;
+        }
+
+        /// <summary>
+        /// Casts DataBase.My100REnteties.Partners.Partner object to PartnerModel.
+        /// </summary>
+        /// <param name="entityPartner">Data of partner from database.</param>
+        /// <date>25.03.2022.</date>
+        public static explicit operator PartnerModel(DataBase.My100REnteties.Partners.Partner entityPartner)
+        {
+            PartnerModel partner = new PartnerModel();
+
+            if (entityPartner != null)
+            {
+                partner.Id = entityPartner.Id;
+                partner.Name = entityPartner.Company;
+                partner.Principal = entityPartner.Principal;
+                partner.City = entityPartner.City;
+                partner.Address = entityPartner.Address;
+                partner.Phone = entityPartner.Phone;
+                partner.Email = entityPartner.Email;
+                partner.TaxNumber = entityPartner.TaxNumber;
+                partner.VATNumber = entityPartner.Vatnumber;
+                partner.BankName = entityPartner.BankName;
+                partner.BankBIC = entityPartner.BankBic;
+                partner.IBAN = entityPartner.Iban;
+                partner.DiscountCardNumber = entityPartner.DiscountCard;
+                partner.Group = (GroupModel)entityPartner.Group;
+                partner.Status = entityPartner.Status;
+            }
+
+            return partner;
+        }
     }
 }

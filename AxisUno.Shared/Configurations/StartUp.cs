@@ -39,6 +39,7 @@ namespace AxisUno.Configurations
                     DatabaseConfiguration.GetOptions()));
 
             builder.RegisterModule<SettingsModule>();
+            builder.RegisterModule<SerializationModule>();
             builder.RegisterModule<ScanningModule>();
             builder.RegisterModule<PaymentModule>();
             builder.RegisterModule<SearchDataModule>();

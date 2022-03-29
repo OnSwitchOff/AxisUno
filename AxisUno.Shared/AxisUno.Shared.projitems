@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\ProcessingModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\ScanningModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\SearchDataModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\SerializationModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AutofacModules\SettingsModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\NavigationViewHeader\NavigationViewHeaderBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\NavigationViewHeader\NavigationViewHeaderMode.cs" />
@@ -52,7 +53,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Decorators\LoggingRequestHandlerDecorator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Decorators\UnitOfWorkCommandHandlerDecorator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DomainEvents\IDomainEventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\EAdditionalDocumentColumns.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\EAdditionalItemsTableColumns.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\EAdditionalPartnersTableColumns.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\EAdditionalSaleTableColumns.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\EDocumentVersionsPrinting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\ESerializationGroups.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\ESerializationKeys.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\ESettingGroups.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\ESettingKeys.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\DomainEventBase.cs" />
@@ -122,6 +129,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Scanning\ScanningService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\SearchNomenclatureData\ISearchData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\SearchNomenclatureData\SearchDataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Serialization\ISerializationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Serialization\SerializationItemModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Serialization\SerializationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\ISettingsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\SettingsItemModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Settings\SettingsService.cs" />
@@ -246,6 +256,5 @@
     <Folder Include="$(MSBuildThisFileDirectory)Commands\AppSettings\UpdatePOSTerminalProperties\" />
     <Folder Include="$(MSBuildThisFileDirectory)Commands\AppSettings\UpdateFiscalDeviceProperties\" />
     <Folder Include="$(MSBuildThisFileDirectory)Commands\AppSettings\UpdateOperationsProperties\" />
-    <Folder Include="$(MSBuildThisFileDirectory)DataBase\Enteties\Products\Measures\" />
   </ItemGroup>
 </Project>

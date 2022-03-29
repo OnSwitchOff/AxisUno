@@ -1,18 +1,35 @@
-﻿using AxisUno.Models;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using HarabaSourceGenerators.Common.Attributes;
-using Microsoft.UI.Xaml;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+﻿// <copyright file="SaleViewModel.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace AxisUno.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Text;
+    using AxisUno.DataBase.Repositories.Items;
+    using AxisUno.DataBase.Repositories.Partners;
+    using AxisUno.DataBase.Repositories.Serialization;
+    using AxisUno.Models;
+    using AxisUno.Services.Serialization;
+    using AxisUno.Services.Settings;
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using HarabaSourceGenerators.Common.Attributes;
+    using Microsoft.UI.Xaml;
+
+    /// <summary>
+    /// Contains fields and commands of operation of "Sale".
+    /// </summary>
     [Inject]
     public partial class SaleViewModel : ObservableObject
     {
+        private readonly IItemRepository itemsRepository;
+        private readonly IPartnerRepository partnersRepository;
+        private readonly ISettingsService setting;
+        private readonly ISerializationService serialization;
+
         private string saleTitle = "Покупка";
         private string titlePartnerString = "Партнёр:";
         private string selectedPartnerString = "Базовый партнёр";

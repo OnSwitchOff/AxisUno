@@ -10,6 +10,7 @@ namespace AxisUno.Services.SearchNomenclatureData
     using Microinvest.CommonLibrary.Enums;
     using Microinvest.SearchService;
     using Microinvest.SearchService.Models;
+    using CompanyModel = Microinvest.SearchService.Models.CompanyModel;
 
     /// <summary>
     /// Describes service to search data of nomenclature.

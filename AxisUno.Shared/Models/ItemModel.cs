@@ -168,5 +168,51 @@ namespace AxisUno.Models
 
             return product;
         }
+
+        /// <summary>
+        /// Casts SearchService.Models.ProductModel object to ItemModel.
+        /// </summary>
+        /// <param name="itemModel">Product data.</param>
+        /// <date>25.03.2022.</date>
+        public static explicit operator DataBase.My100REnteties.Items.Item(ItemModel itemModel)
+        {
+            DataBase.My100REnteties.Items.Item item = new DataBase.My100REnteties.Items.Item()
+            {
+                Id = itemModel.Id,
+                Code = itemModel.Code,
+                Name = itemModel.Name,
+                Barcode = itemModel.Barcode,
+                Measure = itemModel.Measure,
+                Group = (DataBase.My100REnteties.ItemsGroups.ItemsGroup)itemModel.Group,
+                Vatgroup = (DataBase.My100REnteties.Vatgroups.Vatgroup)itemModel.VATGroup,
+                ItemType = itemModel.ItemType,
+                Status = itemModel.Status,
+            };
+
+            return item;
+        }
+
+        /// <summary>
+        /// Casts SearchService.Models.ProductModel object to ItemModel.
+        /// </summary>
+        /// <param name="item">Product data from database.</param>
+        /// <date>25.03.2022.</date>
+        public static explicit operator ItemModel(DataBase.My100REnteties.Items.Item item)
+        {
+            ItemModel itemModel = new ItemModel()
+            {
+                Id = item.Id,
+                Code = item.Code,
+                Name = item.Name,
+                Barcode = item.Barcode,
+                Measure = item.Measure,
+                Group = (GroupModel)item.Group,
+                VATGroup = (VATGroupModel)item.Vatgroup,
+                ItemType = item.ItemType,
+                Status = item.Status,
+            };
+
+            return itemModel;
+        }
     }
 }

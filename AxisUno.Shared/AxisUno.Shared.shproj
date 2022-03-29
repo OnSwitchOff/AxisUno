@@ -23,6 +23,7 @@
     <_Globbed_Compile Remove="AutofacModules\ProcessingModule.cs" />
     <_Globbed_Compile Remove="AutofacModules\ScanningModule.cs" />
     <_Globbed_Compile Remove="AutofacModules\SearchDataModule.cs" />
+    <_Globbed_Compile Remove="AutofacModules\SerializationModule.cs" />
     <_Globbed_Compile Remove="AutofacModules\SettingsModule.cs" />
     <_Globbed_Compile Remove="Behaviors\NavigationViewHeader\NavigationViewHeaderBehavior.cs" />
     <_Globbed_Compile Remove="Behaviors\NavigationViewHeader\NavigationViewHeaderMode.cs" />
@@ -87,7 +88,13 @@
     <_Globbed_Compile Remove="Decorators\DomainEventsDispatcherNotificationHandlerDecorator.cs" />
     <_Globbed_Compile Remove="Decorators\LoggingRequestHandlerDecorator.cs" />
     <_Globbed_Compile Remove="Decorators\UnitOfWorkCommandHandlerDecorator.cs" />
+    <_Globbed_Compile Remove="Enums\EAdditionalDocumentColumns.cs" />
+    <_Globbed_Compile Remove="Enums\EAdditionalItemsTableColumns.cs" />
+    <_Globbed_Compile Remove="Enums\EAdditionalPartnersTableColumns.cs" />
+    <_Globbed_Compile Remove="Enums\EAdditionalSaleTableColumns.cs" />
     <_Globbed_Compile Remove="Enums\EDocumentVersionsPrinting.cs" />
+    <_Globbed_Compile Remove="Enums\ESerializationGroups.cs" />
+    <_Globbed_Compile Remove="Enums\ESerializationKeys.cs" />
     <_Globbed_Compile Remove="Enums\ESettingGroups.cs" />
     <_Globbed_Compile Remove="Enums\ESettingKeys.cs" />
     <_Globbed_Compile Remove="Events\DomainEventBase.cs" />
@@ -137,6 +144,9 @@
     <_Globbed_Compile Remove="Services\Scanning\ScanningService.cs" />
     <_Globbed_Compile Remove="Services\SearchNomenclatureData\ISearchData.cs" />
     <_Globbed_Compile Remove="Services\SearchNomenclatureData\SearchDataService.cs" />
+    <_Globbed_Compile Remove="Services\Serialization\ISerializationService.cs" />
+    <_Globbed_Compile Remove="Services\Serialization\SerializationItemModel.cs" />
+    <_Globbed_Compile Remove="Services\Serialization\SerializationService.cs" />
     <_Globbed_Compile Remove="Services\Settings\ISettingsService.cs" />
     <_Globbed_Compile Remove="Services\Settings\SettingsItemModel.cs" />
     <_Globbed_Compile Remove="Services\Settings\SettingsService.cs" />
