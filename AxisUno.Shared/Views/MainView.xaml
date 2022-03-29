@@ -11,12 +11,12 @@
     mc:Ignorable="d">
     <NavigationView
         x:Name="navigationView"
-        IsBackButtonVisible="Visible"
-        IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
-        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"  
-        Style="{StaticResource NavigationViewStyle}" >
+        IsBackButtonVisible="Collapsed"
+        IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=TwoWay}"
+        SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"  
+        Style="{StaticResource NavigationViewStyle}">
         <NavigationView.MenuItems>
-            <NavigationViewItem Content="Sale"
+            <NavigationViewItem Content="New Sale"
                                 extensions:NavigationExtension.NavigateTo="AxisUno.ViewModels.SaleViewModel">
                 <NavigationViewItem.Icon>
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Home.png" ShowAsMonochrome="False"/>
@@ -49,6 +49,8 @@
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Warning.png" ShowAsMonochrome="False"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
+            <NavigationViewItemSeparator/>
+            <NavigationViewItemHeader Content="Sales"/>
         </NavigationView.MenuItems>
 
         <NavigationView.FooterMenuItems>
@@ -74,10 +76,10 @@
                 <RowDefinition Height="40px"/>
                 <RowDefinition Height="20px"/>
             </Grid.RowDefinitions>
-            <Frame x:Name="frame" />
+            <Frame x:Name="frame"  />
             <Grid Grid.Row="1" Background="DodgerBlue">
-                <Button CornerRadius="0" Margin="10,5" Padding="0"  BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Right" Background="DarkRed">
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" Width="40"  ShowAsMonochrome="False"/>
+                <Button CornerRadius="0" Margin="10,5" Padding="0"  BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Right" Background="Transparent">
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/youtube.png" Width="40"  ShowAsMonochrome="False"/>
                 </Button>
             </Grid>
             <Grid Grid.Row="2" Background="SteelBlue">

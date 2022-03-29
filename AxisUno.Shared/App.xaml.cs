@@ -28,6 +28,7 @@ namespace AxisUno
         /// </summary>
         public App()
         {
+            this.RequestedTheme = ApplicationTheme.Light;
             this.InitializeComponent();
         }
 
