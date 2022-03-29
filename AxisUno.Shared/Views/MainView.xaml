@@ -12,41 +12,41 @@
     <NavigationView
         x:Name="navigationView"
         IsBackButtonVisible="Collapsed"
-        IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=TwoWay}"
+        IsBackEnabled="False"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"  
         Style="{StaticResource NavigationViewStyle}">
         <NavigationView.MenuItems>
             <NavigationViewItem Content="New Sale"
                                 extensions:NavigationExtension.NavigateTo="AxisUno.ViewModels.SaleViewModel">
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Home.png" ShowAsMonochrome="False"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Home.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItem Content="Home"
                                 extensions:NavigationExtension.NavigateTo="AxisUno.ViewModels.DashboardViewModel" >
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Home.png" ShowAsMonochrome="False"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Home.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItem Content="Customers">
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Customers.png" ShowAsMonochrome="False"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Customers.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItem Content="Orders">
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Order.png" ShowAsMonochrome="False"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Order.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItem Content="Products"
                 extensions:NavigationExtension.NavigateTo="AxisUno.ViewModels.ProductsViewModel">
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Lamp.png" ShowAsMonochrome="False"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Lamp.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItem Content="Activity Log">
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Warning.png" ShowAsMonochrome="False"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Warning.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItemSeparator/>
@@ -57,7 +57,7 @@
             <NavigationViewItem Content="Settings"
                 extensions:NavigationExtension.NavigateTo="AxisUno.ViewModels.SettingsViewModel">
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
         </NavigationView.FooterMenuItems>
@@ -79,7 +79,7 @@
             <Frame x:Name="frame"  />
             <Grid Grid.Row="1" Background="DodgerBlue">
                 <Button CornerRadius="0" Margin="10,5" Padding="0"  BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Right" Background="Transparent">
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/youtube.png" Width="40"  ShowAsMonochrome="False"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Youtube.png" Width="40" Height="20" Margin="0" ShowAsMonochrome="False"/>
                 </Button>
             </Grid>
             <Grid Grid.Row="2" Background="SteelBlue">

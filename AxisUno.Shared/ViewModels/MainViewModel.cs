@@ -13,11 +13,15 @@ namespace AxisUno.ViewModels
         private readonly INavigationService _navigationService;
         private readonly INavigationViewService _navigationViewService;
 
-        [ObservableProperty]
         private bool isBackEnabled;
+        public bool IsBackEnabled { get => isBackEnabled; set=> SetProperty(ref  isBackEnabled,value); }
 
-        [ObservableProperty]
-        private NavigationViewItem? selected;
+        private NavigationViewItem selected;
+        public NavigationViewItem Selected 
+        { 
+            get => selected;
+            set => SetProperty(ref selected, value);
+        }
 
         public MainViewModel(INavigationService navigationService, INavigationViewService navigationViewService)
         {
