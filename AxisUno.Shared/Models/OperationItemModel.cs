@@ -4,8 +4,11 @@
 
 namespace AxisUno.Models
 {
+    using System;
     using System.Collections.ObjectModel;
+    using System.ComponentModel;
     using CommunityToolkit.Mvvm.ComponentModel;
+    using Microinvest.DeviceService.Models;
 
     /// <summary>
     /// Describes data of operation.
@@ -16,7 +19,7 @@ namespace AxisUno.Models
         private string code;
         private string name;
         private string barcode;
-        private double qty;
+        private decimal qty;
         private ObservableCollection<ItemCodeModel> measures;
         private ItemCodeModel selectedMeasure;
         private double partnerDiscount;
@@ -91,7 +94,7 @@ namespace AxisUno.Models
         /// Gets or sets quantity of item.
         /// </summary>
         /// <date>15.03.2022.</date>
-        public double Qty
+        public decimal Qty
         {
             get => this.qty;
             set => this.SetProperty(ref this.qty, value);
@@ -158,13 +161,13 @@ namespace AxisUno.Models
         }
 
         /// <summary>
-        /// Gets or sets amount to pay.
+        /// Gets amount to pay.
         /// </summary>
         /// <date>15.03.2022.</date>
         public decimal Amount
         {
             get => this.amount;
-            set => this.SetProperty(ref this.amount, value);
+            private set => this.SetProperty(ref this.amount, value);
         }
 
         /// <summary>
@@ -175,6 +178,70 @@ namespace AxisUno.Models
         {
             get => this.note;
             set => this.SetProperty(ref this.note, value);
+        }
+
+        /// <summary>
+        /// Casts OperationItemModel to SaleProductModel.
+        /// </summary>
+        /// <param name="operationItem">Operation item data.</param>
+        /// <date>17.03.2022.</date>
+        public static implicit operator SaleProductModel(OperationItemModel operationItem)
+        {
+            SaleProductModel productModel = new SaleProductModel();
+            productModel.Name = operationItem.Item.Name;
+            productModel.Price = operationItem.Price;
+            productModel.Quantity = operationItem.Qty;
+            productModel.Discount = Math.Round((decimal)operationItem.Discount / 100, 2);
+            productModel.VAT = new PrinterService.Models.VATModel(
+                operationItem.Item.VATGroup.Id.ToString(),
+                operationItem.Item.VATGroup.Name,
+                Math.Round((decimal)operationItem.Item.VATGroup.Value / 100, 2));
+
+            return productModel;
+        }
+
+        /// <summary>
+        /// Updates dependent property when main property was changed.
+        /// </summary>
+        /// <param name="e">Event args.</param>
+        /// <date>29.03.2022.</date>
+        protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(this.Item):
+                    this.Code = this.Item.Code;
+                    this.Barcode = this.Item.Barcode;
+                    this.Name = this.Item.Name;
+                    this.Measures.Clear();
+                    this.Measures.Add(new ItemCodeModel()
+                    {
+                        Code = this.Code,
+                        Measure = this.Item.Measure,
+                    });
+                    foreach (ItemCodeModel itemCode in this.Item.Codes)
+                    {
+                        this.Measures.Add(itemCode);
+                    }
+
+                    this.SelectedMeasure = this.Measures[0];
+                    this.Qty = 1;
+                    this.Price = this.Item.Price;
+                    this.ItemDiscount = this.Item.Group.Discount;
+
+                    break;
+                case nameof(this.Qty):
+                    break;
+                case nameof(this.Price):
+                    break;
+                case nameof(this.Discount):
+                    break;
+                case nameof(this.ItemDiscount):
+                case nameof(this.PartnerDiscount):
+                    break;
+            }
+
+            base.OnPropertyChanged(e);
         }
     }
 }

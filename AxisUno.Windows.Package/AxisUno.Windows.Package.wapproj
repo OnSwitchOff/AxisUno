@@ -75,6 +75,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microinvest.CommonLibrary" Version="1.0.0" />
+    <PackageReference Include="Microinvest.DeviceService" Version="1.0.0" />
+    <PackageReference Include="Microinvest.IntegrationService" Version="1.0.0" />
+    <PackageReference Include="Microinvest.PDFCreator" Version="1.0.0" />
+    <PackageReference Include="Microinvest.SearchService" Version="1.0.0" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>

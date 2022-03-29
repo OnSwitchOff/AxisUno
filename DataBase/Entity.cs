@@ -1,9 +1,6 @@
 ﻿using AxisUno.BusinessRules;
 using AxisUno.Events;
 using AxisUno.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AxisUno.DataBase.Enteties
 {

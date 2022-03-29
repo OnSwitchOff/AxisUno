@@ -1,9 +1,6 @@
 ﻿using AxisUno.DataBase.Enteties;
-using AxisUno.DataBase.My100REnteties.Documents.Enums;
 using AxisUno.DataBase.My100REnteties.OperationHeaders;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microinvest.CommonLibrary.Enums;
 
 namespace AxisUno.DataBase.My100REnteties.Documents
 {
@@ -13,7 +10,7 @@ namespace AxisUno.DataBase.My100REnteties.Documents
         public OperationHeader OperationHeader { get; set; }
         public string DocumentNumber { get; set; }
         public DateTime DocumentDate { get; set; }
-        public DocumentType DocumentType { get; set; }
+        public EDocumentTypes DocumentType { get; set; }
         public DateTime TaxDate { get; set; }
         public string? SourceDocumentNumber { get; set; }
         public DateTime? SourceDocumentDate { get; set; }
@@ -27,7 +24,7 @@ namespace AxisUno.DataBase.My100REnteties.Documents
 
         }
 
-        public Document(OperationHeader operationHeader, string documentNumber, DateTime documentDate, DocumentType documentType, DateTime taxDate, string? sourceDocumentNumber, DateTime? sourceDocumentDate, string recipientName, string creatorName, string dealDescription, string dealLocation)
+        public Document(OperationHeader operationHeader, string documentNumber, DateTime documentDate, EDocumentTypes documentType, DateTime taxDate, string? sourceDocumentNumber, DateTime? sourceDocumentDate, string recipientName, string creatorName, string dealDescription, string dealLocation)
         {
             OperationHeader = operationHeader;
             DocumentNumber = documentNumber;
@@ -42,7 +39,7 @@ namespace AxisUno.DataBase.My100REnteties.Documents
             DealLocation = dealLocation;
         }
 
-        public static Document Create(OperationHeader operationHeader, string documentNumber, DateTime documentDate, DocumentType documentType, DateTime taxDate, string? sourceDocumentNumber, DateTime? sourceDocumentDate, string recipientName, string creatorName, string dealDescription, string dealLocation)
+        public static Document Create(OperationHeader operationHeader, string documentNumber, DateTime documentDate, EDocumentTypes documentType, DateTime taxDate, string? sourceDocumentNumber, DateTime? sourceDocumentDate, string recipientName, string creatorName, string dealDescription, string dealLocation)
         {
             //CheckRule(new DescriptionMustNotBeEmptyRule(description));
 

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AxisUno.DataBase.Enteties;
+﻿using AxisUno.DataBase.Enteties;
+using AxisUno.DataBase.My100REnteties.PartnersGroups;
+using Microinvest.CommonLibrary.Enums;
 
 namespace AxisUno.DataBase.My100REnteties.Partners
 {
@@ -20,7 +19,7 @@ namespace AxisUno.DataBase.My100REnteties.Partners
         public string Iban { get; set; } = null!;
         public string DiscountCard { get; set; } = null!;
         public string Email { get; set; } = null!;
-        public PartnersGroups.PartnersGroup Group { get; set; }
-        public Enums.PartnerStatus Status { get; set; }
+        public PartnersGroup Group { get; set; }
+        public ENomenclatureStatuses Status { get; set; }
     }
 }

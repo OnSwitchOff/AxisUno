@@ -1,10 +1,7 @@
-﻿using AxisUno.DataBase.My100REnteties.Items.Enums;
-using AxisUno.DataBase.My100REnteties.ItemsGroups;
+﻿using AxisUno.DataBase.My100REnteties.ItemsGroups;
 using AxisUno.DataBase.My100REnteties.Vatgroups;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using AxisUno.DataBase.Enteties;
+using Microinvest.CommonLibrary.Enums;
 
 namespace AxisUno.DataBase.My100REnteties.Items
 {
@@ -17,8 +14,8 @@ namespace AxisUno.DataBase.My100REnteties.Items
         public string Measure { get; set; } = null!;
         public ItemsGroup Group { get; set; }
         public Vatgroup Vatgroup { get; set; }
-        public ItemType ItemType { get; set; }
-        public ItemStatus Status { get; set; }
+        public EItemTypes ItemType { get; set; }
+        public ENomenclatureStatuses Status { get; set; }
 
         public List<ItemsCodes.ItemsCode> ItemsCodes { get; set; }= new List<ItemsCodes.ItemsCode>();
 

@@ -131,13 +131,13 @@ namespace AxisUno.Models
         }
 
         /// <summary>
-        /// Gets partner's VAT number.
+        /// Gets or sets partner's VAT number.
         /// </summary>
         /// <date>14.03.2022.</date>
         public string VATNumber
         {
             get => this.vATNumber;
-            private set => this.SetProperty(ref this.vATNumber, value);
+            set => this.SetProperty(ref this.vATNumber, value);
         }
 
         /// <summary>
@@ -161,13 +161,13 @@ namespace AxisUno.Models
         }
 
         /// <summary>
-        /// Gets iBAN of partner.
+        /// Gets or sets iBAN of partner.
         /// </summary>
         /// <date>14.03.2022.</date>
         public string IBAN
         {
             get => this.iBAN;
-            private set => this.SetProperty(ref this.iBAN, value);
+            set => this.SetProperty(ref this.iBAN, value);
         }
 
         /// <summary>
@@ -198,6 +198,103 @@ namespace AxisUno.Models
         {
             get => this.status;
             set => this.SetProperty(ref this.status, value);
+        }
+
+        /// <summary>
+        /// Casts SearchService.Models.CompanyModel object to PartnerModel.
+        /// </summary>
+        /// <param name="company">Partner data.</param>
+        /// <date>17.03.2022.</date>
+        public static implicit operator PartnerModel(Microinvest.SearchService.Models.CompanyModel company)
+        {
+            PartnerModel partner = new PartnerModel()
+            {
+                Name = company.Name,
+                TaxNumber = company.TaxNumber,
+                VATNumber = company.VatNumber,
+                City = company.City,
+                Address = company.Address,
+                Principal = company.Principal,
+            };
+
+            return partner;
+        }
+
+        /// <summary>
+        /// Casts PartnerModel object to Microinvest.PDFCreator.Models.CompanyModel.
+        /// </summary>
+        /// <param name="partner">Data of partner.</param>
+        /// <date>17.03.2022.</date>
+        public static explicit operator Microinvest.PDFCreator.Models.CompanyModel(PartnerModel partner)
+        {
+            Microinvest.PDFCreator.Models.CompanyModel company = new Microinvest.PDFCreator.Models.CompanyModel();
+            company.Name = partner.Name;
+            company.Address = string.Format("{0}, {1}", partner.City, partner.Address);
+            company.Principal = partner.Principal;
+            company.TaxNumber = partner.TaxNumber;
+            company.Phone = partner.Phone;
+            company.VATNumber = partner.VATNumber;
+
+            return company;
+        }
+
+        /// <summary>
+        /// Casts PartnerModel object to DataBase.My100REnteties.Partners.Partner.
+        /// </summary>
+        /// <param name="partner">Data of partner.</param>
+        /// <date>25.03.2022.</date>
+        public static explicit operator DataBase.My100REnteties.Partners.Partner(PartnerModel partner)
+        {
+            DataBase.My100REnteties.Partners.Partner entityPartner = new DataBase.My100REnteties.Partners.Partner()
+            {
+                Company = partner.Name,
+                Principal = partner.Principal,
+                City = partner.City,
+                Address = partner.Address,
+                Phone = partner.Phone,
+                TaxNumber = partner.TaxNumber,
+                Vatnumber = partner.VATNumber,
+                BankName = partner.BankName,
+                BankBic = partner.BankBIC,
+                Iban = partner.IBAN,
+                DiscountCard = partner.DiscountCardNumber,
+                Email = partner.Email,
+                Group = (DataBase.My100REnteties.PartnersGroups.PartnersGroup)partner.Group,
+                Status = partner.Status,
+            };
+
+            return entityPartner;
+        }
+
+        /// <summary>
+        /// Casts DataBase.My100REnteties.Partners.Partner object to PartnerModel.
+        /// </summary>
+        /// <param name="entityPartner">Data of partner from database.</param>
+        /// <date>25.03.2022.</date>
+        public static explicit operator PartnerModel(DataBase.My100REnteties.Partners.Partner entityPartner)
+        {
+            PartnerModel partner = new PartnerModel();
+
+            if (entityPartner != null)
+            {
+                partner.Id = entityPartner.Id;
+                partner.Name = entityPartner.Company;
+                partner.Principal = entityPartner.Principal;
+                partner.City = entityPartner.City;
+                partner.Address = entityPartner.Address;
+                partner.Phone = entityPartner.Phone;
+                partner.Email = entityPartner.Email;
+                partner.TaxNumber = entityPartner.TaxNumber;
+                partner.VATNumber = entityPartner.Vatnumber;
+                partner.BankName = entityPartner.BankName;
+                partner.BankBIC = entityPartner.BankBic;
+                partner.IBAN = entityPartner.Iban;
+                partner.DiscountCardNumber = entityPartner.DiscountCard;
+                partner.Group = (GroupModel)entityPartner.Group;
+                partner.Status = entityPartner.Status;
+            }
+
+            return partner;
         }
     }
 }
