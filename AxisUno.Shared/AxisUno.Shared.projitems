@@ -64,6 +64,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Enums\ESettingKeys.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\DomainEventBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\BusinessRuleValidationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\UIElementExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Handlers\ActivationHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Handlers\DefaultActivationHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Handlers\IActivationHandler.cs" />

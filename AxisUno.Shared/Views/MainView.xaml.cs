@@ -45,6 +45,8 @@ namespace AxisUno.Views
             }
         }
 
+
+
         private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)

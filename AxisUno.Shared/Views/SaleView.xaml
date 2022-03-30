@@ -9,6 +9,7 @@
     xmlns:models="using:AxisUno.Models"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:primitives="using:CommunityToolkit.WinUI.UI.Controls.Primitives"
+    xmlns:extensions="using:AxisUno.Extensions"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:DataContext="{x:Bind ViewModel}"
     CornerRadius="0"
@@ -39,7 +40,9 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Background="Transparent" CornerRadius="0" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSaleTitleReadOnly}" Text="{x:Bind ViewModel.SaleTitle, Mode=OneWay}"/>
+                <TextBox Background="Transparent" CornerRadius="0" BorderThickness="0"
+                         IsReadOnly="{x:Bind ViewModel.IsSaleTitleReadOnly}" 
+                         Text="{x:Bind ViewModel.SaleTitle, Mode=OneWay}"/>
                 <Button Grid.Column="1" CornerRadius="0" Padding="6" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSaleTitleReadOnlyCommand}" >
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/edit_white.png" ShowAsMonochrome="False"/>
                 </Button>
@@ -56,8 +59,9 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock VerticalAlignment="Center" Padding="10,0" Text="{x:Bind ViewModel.TitlePartnerString}" Width="70px"/>
-                <TextBox Grid.Column="1" CornerRadius="0" FontSize="12" Width="200px" Background="White" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSelectedPartnerLocked}" Text="{x:Bind ViewModel.SelectedPartnerString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock VerticalAlignment="Center" Padding="10,0" Text="{x:Bind ViewModel.TitlePartnerString}" Width="70px"
+                           extensions:UIElementExtension.HelpMessage="Help message!"/>
+                <TextBox x:Name="tbx_partner" extensions:UIElementExtension.HelpMessage="Help message2!" Grid.Column="1" CornerRadius="0" FontSize="12" Width="200px" Background="White" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSelectedPartnerLocked}" Text="{x:Bind ViewModel.SelectedPartnerString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Grid.Column="1" CornerRadius="0" Margin="0" Padding="2"  Background="Transparent" HorizontalAlignment="Right" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSelectedPartnerLockedCommand}" >
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Lock_purple.png" ShowAsMonochrome="False"/>
                 </Button>
@@ -208,30 +212,68 @@
                     </controls:DataGrid.Columns>
                 </controls:DataGrid>
 
-                <Grid Grid.Row="1" BorderThickness="0" BorderBrush="Black" Background="LightGray" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Visible">
+                <Grid Grid.Row="1" BorderThickness="0" BorderBrush="Black" Background="LightGray" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                      Visibility="{x:Bind ViewModel.BtnPanelVisibility, Mode=OneWay}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" Height="50" Padding="2" >
+                    
+                    <Button Grid.Column="0" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" Height="50" Padding="2"
+                            Visibility="{x:Bind ViewModel.GoodsBtnPanelVisibility, Mode=OneWay}">
                         <BitmapIcon UriSource="ms-appx:///Assets/Icons/goods_add.png" ShowAsMonochrome="False" Margin="0"/>
                     </Button>
-                    <Button Grid.Column="1" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" Height="50"  Padding="2" >
+                    <Button Grid.Column="1" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" Height="50"  Padding="2"
+                            Visibility="{x:Bind ViewModel.GoodsBtnPanelVisibility, Mode=OneWay}">
                         <BitmapIcon UriSource="ms-appx:///Assets/Icons/goods_delete.png" ShowAsMonochrome="False" Margin="0"/>
                     </Button>
-                    <Button Grid.Column="2" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" Height="50"  Padding="2" >
+                    <Button Grid.Column="2" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" Height="50"  Padding="2"
+                            Visibility="{x:Bind ViewModel.GoodsBtnPanelVisibility, Mode=OneWay}">
                         <BitmapIcon UriSource="ms-appx:///Assets/Icons/goods_edit.png" ShowAsMonochrome="False" Margin="0"/>
                     </Button>
+
+                    <Button Grid.Column="0" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" Height="50" Padding="2"
+                            Visibility="{x:Bind ViewModel.GroupsBtnPanelVisibility, Mode=OneWay}">
+                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/groups_add.png" ShowAsMonochrome="False" Margin="0"/>
+                    </Button>
+                    <Button Grid.Column="1" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" Height="50"  Padding="2"
+                            Visibility="{x:Bind ViewModel.GroupsBtnPanelVisibility, Mode=OneWay}">
+                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/groups_delete.png" ShowAsMonochrome="False" Margin="0"/>
+                    </Button>
+                    <Button Grid.Column="2" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" Height="50"  Padding="2"
+                            Visibility="{x:Bind ViewModel.GroupsBtnPanelVisibility, Mode=OneWay}">
+                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/groups_edit.png" ShowAsMonochrome="False" Margin="0"/>
+                    </Button>
+
+                    <Button Grid.Column="0" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" Height="50" Padding="2"
+                            Visibility="{x:Bind ViewModel.PartnersBtnPanelVisibility, Mode=OneWay}">
+                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/partners_add.png" ShowAsMonochrome="False" Margin="0"/>
+                    </Button>
+                    <Button Grid.Column="1" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" Height="50"  Padding="2"
+                            Visibility="{x:Bind ViewModel.PartnersBtnPanelVisibility, Mode=OneWay}">
+                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/partners_delete.png" ShowAsMonochrome="False" Margin="0"/>
+                    </Button>
+                    <Button Grid.Column="2" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" Height="50"  Padding="2"
+                            Visibility="{x:Bind ViewModel.PartnersBtnPanelVisibility, Mode=OneWay}">
+                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/partners_edit.png" ShowAsMonochrome="False" Margin="0"/>
+                    </Button>
                 </Grid>
-                
+
+
+
+
                 <Grid Grid.Row="2" BorderBrush="Black" BorderThickness="0" Background="LightSteelBlue">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBox PlaceholderText="Поиск" Height="28" CornerRadius="0"  BorderThickness="0" BorderBrush="Black" Margin="2" />
-                    <Button Grid.Column="1" CornerRadius="0" BorderBrush="White" BorderThickness="1" Background="LightSteelBlue" Width="40" Padding="2" Margin="2" >
+                    <Button Grid.Column="1" CornerRadius="0" BorderBrush="White" BorderThickness="1" Background="LightSteelBlue" Width="40" Padding="2" Margin="2" 
+                             Command="{x:Bind ViewModel.ChangeBtnPanelExpandModeCommand}">
+                        <Button.RenderTransform>
+                            <RotateTransform Angle="{x:Bind ViewModel.ExpandBtnTransfAngle, Mode=OneWay}" CenterX="20" CenterY="18"/>
+                        </Button.RenderTransform>
                         <BitmapIcon UriSource="ms-appx:///Assets/Icons/up.png" ShowAsMonochrome="False" Margin="0"/>
                     </Button>
                 </Grid>

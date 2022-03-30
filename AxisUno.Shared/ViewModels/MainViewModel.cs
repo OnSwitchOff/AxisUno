@@ -8,13 +8,19 @@ using System.Text;
 
 namespace AxisUno.ViewModels
 {
-    public partial class MainViewModel : ObservableObject
+    public  partial class MainViewModel : ObservableObject
     {
         private readonly INavigationService _navigationService;
         private readonly INavigationViewService _navigationViewService;
 
+        private string helpMessage;
+        public string HelpMessage {
+            get => helpMessage;
+            set => SetProperty(ref helpMessage, value);
+        }
+
         private bool isBackEnabled;
-        public bool IsBackEnabled { get => isBackEnabled; set=> SetProperty(ref  isBackEnabled,value); }
+        public bool IsBackEnabled { get => isBackEnabled; set => SetProperty(ref  isBackEnabled,value); }
 
         private NavigationViewItem selected;
         public NavigationViewItem Selected 
@@ -28,6 +34,7 @@ namespace AxisUno.ViewModels
             _navigationService = navigationService;
             NavigationService.Navigated += OnNavigated;
             _navigationViewService = navigationViewService;
+
         }
 
         public INavigationService NavigationService
@@ -49,6 +56,11 @@ namespace AxisUno.ViewModels
             {
                 Selected = selectedItem;
             }
+        }
+
+        public MainViewModel()
+        {
+
         }
     }
 }

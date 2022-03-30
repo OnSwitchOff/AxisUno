@@ -38,9 +38,24 @@ namespace AxisUno.Views
             ViewModel = Ioc.Default.GetRequiredService<SaleViewModel>();
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
             this.InitializeComponent();
+
+            tbx_partner.GotFocus += Tbx_partner_GotFocus;
+            dg.GotFocus += Gr_GotFocus;
         }
 
-        
+        private void Gr_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ViewModel.GroupsBtnPanelVisibility = Visibility.Collapsed;
+            ViewModel.GoodsBtnPanelVisibility = Visibility.Visible;
+            ViewModel.PartnersBtnPanelVisibility = Visibility.Collapsed;
+        }
+
+        private void Tbx_partner_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ViewModel.GroupsBtnPanelVisibility = Visibility.Collapsed;
+            ViewModel.GoodsBtnPanelVisibility = Visibility.Collapsed;
+            ViewModel.PartnersBtnPanelVisibility = Visibility.Visible;
+        }
 
         private void ViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {

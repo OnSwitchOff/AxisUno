@@ -47,6 +47,10 @@ namespace AxisUno.ViewModels
         private string operationItemDiscountColumnHeader = "Скидка";
         private string operationItemTotalAmountColumnHeader = "Общая стоимость";
         private Visibility operationItemTotalAmountColumnVisibility = Visibility.Collapsed;
+        private Visibility goodsBtnPanelVisibility = Visibility.Visible;
+        private Visibility partnersBtnPanelVisibility = Visibility.Collapsed;
+        private Visibility groupsBtnPanelVisibility = Visibility.Collapsed;
+        private bool isBtnPanelExpanded = false;
         private string searchString = string.Empty;
         private ItemModel? selectedGroup;
         
@@ -150,6 +154,26 @@ namespace AxisUno.ViewModels
         public bool IsSelectedPartnerLocked { get => isSelectedPartnerLocked; set => SetProperty(ref isSelectedPartnerLocked, value); }
 
         public Visibility EditPanelVisibility { get => editPanelVisibility; set => SetProperty(ref editPanelVisibility, value); }
+        public Visibility GoodsBtnPanelVisibility { get => goodsBtnPanelVisibility; set => SetProperty(ref goodsBtnPanelVisibility, value); }
+
+        public Visibility GroupsBtnPanelVisibility { get => groupsBtnPanelVisibility; set => SetProperty(ref groupsBtnPanelVisibility, value); }
+
+        public Visibility PartnersBtnPanelVisibility { get => partnersBtnPanelVisibility; set => SetProperty(ref partnersBtnPanelVisibility, value); }
+
+        public Visibility BtnPanelVisibility { get => IsBtnPanelExpanded ? Visibility.Collapsed : Visibility.Visible; }
+
+        public bool IsBtnPanelExpanded { get => isBtnPanelExpanded;
+            set {
+                SetProperty(ref isBtnPanelExpanded, value);
+                OnPropertyChanged("ExpandBtnTransfAngle");
+                OnPropertyChanged("BtnPanelVisibility");
+            }
+        }
+
+        public double ExpandBtnTransfAngle
+        {
+            get => IsBtnPanelExpanded ? 0 : 180;
+        }
 
         public string OperationItemNameColumnHeader { get => operationItemNameColumnHeader; set => SetProperty(ref operationItemNameColumnHeader, value); }
 
@@ -208,6 +232,12 @@ namespace AxisUno.ViewModels
         private void ShowEditPanel()
         {
 
+        }
+
+        [ICommand]
+        private void ChangeBtnPanelExpandMode()
+        {
+            IsBtnPanelExpanded = !IsBtnPanelExpanded;
         }
 
 

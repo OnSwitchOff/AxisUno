@@ -78,7 +78,15 @@
             </Grid.RowDefinitions>
             <Frame x:Name="frame"  />
             <Grid Grid.Row="1" Background="DodgerBlue">
-                <Button CornerRadius="0" Margin="10,5" Padding="0"  BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Right" Background="Transparent">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{x:Bind ViewModel.HelpMessage, Mode=TwoWay}"/>
+
+                <Button Grid.Column="1" CornerRadius="0" Margin="10,5" Padding="0"  BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Right" Background="Transparent">
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Youtube.png" Width="40" Height="20" Margin="0" ShowAsMonochrome="False"/>
                 </Button>
             </Grid>

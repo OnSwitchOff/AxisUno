@@ -33,6 +33,7 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		AxisUno.Shared\AxisUno.Shared.projitems*{1aa13270-f438-4864-9435-54fd806e10ea}*SharedItemsImports = 5
+		AxisUno.Shared\AxisUno.Shared.projitems*{2e4aed66-751b-4bf1-8b70-776c7af0bea4}*SharedItemsImports = 5
 		AxisUno.Shared\AxisUno.Shared.projitems*{40ea03f7-8a22-4143-b251-79bac3eb13d2}*SharedItemsImports = 5
 		AxisUno.Shared\AxisUno.Shared.projitems*{6279c845-92f8-4333-ab99-3d213163593c}*SharedItemsImports = 13
 		AxisUno.Shared\AxisUno.Shared.projitems*{71c1a3b5-caa1-478f-9cfc-f2aa0e252a7d}*SharedItemsImports = 5
