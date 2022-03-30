@@ -4,6 +4,7 @@
 
 namespace AxisUno.Services.Serialization
 {
+    using AxisUno.DataBase.Repositories.Serialization;
     using AxisUno.Enums;
 
     /// <summary>
@@ -20,11 +21,18 @@ namespace AxisUno.Services.Serialization
         SerializationItemModel this[ESerializationKeys key] { get; set; }
 
         /// <summary>
+        /// Gets a value indicating whether data is initialized.
+        /// </summary>
+        /// <date>29.03.2022.</date>
+        bool SerializationDataInitialized { get; }
+
+        /// <summary>
         /// Set serialization data property.
         /// </summary>
         /// <param name="group">Key to search serialization value.</param>
+        /// <param name="serialization">Class to communicate with database.</param>
         /// <date>28.03.2022.</date>
-        void InitSerializationData(ESerializationGroups group);
+        void InitSerializationData(ESerializationGroups group, ISerializationRepository serialization);
 
         /// <summary>
         /// Determines whether the serialization data contains the specified key.

@@ -27,10 +27,14 @@ namespace AxisUno.ViewModels
     {
         private readonly IItemRepository itemsRepository;
         private readonly IPartnerRepository partnersRepository;
+        private readonly ISerializationRepository serializationRepository;
         private readonly ISettingsService setting;
         private readonly ISerializationService serialization;
 
         private string saleTitle = "Покупка";
+
+        private PartnerModel? selectedPartner = null;
+
         private string titlePartnerString = "Партнёр:";
         private string selectedPartnerString = "Базовый партнёр";
         private decimal totalAmount = 0m;
@@ -45,18 +49,36 @@ namespace AxisUno.ViewModels
         private Visibility operationItemTotalAmountColumnVisibility = Visibility.Collapsed;
         private string searchString = string.Empty;
         private ItemModel? selectedGroup;
-        private PartnerModel? selectedPartner;
+        
         private ItemModel? selectedItem;
         private string filterString;
         private bool isSaleTitleReadOnly;
         private bool isSelectedPartnerLocked;
         private Visibility editPanelVisibility;
         private GroupModel selectedTreeViewItem;
+
+        /// <summary>
+        /// Gets serialization service in according to type of page.
+        /// </summary>
+        /// <date>29.03.2022.</date>
+        private ISerializationService Serialization
+        {
+            get
+            {
+                if (!this.serialization.SerializationDataInitialized)
+                {
+                    this.serialization.InitSerializationData(Enums.ESerializationGroups.Sale, this.serializationRepository);
+                }
+
+                return this.serialization;
+            }
+        }
+
         public string SaleTitle { get => saleTitle; set => SetProperty(ref saleTitle,value); }
 
         public string TitlePartnerString { get => titlePartnerString; set => SetProperty(ref titlePartnerString, value); }
 
-        public string SelectedPartnerString { get => selectedPartnerString; set => SetProperty(ref selectedPartnerString, value); }
+        
 
         public decimal TotalAmount { get => totalAmount; set { SetProperty(ref totalAmount, value); OnPropertyChanged(nameof(TotalAmountString)); } }
 
@@ -78,7 +100,44 @@ namespace AxisUno.ViewModels
 
         public ObservableCollection<PartnerModel> PartnersList { get; set; } = new ObservableCollection<PartnerModel>();
 
-        public PartnerModel? SelectedPartner { get => selectedPartner; set => SetProperty(ref selectedPartner, value); }
+        /// <summary>
+        /// Gets or sets partner is selected for this operation.
+        /// </summary>
+        /// <date>24.03.2022.</date>
+        public PartnerModel SelectedPartner
+        {
+            get
+            {
+                if (this.selectedPartner == null)
+                {
+                    int id = (int)this.Serialization[Enums.ESerializationKeys.TbPartnerID];
+                    this.selectedPartner = this.partnersRepository.GetPartnerById((int)this.Serialization[Enums.ESerializationKeys.TbPartnerID]).GetAwaiter().GetResult();
+                    this.SelectedPartnerString = this.selectedPartner.Name;
+
+                    this.Serialization[Enums.ESerializationKeys.TbPartnerID].Value = "1";
+                    this.Serialization.Update();
+                }
+
+                return this.selectedPartner;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.selectedPartner, value);
+
+                this.SelectedPartnerString = this.selectedPartner.Name;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value to search
+        /// </summary>
+        /// <date>24.03.2022.</date>
+        public string SelectedPartnerString
+        {
+            get => this.selectedPartnerString;
+            set => this.SetProperty(ref this.selectedPartnerString, value);
+        }
 
         public ObservableCollection<ItemModel> ItemsList { get; set; } = new ObservableCollection<ItemModel>();
 
@@ -117,6 +176,7 @@ namespace AxisUno.ViewModels
         [ICommand]
         private void ChangeSaleTitleReadOnly()
         {
+            object obj = this.SelectedPartner;
             OperationItemModel operationItem = new OperationItemModel();
             operationItem.Name = "Product1";
             operationItem.Measures.Add(new ItemCodeModel { Measure = "Asd2"});

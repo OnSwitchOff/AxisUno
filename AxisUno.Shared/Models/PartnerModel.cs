@@ -271,7 +271,7 @@ namespace AxisUno.Models
         /// </summary>
         /// <param name="entityPartner">Data of partner from database.</param>
         /// <date>25.03.2022.</date>
-        public static explicit operator PartnerModel(DataBase.My100REnteties.Partners.Partner entityPartner)
+        public static implicit operator PartnerModel(DataBase.My100REnteties.Partners.Partner entityPartner)
         {
             PartnerModel partner = new PartnerModel();
 

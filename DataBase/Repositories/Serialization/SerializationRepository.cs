@@ -1,13 +1,7 @@
-﻿using AxisUno.DataBase;
-using HarabaSourceGenerators.Common.Attributes;
-
-namespace AxisUno.DataBase.Repositories.Serialization
+﻿namespace AxisUno.DataBase.Repositories.Serialization
 {
-    [Inject]
     public partial class SerializationRepository : ISerializationRepository
     {
-        private readonly DatabaseContext databaseContext;
-
         /// <summary>
         /// Gets value of the setting by the key and name of group.
         /// </summary>
@@ -18,17 +12,20 @@ namespace AxisUno.DataBase.Repositories.Serialization
         /// <date>25.03.2022.</date>
         public string GetValue(string groupName, string key, string defaultValue)
         {
-            My100REnteties.Serializations.Serialization? serialization = this.databaseContext.Serializations.FirstOrDefault(s => s.Group.Equals(groupName) && s.Key.Equals(key));
-
-            if (serialization != null)
+            using (DatabaseContext databaseContext = new DatabaseContext())
             {
-                return serialization.Value;
-            }
-            else
-            {
-                this.SetValue(groupName, key, defaultValue);
+                My100REnteties.Serializations.Serialization? serialization = databaseContext.Serializations.FirstOrDefault(s => s.Group.Equals(groupName) && s.Key.Equals(key));
 
-                return defaultValue;
+                if (serialization != null)
+                {
+                    return serialization.Value;
+                }
+                else
+                {
+                    this.SetValue(groupName, key, defaultValue);
+
+                    return defaultValue;
+                }
             }
         }
 
@@ -41,13 +38,16 @@ namespace AxisUno.DataBase.Repositories.Serialization
         /// <date>25.03.2022.</date>
         public void SetValue(string groupName, string key, string value)
         {
-            this.databaseContext.Add(new My100REnteties.Serializations.Serialization()
+            using (DatabaseContext databaseContext = new DatabaseContext())
             {
-                Group = groupName,
-                Key = key,
-                Value = value,
-            });
-            this.databaseContext.SaveChanges();
+                databaseContext.Add(new My100REnteties.Serializations.Serialization()
+                {
+                    Group = groupName,
+                    Key = key,
+                    Value = value,
+                });
+                databaseContext.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -59,17 +59,20 @@ namespace AxisUno.DataBase.Repositories.Serialization
         /// <date>25.03.2022.</date>
         public void UpdateValue(string groupName, string key, string value)
         {
-            My100REnteties.Serializations.Serialization? serialization = this.databaseContext.Serializations.FirstOrDefault(s => s.Group.Equals(groupName) && s.Key.Equals(key));
+            using (DatabaseContext databaseContext = new DatabaseContext())
+            {
+                My100REnteties.Serializations.Serialization? serialization = databaseContext.Serializations.FirstOrDefault(s => s.Group.Equals(groupName) && s.Key.Equals(key));
 
-            if (serialization != null)
-            {
-                serialization.Value = value;
-                this.databaseContext.Update(serialization);
-                this.databaseContext.SaveChanges();
-            }
-            else
-            {
-                SetValue(groupName, key, value);
+                if (serialization != null)
+                {
+                    serialization.Value = value;
+                    databaseContext.Update(serialization);
+                    databaseContext.SaveChanges();
+                }
+                else
+                {
+                    SetValue(groupName, key, value);
+                }
             }
         }
     }

@@ -24,12 +24,13 @@ namespace AxisUno.DataBase
         public DatabaseContext()
             : base()
         {
-            //Database.EnsureCreated();
+            Database.EnsureCreated();
         }
 
         public DatabaseContext(DbContextOptions options)
             : base(options)
         {
+            Database.EnsureCreated();
         }
 
         //internal DbSet<Product> Products => Set<Product>();

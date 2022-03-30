@@ -20,8 +20,9 @@ namespace AxisUno.Handlers
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs? args)
         {
             _navigationService.Navigate<DashboardViewModel>(args?.Arguments);
+            _databaseMigrationService.Migrate();
 
-            await _databaseMigrationService.MigrateAsync();
+            //await _databaseMigrationService.MigrateAsync();
         }
 
         protected override bool CanHandleInternal(LaunchActivatedEventArgs? args)

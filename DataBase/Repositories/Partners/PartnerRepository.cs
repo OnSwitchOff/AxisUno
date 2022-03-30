@@ -1,16 +1,11 @@
-﻿using AxisUno.DataBase;
-using AxisUno.DataBase.My100REnteties.Partners;
-using HarabaSourceGenerators.Common.Attributes;
+﻿using AxisUno.DataBase.My100REnteties.Partners;
 using Microinvest.CommonLibrary.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace AxisUno.DataBase.Repositories.Partners
 {
-    [Inject]
     public partial class PartnerRepository : IPartnerRepository
     {
-        private readonly DatabaseContext databaseContext;
-
         /// <summary>
         /// Gets partner from the database by id.
         /// </summary>
@@ -19,7 +14,10 @@ namespace AxisUno.DataBase.Repositories.Partners
         /// <date>28.03.2022.</date>
         public Task<Partner?> GetPartnerById(int id)
         {
-            return this.databaseContext.Partners.FirstOrDefaultAsync(x => x.Id == id);
+            using (DatabaseContext databaseContext = new DatabaseContext())
+            {
+                return databaseContext.Partners.FirstOrDefaultAsync(x => x.Id == id);
+            }
         }
 
         /// <summary>
@@ -30,7 +28,10 @@ namespace AxisUno.DataBase.Repositories.Partners
         /// <date>28.03.2022.</date>
         public IAsyncEnumerable<Partner> GetParners(ENomenclatureStatuses status)
         {
-            return this.databaseContext.Partners.Where(x => x.Status == status).Include(p => p.Group).AsAsyncEnumerable();
+            using (DatabaseContext databaseContext = new DatabaseContext())
+            {
+                return databaseContext.Partners.Where(x => x.Status == status).Include(p => p.Group).AsAsyncEnumerable();
+            }
         }
     }
 }
