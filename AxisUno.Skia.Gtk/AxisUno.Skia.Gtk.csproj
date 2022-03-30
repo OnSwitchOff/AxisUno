@@ -32,8 +32,8 @@
 	  <PackageReference Include="Microinvest.IntegrationService" Version="1.0.0" />
 	  <PackageReference Include="Microinvest.PDFCreator" Version="1.0.0" />
 	  <PackageReference Include="Microinvest.SearchService" Version="1.0.0" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.2" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
+	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.3" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.3">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
@@ -52,9 +52,9 @@
 	  
 	<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Behaviors" Version="7.1.100-dev.7.g758154cb81" />
     <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.3.0" />
-    <PackageReference Include="Uno.WinUI.Skia.Gtk" Version="4.0.13" />
-    <PackageReference Include="Uno.WinUI.RemoteControl" Version="4.0.13" Condition="'$(Configuration)'=='Debug'" />
-    <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.0.13" />
+    <PackageReference Include="Uno.WinUI.Skia.Gtk" Version="4.1.9" />
+    <PackageReference Include="Uno.WinUI.RemoteControl" Version="4.1.9" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.1.9" />
 	<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.100-dev.7.g758154cb81" />
   </ItemGroup>
   <ItemGroup>

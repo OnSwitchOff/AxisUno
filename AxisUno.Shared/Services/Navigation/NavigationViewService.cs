@@ -108,8 +108,20 @@ namespace AxisUno.Services.Navigation
                 return;
             }
 
-            var selectedItem = args.InvokedItemContainer as NavigationViewItem;
+            NavigationViewItem selectedItem = args.InvokedItemContainer as NavigationViewItem;
+
             var viewKey = selectedItem?.GetValue(NavigationExtension.NavigateToProperty) as string;
+
+            if (viewKey == "AxisUno.ViewModels.SaleViewModel")
+            {
+                NavigationViewItem saleItem = new NavigationViewItem();
+                saleItem.Content = "Sale";
+                saleItem?.SetValue(NavigationExtension.NavigateToProperty, "AxisUno.ViewModels.SaleViewModel");
+                saleItem.Icon = new SymbolIcon(Symbol.Page);
+                _navigationView.MenuItems.Add(saleItem);
+                _navigationService.Navigate(viewKey);
+                return;
+            }
 
             if (viewKey is not null)
             {

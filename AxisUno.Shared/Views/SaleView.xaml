@@ -11,7 +11,7 @@
     xmlns:primitives="using:CommunityToolkit.WinUI.UI.Controls.Primitives"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:DataContext="{x:Bind ViewModel}"
-    CornerRadius="0" 
+    CornerRadius="0"
     x:Name="page">
     <Page.Resources>
         <SolidColorBrush x:Key="DataGridCellFocusVisualPrimaryBrush">Transparent</SolidColorBrush>
@@ -39,12 +39,12 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Background="Transparent" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSaleTitleReadOnly}" Text="{x:Bind ViewModel.SaleTitle, Mode=OneWay}"/>
-                <Button Grid.Column="1" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSaleTitleReadOnlyCommand}" >
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False"/>
+                <TextBox Background="Transparent" CornerRadius="0" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSaleTitleReadOnly}" Text="{x:Bind ViewModel.SaleTitle, Mode=OneWay}"/>
+                <Button Grid.Column="1" CornerRadius="0" Padding="6" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSaleTitleReadOnlyCommand}" >
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/edit_white.png" ShowAsMonochrome="False"/>
                 </Button>
-                <Button Grid.Column="2" CornerRadius="0" Padding="0" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.CloseSalePageCommand}">
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False"/>
+                <Button Grid.Column="2" CornerRadius="0" Padding="4" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.CloseSalePageCommand}">
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/close.png" ShowAsMonochrome="False"/>
                 </Button>
             </Grid>
 
@@ -58,8 +58,8 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock VerticalAlignment="Center" Padding="10,0" Text="{x:Bind ViewModel.TitlePartnerString}" Width="70px"/>
                 <TextBox Grid.Column="1" CornerRadius="0" FontSize="12" Width="200px" Background="White" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSelectedPartnerLocked}" Text="{x:Bind ViewModel.SelectedPartnerString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Grid.Column="1" CornerRadius="0" Margin="0" Padding="0"  Background="Transparent" HorizontalAlignment="Right" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSelectedPartnerLockedCommand}" >
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False"/>
+                <Button Grid.Column="1" CornerRadius="0" Margin="0" Padding="2"  Background="Transparent" HorizontalAlignment="Right" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSelectedPartnerLockedCommand}" >
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Lock_purple.png" ShowAsMonochrome="False"/>
                 </Button>
                 <TextBlock VerticalAlignment="Center" Grid.Column="3"  Width="120px" Text="{x:Bind ViewModel.TotalAmountTitle}"/>
                 <TextBlock VerticalAlignment="Center" Grid.Column="4"  Width="80px" Text="{x:Bind ViewModel.TotalAmountString}"/>
@@ -141,7 +141,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBox Grid.Column="1" Width="200px" Height="26" CornerRadius="0" Margin="0"  VerticalContentAlignment="Bottom" IsReadOnly="{x:Bind ViewModel.IsSaleTitleReadOnly}" Text="{x:Bind ViewModel.SaleTitle, Mode=OneWay}"/>
-                <BitmapIcon Grid.Column="1" UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False"  HorizontalAlignment="Right" Width="20" Height="20" Margin="0,0,7,0" />
+                <BitmapIcon Grid.Column="1" UriSource="ms-appx:///Assets/Icons/Search_purple.png" ShowAsMonochrome="False"  HorizontalAlignment="Right" Width="20" Height="20" Margin="0,0,7,0" />
                 <Button Grid.Column="2" Content="Сохранить" Width="120px" Height="32" VerticalContentAlignment="Center" FontSize="14" CornerRadius="0" Margin="5,0"/>
             </Grid>
             
@@ -208,31 +208,31 @@
                     </controls:DataGrid.Columns>
                 </controls:DataGrid>
 
-                <Grid Grid.Row="1" BorderThickness="1" BorderBrush="Black" Background="LightGray" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Visible">
+                <Grid Grid.Row="1" BorderThickness="0" BorderBrush="Black" Background="LightGray" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Visible">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="Black" Background="Transparent" Width="50" Height="50" Padding="0" >
-                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False" Margin="0"/>
+                    <Button Grid.Column="0" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" Height="50" Padding="2" >
+                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/goods_add.png" ShowAsMonochrome="False" Margin="0"/>
                     </Button>
-                    <Button Grid.Column="1" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="Black" Background="Transparent" Width="50" Height="50"  Padding="0" >
-                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False" Margin="0"/>
+                    <Button Grid.Column="1" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" Height="50"  Padding="2" >
+                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/goods_delete.png" ShowAsMonochrome="False" Margin="0"/>
                     </Button>
-                    <Button Grid.Column="2" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="Black" Background="Transparent" Width="50" Height="50"  Padding="0" >
-                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False" Margin="0"/>
+                    <Button Grid.Column="2" Margin="0"  CornerRadius="0"  BorderThickness="1" BorderBrush="White" Background="Transparent" Width="50" Height="50"  Padding="2" >
+                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/goods_edit.png" ShowAsMonochrome="False" Margin="0"/>
                     </Button>
                 </Grid>
                 
-                <Grid Grid.Row="2" BorderBrush="Black" Background="LightSteelBlue">
+                <Grid Grid.Row="2" BorderBrush="Black" BorderThickness="0" Background="LightSteelBlue">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBox PlaceholderText="Поиск" Height="28" CornerRadius="0"  BorderThickness="0" BorderBrush="Black" Margin="2" />
-                    <Button Grid.Column="1" CornerRadius="0" BorderBrush="Black" BorderThickness="1" Background="LightGray" Width="40" Padding="0" >
-                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False" Margin="0"/>
+                    <Button Grid.Column="1" CornerRadius="0" BorderBrush="White" BorderThickness="1" Background="LightSteelBlue" Width="40" Padding="2" Margin="2" >
+                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/up.png" ShowAsMonochrome="False" Margin="0"/>
                     </Button>
                 </Grid>
             </Grid>
