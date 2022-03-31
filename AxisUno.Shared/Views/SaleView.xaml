@@ -59,7 +59,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock VerticalAlignment="Center" Padding="10,0" Text="{x:Bind ViewModel.TitlePartnerString}" Width="70px"
+                <TextBlock VerticalAlignment="Center" Padding="10,0" Text="{x:Bind ViewModel.TitlePartnerString, Mode=OneWay}" Width="70px"
                            extensions:UIElementExtension.HelpMessage="Help message!"/>
                 <TextBox x:Name="tbx_partner" extensions:UIElementExtension.HelpMessage="Help message2!" Grid.Column="1" CornerRadius="0" FontSize="12" Width="200px" Background="White" BorderThickness="0" IsReadOnly="{x:Bind ViewModel.IsSelectedPartnerLocked}" Text="{x:Bind ViewModel.SelectedPartnerString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Grid.Column="1" CornerRadius="0" Margin="0" Padding="2"  Background="Transparent" HorizontalAlignment="Right" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSelectedPartnerLockedCommand}" >

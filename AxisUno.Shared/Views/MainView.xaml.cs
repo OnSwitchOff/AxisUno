@@ -102,6 +102,7 @@ namespace AxisUno.Views
             if (e.Content is SaleView && e.Parameter is SaleViewModel)
             {
                 (e.Content as SaleView).ViewModel = e.Parameter as SaleViewModel;
+                (e.Content as SaleView).ViewModel.SaleTitle = (e.Parameter as SaleViewModel).SaleTitle;
             }
 
         }
