@@ -58,8 +58,38 @@ namespace AxisUno.ViewModels
         private string filterString;
         private bool isSaleTitleReadOnly;
         private bool isSelectedPartnerLocked;
-        private Visibility editPanelVisibility;
+        private Visibility editPanelVisibility = Visibility.Collapsed;
         private GroupModel selectedTreeViewItem;
+
+        private Visibility editGroupGridVisibility = Visibility.Collapsed;
+        private string editGroupName = "Наименование";
+        private string editGroupDiscount = "Скидка,%";
+        private GroupModel tmpGroupModel = new GroupModel();
+
+        private Visibility editGoodGridVisibility = Visibility.Visible;
+        private string editGoodCode = "Код";
+        private string editGoodName = "Наименование";
+        private string editGoodBarcode = "Штрихкод";
+        private string editGoodItemGroup = "Группа товара";
+        private ObservableCollection<GroupModel> groupModels = new ObservableCollection<GroupModel>();
+        private string editGoodVatGroup = "Группа НДС";
+        private ObservableCollection<VATGroupModel> vatGroups = new ObservableCollection<VATGroupModel>();
+        private string editGoodItemType = "Тип товара";
+        private string editGoodSelectedItemType = string.Empty;
+        private ObservableCollection<string> editGoodItemTypes = new ObservableCollection<string>();
+        private string editGoodGeneralMeasure = "Основная ед. изм.";
+        private ObservableCollection<string> measures = new ObservableCollection<string> { "шт.", "л/" };
+        private string editGoodPrice = "Цена";
+        private string editGoodAdditionalIds = "Дополнительные идентификаторы";
+        private ItemModel tmpItemModel = new ItemModel();
+
+
+        private Visibility editPartnerGridVisibility = Visibility.Collapsed;
+        private PartnerModel tmpPartnerModel = new PartnerModel();
+
+
+        private string saveBtnTitle = "Save";
+        private string cancelBtnTitle = "Cancel";
 
         /// <summary>
         /// Gets serialization service in according to type of page.
@@ -80,9 +110,7 @@ namespace AxisUno.ViewModels
 
         public string SaleTitle { get => saleTitle; set => SetProperty(ref saleTitle,value); }
 
-        public string TitlePartnerString { get => titlePartnerString; set => SetProperty(ref titlePartnerString, value); }
-
-        
+        public string TitlePartnerString { get => titlePartnerString; set => SetProperty(ref titlePartnerString, value); }        
 
         public decimal TotalAmount { get => totalAmount; set { SetProperty(ref totalAmount, value); OnPropertyChanged(nameof(TotalAmountString)); } }
 
@@ -103,6 +131,37 @@ namespace AxisUno.ViewModels
         public ItemModel? SelectedGroup { get => selectedGroup; set => SetProperty(ref selectedGroup, value); }
 
         public ObservableCollection<PartnerModel> PartnersList { get; set; } = new ObservableCollection<PartnerModel>();
+
+        public Visibility EditGroupGridVisibility { get => editGroupGridVisibility; set => SetProperty(ref editGroupGridVisibility, value); }
+        public string EditGroupName { get => editGroupName; set => SetProperty(ref editGroupName, value); }
+        public string EditGroupDiscount { get => editGroupDiscount; set => SetProperty(ref editGroupDiscount, value); }
+        public GroupModel TmpGroupModel { get => tmpGroupModel; set => SetProperty(ref tmpGroupModel, value); }
+
+
+        public Visibility EditGoodGridVisibility { get => editGoodGridVisibility; set => SetProperty(ref editGoodGridVisibility, value); }
+        public string EditGoodCode { get => editGoodCode; set => SetProperty(ref editGoodCode, value); }
+        public string EditGoodName { get => editGoodName; set => SetProperty(ref editGoodName, value); }
+        public string EditGoodBarcode { get => editGoodBarcode; set => SetProperty(ref editGoodBarcode, value); }
+        public string EditGoodItemGroup { get => editGoodItemGroup; set => SetProperty(ref editGoodItemGroup, value); }
+        public ObservableCollection<GroupModel> GroupModels { get => groupModels; set => SetProperty(ref groupModels, value); }
+        public string EditGoodVatGroup { get => editGoodVatGroup; set => SetProperty(ref editGoodVatGroup, value); }
+        public ObservableCollection<VATGroupModel> VATGroups { get => vatGroups; set => SetProperty(ref vatGroups, value); }
+        public string EditGoodItemType { get => editGoodItemType; set => SetProperty(ref editGoodItemType, value); }
+        public string EditGoodSelectedItemType { get => editGoodSelectedItemType; set => SetProperty(ref editGoodSelectedItemType, value); }
+        public ObservableCollection<string> EditGoodItemTypes { get => editGoodItemTypes; set => SetProperty(ref editGoodItemTypes, value); }
+        public string EditGoodGeneralMeasure { get => editGoodGeneralMeasure; set => SetProperty(ref editGoodGeneralMeasure, value); }
+        public ObservableCollection<string> Measures { get => measures; set => SetProperty(ref measures, value); }
+        public string EditGoodPrice { get => editGoodPrice; set => SetProperty(ref editGoodPrice, value); }
+        public string EditGoodAdditionalIds { get => editGoodAdditionalIds; set=> SetProperty(ref editGoodAdditionalIds, value); }
+        public ItemModel TmpItemModel { get => tmpItemModel; set => SetProperty(ref tmpItemModel, value); }
+
+
+        public Visibility EditPartnerGridVisibility { get => editPartnerGridVisibility; set => SetProperty(ref editPartnerGridVisibility, value); }
+
+        public PartnerModel TmpPartnerModel { get => tmpPartnerModel; set => SetProperty(ref tmpPartnerModel, value); }
+
+        public string SaveBtnTitle { get=> saveBtnTitle; set => SetProperty(ref saveBtnTitle, value); }
+        public string CancelBtnTitle { get => cancelBtnTitle; set => SetProperty(ref cancelBtnTitle, value); }
 
         /// <summary>
         /// Gets or sets partner is selected for this operation.

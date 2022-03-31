@@ -25,6 +25,8 @@ namespace AxisUno.Models
         private EItemTypes itemType;
         private ENomenclatureStatuses status;
 
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemModel"/> class.
         /// </summary>
@@ -99,7 +101,10 @@ namespace AxisUno.Models
         public string Measure
         {
             get => this.measure;
-            set => this.SetProperty(ref this.measure, value);
+            set
+            {
+                this.SetProperty(ref this.measure, value);
+            } 
         }
 
         /// <summary>
@@ -151,6 +156,9 @@ namespace AxisUno.Models
             get => this.status;
             set => this.SetProperty(ref this.status, value);
         }
+
+       
+
 
         /// <summary>
         /// Casts SearchService.Models.ProductModel object to ItemModel.
