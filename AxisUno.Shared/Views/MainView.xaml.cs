@@ -27,6 +27,9 @@ namespace AxisUno.Views
     public sealed partial class MainView : Page
     {
 
+        private Dictionary<string,SaleViewModel> SaleViewModeList = new Dictionary<string,SaleViewModel>();
+        public NavigationView NavigationView { get => navigationView; }
+
         public MainView()
         {
             this.InitializeComponent();
@@ -45,8 +48,6 @@ namespace AxisUno.Views
             }
         }
 
-
-
         private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
@@ -58,26 +59,50 @@ namespace AxisUno.Views
             NavigationViewItem selectedItem = args.InvokedItemContainer as NavigationViewItem;
             var viewKey = selectedItem?.GetValue(NavigationExtension.NavigateToProperty) as string;
 
-            if (viewKey == "AxisUno.ViewModels.SaleViewModel")
+            if (viewKey == "AxisUno.ViewModels.SaleViewModel" && selectedItem.Name == "CreateNewSaleViewItem")
             {
                 NavigationViewItem saleItem = new NavigationViewItem();
-                saleItem.Content = "Sale";
+                int key = 1;
+                while(SaleViewModeList.ContainsKey("Sale" + key))
+                {
+                    key++;
+                }
+                saleItem.Name = "Sale" + key;
+                saleItem.Content = saleItem.Name;
                 saleItem?.SetValue(NavigationExtension.NavigateToProperty, "AxisUno.ViewModels.SaleViewModel");
                 saleItem.Icon = new SymbolIcon(Symbol.Page);
+            
                 navigationView.MenuItems.Add(saleItem);
                 frame.Navigate(typeof(SaleView));
-                //navigationView.SelectedItem = saleItem;
+                SaleViewModeList.Add(saleItem.Name, ((SaleView)frame.Content).ViewModel);
+
                 return;
             }
 
             if (viewKey is not null)
             {
-                frame.Navigate(typeof(DashboardView));
+                switch (viewKey)
+                {
+                    case "AxisUno.ViewModels.SaleViewModel":
+                        frame.Navigate(typeof(SaleView),SaleViewModeList[selectedItem.Name]);
+
+                        break;
+                    case "AxisUno.ViewModels.DashboardViewModel":
+                        frame.Navigate(typeof(DashboardView));
+                        break;
+                    default:
+                        frame.Navigate(typeof(DashboardView));
+                        break;
+                }
             }
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
+            if (e.Content is SaleView && e.Parameter is SaleViewModel)
+            {
+                (e.Content as SaleView).ViewModel = e.Parameter as SaleViewModel;
+            }
 
         }
 

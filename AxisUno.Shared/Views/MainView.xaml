@@ -16,7 +16,7 @@
         SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"  
         Style="{StaticResource NavigationViewStyle}">
         <NavigationView.MenuItems>
-            <NavigationViewItem Content="New Sale"
+            <NavigationViewItem x:Name="CreateNewSaleViewItem" Content="New Sale"
                                 extensions:NavigationExtension.NavigateTo="AxisUno.ViewModels.SaleViewModel">
                 <NavigationViewItem.Icon>
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Home.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
@@ -87,7 +87,7 @@
                 <TextBlock Text="{x:Bind ViewModel.HelpMessage, Mode=TwoWay}"/>
 
                 <Button Grid.Column="1" CornerRadius="0" Margin="10,5" Padding="0"  BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Right" Background="Transparent">
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Youtube.png" Width="40" Height="20" Margin="0" ShowAsMonochrome="False"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Youtube.png" Width="40"  Margin="0" ShowAsMonochrome="False"/>
                 </Button>
             </Grid>
             <Grid Grid.Row="2" Background="SteelBlue">

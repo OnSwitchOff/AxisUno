@@ -59,12 +59,15 @@ namespace AxisUno.Views
 
         private void ViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-
+           
+            if (e.PropertyName == "SaleTitle")
+            {
+                NavigationViewItem selectedItem = ((MainView)App.MainWindow.Content).NavigationView.SelectedItem as NavigationViewItem;
+                selectedItem.Content = (sender as SaleViewModel).SaleTitle;
+            }
         }
 
-
-
-        public SaleViewModel ViewModel { get; }
+        public SaleViewModel ViewModel { get; set; }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
