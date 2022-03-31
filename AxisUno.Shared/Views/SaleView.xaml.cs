@@ -21,6 +21,7 @@ using AxisUno.Models;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.UI;
+using System.ComponentModel;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -30,7 +31,7 @@ namespace AxisUno.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SaleView : Page
+    public sealed partial class SaleView : Page, INotifyPropertyChanged
     {
         public SaleView()
         {
@@ -67,7 +68,22 @@ namespace AxisUno.Views
             }
         }
 
-        public SaleViewModel ViewModel { get; set; }
+
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+
+
+        private SaleViewModel viewModel;
+        public SaleViewModel ViewModel
+        {
+            get => viewModel;
+            set
+            {
+                viewModel = value;
+                PropertyChanged?.Invoke( this, new PropertyChangedEventArgs("ViewModel"));
+            }
+        }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

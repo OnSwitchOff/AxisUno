@@ -16,6 +16,7 @@ using AxisUno.ViewModels;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using AxisUno.Extensions;
 
+
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -28,6 +29,8 @@ namespace AxisUno.Views
     {
 
         private Dictionary<string,SaleViewModel> SaleViewModeList = new Dictionary<string,SaleViewModel>();
+      
+
         public NavigationView NavigationView { get => navigationView; }
 
         public MainView()
