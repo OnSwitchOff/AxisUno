@@ -10,5 +10,6 @@
 
     <Grid>
         <TextBlock>Dashboard Page</TextBlock>
+        <WebView2 Source="https://www.microsoft.com"/>
     </Grid>
 </Page>
