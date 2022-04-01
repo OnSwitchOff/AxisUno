@@ -34,9 +34,9 @@ namespace AxisUno.Views
     {
         public SaleView()
         {
-
             ViewModel = Ioc.Default.GetRequiredService<SaleViewModel>();
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+            ViewModel.Dispatcher = this.DispatcherQueue;
             this.InitializeComponent();
         }
 

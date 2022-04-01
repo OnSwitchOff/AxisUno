@@ -62,7 +62,7 @@
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/Lock_purple.png" ShowAsMonochrome="False"/>
                 </Button>
                 <TextBlock VerticalAlignment="Center" Grid.Column="3"  Width="120px" Text="{x:Bind ViewModel.TotalAmountTitle}"/>
-                <TextBlock VerticalAlignment="Center" Grid.Column="4"  Width="80px" Text="{x:Bind ViewModel.TotalAmountString}"/>
+                <TextBlock VerticalAlignment="Center" Grid.Column="4"  Width="80px" Text="{x:Bind ViewModel.TotalAmount}"/>
             </Grid>
 
             <controls:DataGrid Grid.Row="2"
@@ -163,7 +163,7 @@
                 </Grid.RowDefinitions>
                 <TextBlock Text="Группы партнёров" VerticalAlignment="Center" Padding="20,0"/>
                 <Grid  Grid.Row="1" Background="White" BorderThickness="0" BorderBrush="Black">
-                    <TreeView  x:Name="tw" ItemsSource="{x:Bind ViewModel.TreeViewSource,Mode=TwoWay}" SelectedItem="{x:Bind ViewModel.SelectedTreeViewItem, Mode=TwoWay}" >
+                    <TreeView  x:Name="tw" ItemsSource="{x:Bind ViewModel.PartnersGroupsList,Mode=TwoWay}" SelectedItem="{x:Bind ViewModel.SelectedPartnerGroup, Mode=TwoWay}" >
                         <TreeView.ItemTemplate>
                             <DataTemplate x:DataType="models:GroupModel">
                                 <TreeViewItem ItemsSource="{x:Bind SubGroups}"

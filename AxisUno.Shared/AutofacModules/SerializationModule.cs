@@ -19,7 +19,7 @@ namespace AxisUno.AutofacModules
         /// <date>16.03.2022.</date>
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<SerializationService>().As<ISerializationService>().InstancePerLifetimeScope();
+            builder.RegisterType<SerializationService>().As<ISerializationService>().InstancePerDependency();
         }
     }
 }

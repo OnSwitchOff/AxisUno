@@ -256,5 +256,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Commands\AppSettings\UpdatePOSTerminalProperties\" />
     <Folder Include="$(MSBuildThisFileDirectory)Commands\AppSettings\UpdateFiscalDeviceProperties\" />
     <Folder Include="$(MSBuildThisFileDirectory)Commands\AppSettings\UpdateOperationsProperties\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Themes\" />
   </ItemGroup>
 </Project>

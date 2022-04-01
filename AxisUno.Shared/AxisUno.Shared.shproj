@@ -104,10 +104,13 @@
     <_Globbed_Compile Remove="Extensions\NavigationExtension.cs" />
     <_Globbed_Compile Remove="Helpers\DeviceSettingsHelper.cs" />
     <_Globbed_Compile Remove="Helpers\Extensions.cs" />
+    <_Globbed_Compile Remove="Helpers\ObservableCollectionEx.cs" />
+    <_Globbed_Compile Remove="Helpers\ServicesCommutator.cs" />
     <_Globbed_Compile Remove="Infrastructure\Domain\UnitOfWorks\DataStorage\DataStorage.cs" />
     <_Globbed_Compile Remove="Infrastructure\Domain\UnitOfWorks\DomainEventsDispatching\DomainEventsProvider.cs" />
     <_Globbed_Compile Remove="Infrastructure\Domain\UnitOfWorks\IUnitOfWork.cs" />
     <_Globbed_Compile Remove="Models\ComboBoxItemModel.cs" />
+    <_Globbed_Compile Remove="Models\CustomControl1.cs" />
     <_Globbed_Compile Remove="Models\DeviceSettingsModel.cs" />
     <_Globbed_Compile Remove="Models\GroupModel.cs" />
     <_Globbed_Compile Remove="Models\ItemCodeModel.cs" />
