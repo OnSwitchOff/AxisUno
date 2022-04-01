@@ -21,6 +21,7 @@ using AxisUno.Models;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.UI;
+using System.ComponentModel;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -30,7 +31,7 @@ namespace AxisUno.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SaleView : Page
+    public sealed partial class SaleView : Page, INotifyPropertyChanged
     {
         public SaleView()
         {
@@ -38,18 +39,51 @@ namespace AxisUno.Views
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
             ViewModel.Dispatcher = this.DispatcherQueue;
             this.InitializeComponent();
+
+            tbx_partner.GotFocus += Tbx_partner_GotFocus;
+            dg.GotFocus += Gr_GotFocus;
         }
 
-        
+        private void Gr_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ViewModel.GroupsBtnPanelVisibility = Visibility.Collapsed;
+            ViewModel.GoodsBtnPanelVisibility = Visibility.Visible;
+            ViewModel.PartnersBtnPanelVisibility = Visibility.Collapsed;
+        }
+
+        private void Tbx_partner_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ViewModel.GroupsBtnPanelVisibility = Visibility.Collapsed;
+            ViewModel.GoodsBtnPanelVisibility = Visibility.Collapsed;
+            ViewModel.PartnersBtnPanelVisibility = Visibility.Visible;
+        }
 
         private void ViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-
+           
+            if (e.PropertyName == "SaleTitle")
+            {
+                NavigationViewItem selectedItem = ((MainView)App.MainWindow.Content).NavigationView.SelectedItem as NavigationViewItem;
+                selectedItem.Content = (sender as SaleViewModel).SaleTitle;
+            }
         }
 
 
 
-        public SaleViewModel ViewModel { get; }
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+
+
+        private SaleViewModel viewModel;
+        public SaleViewModel ViewModel
+        {
+            get => viewModel;
+            set
+            {
+                viewModel = value;
+                PropertyChanged?.Invoke( this, new PropertyChangedEventArgs("ViewModel"));
+            }
+        }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

@@ -19,14 +19,14 @@ namespace AxisUno.Models
         private string code;
         private string name;
         private string barcode;
-        private decimal qty;
+        private double qty;
         private ObservableCollection<ItemCodeModel> measures;
         private ItemCodeModel selectedMeasure;
         private double partnerDiscount;
         private double itemDiscount;
         private double discount;
-        private decimal price;
-        private decimal amount;
+        private double price;
+        private double amount;
         private string note;
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace AxisUno.Models
         /// Gets or sets quantity of item.
         /// </summary>
         /// <date>15.03.2022.</date>
-        public decimal Qty
+        public double Qty
         {
             get => this.qty;
             set => this.SetProperty(ref this.qty, value);
@@ -154,7 +154,7 @@ namespace AxisUno.Models
         /// Gets or sets price of item.
         /// </summary>
         /// <date>15.03.2022.</date>
-        public decimal Price
+        public double Price
         {
             get => this.price;
             set => this.SetProperty(ref this.price, value);
@@ -164,7 +164,7 @@ namespace AxisUno.Models
         /// Gets amount to pay.
         /// </summary>
         /// <date>15.03.2022.</date>
-        public decimal Amount
+        public double Amount
         {
             get => this.amount;
             private set => this.SetProperty(ref this.amount, value);
@@ -189,8 +189,8 @@ namespace AxisUno.Models
         {
             SaleProductModel productModel = new SaleProductModel();
             productModel.Name = operationItem.Item.Name;
-            productModel.Price = operationItem.Price;
-            productModel.Quantity = operationItem.Qty;
+            productModel.Price = (decimal)operationItem.Price;
+            productModel.Quantity = (decimal)operationItem.Qty;
             productModel.Discount = Math.Round((decimal)operationItem.Discount / 100, 2);
             productModel.VAT = new PrinterService.Models.VATModel(
                 operationItem.Item.VATGroup.Id.ToString(),
@@ -226,7 +226,7 @@ namespace AxisUno.Models
 
                     this.SelectedMeasure = this.Measures[0];
                     this.Qty = 1;
-                    this.Price = this.Item.Price;
+                    this.Price = (double)this.Item.Price;
                     this.ItemDiscount = this.Item.Group.Discount;
 
                     break;
