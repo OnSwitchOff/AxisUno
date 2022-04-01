@@ -60,16 +60,25 @@ namespace AxisUno.ViewModels
         private string selectedPartnerString = string.Empty;
         private ObservableCollection<PartnerModel> partners;
         private PartnerModel selectedPartnerRow = null;
-        private ObservableCollection<GroupModel> partnersGroups;
+        private ObservableCollection<GroupModel> partnersGroupsTreeView;
         private GroupModel selectedPartnerGroup = null;
         private ObservableCollection<ItemModel> items;
         private ItemModel selectedItemRow = null;
-        private ObservableCollection<GroupModel> itemsGroups;
+        private ObservableCollection<GroupModel> itemsGroupsTreeView;
         private GroupModel selectedItemGroup = null;
         private string searchString = string.Empty;
         private ObservableCollection<OperationItemModel> operationItemList;
         private OperationItemModel selectedOperationItem;
         private string totalAmount = null;
+
+        private ItemModel tmpItemModel = new ItemModel();
+        private ObservableCollection<string> measures = new ObservableCollection<string> { "шт.", "л/" };
+        private ObservableCollection<ComboBoxItemModel> itemsGroups = new ObservableCollection<ComboBoxItemModel>();
+        private ObservableCollection<string> editGoodItemTypes = new ObservableCollection<string>();
+        private ObservableCollection<VATGroupModel> vatGroups = new ObservableCollection<VATGroupModel>();
+        private PartnerModel tmpPartnerModel = new PartnerModel();
+        private ObservableCollection<ComboBoxItemModel> partnersGroups = new ObservableCollection<ComboBoxItemModel>();
+        private GroupModel tmpGroup = new GroupModel();
 
 
         private string saleTitle = "Покупка";
@@ -86,41 +95,27 @@ namespace AxisUno.ViewModels
         private Visibility partnersBtnPanelVisibility = Visibility.Collapsed;
         private Visibility groupsBtnPanelVisibility = Visibility.Collapsed;
         private bool isBtnPanelExpanded = false;
-        private string searchString = string.Empty;
-        private string filterString;
         private bool isSaleTitleReadOnly;
         private bool isSelectedPartnerLocked;
         private Visibility editPanelVisibility = Visibility.Collapsed;
-
         private Visibility editGroupGridVisibility = Visibility.Collapsed;
         private string editGroupName = "Наименование";
         private string editGroupDiscount = "Скидка,%";
-
         private Visibility editGoodGridVisibility = Visibility.Visible;
         private string editGoodCode = "Код";
         private string editGoodName = "Наименование";
         private string editGoodBarcode = "Штрихкод";
         private string editGoodItemGroup = "Группа товара";
         private string editGoodVatGroup = "Группа НДС";
-        private ObservableCollection<VATGroupModel> vatGroups = new ObservableCollection<VATGroupModel>();
         private string editGoodItemType = "Тип товара";
         private string editGoodSelectedItemType = string.Empty;
-        private ObservableCollection<string> editGoodItemTypes = new ObservableCollection<string>();
         private string editGoodGeneralMeasure = "Основная ед. изм.";
-        private ObservableCollection<string> measures = new ObservableCollection<string> { "шт.", "л/" };
         private string editGoodPrice = "Цена";
         private string editGoodAdditionalIds = "Дополнительные идентификаторы";
-        private ItemModel tmpItemModel = new ItemModel();
-
-
         private Visibility editPartnerGridVisibility = Visibility.Collapsed;
-        private PartnerModel tmpPartnerModel = new PartnerModel();
-
-
         private string saveBtnTitle = "Save";
         private string cancelBtnTitle = "Cancel";
 
-        private Visibility editPanelVisibility;
         public string SaleTitle { get => saleTitle; set => SetProperty(ref saleTitle,value); }
         public string TitlePartnerString { get => titlePartnerString; set => SetProperty(ref titlePartnerString, value); }
         public string TotalAmountTitle { get => totalAmountTitle; set => SetProperty(ref totalAmountTitle, value); }
@@ -134,7 +129,23 @@ namespace AxisUno.ViewModels
         public string OperationItemDiscountColumnHeader { get => operationItemDiscountColumnHeader; set => SetProperty(ref operationItemDiscountColumnHeader, value); }
         public string OperationItemTotalAmountColumnHeader { get => operationItemTotalAmountColumnHeader; set => SetProperty(ref operationItemTotalAmountColumnHeader, value); }
         public Visibility OperationItemTotalAmountColumnVisibility { get => operationItemTotalAmountColumnVisibility; set => SetProperty(ref operationItemTotalAmountColumnVisibility, value); }
-        
+        public Visibility EditGroupGridVisibility { get => editGroupGridVisibility; set => SetProperty(ref editGroupGridVisibility, value); }
+        public string EditGroupName { get => editGroupName; set => SetProperty(ref editGroupName, value); }
+        public string EditGroupDiscount { get => editGroupDiscount; set => SetProperty(ref editGroupDiscount, value); }
+        public Visibility EditGoodGridVisibility { get => editGoodGridVisibility; set => SetProperty(ref editGoodGridVisibility, value); }
+        public string EditGoodCode { get => editGoodCode; set => SetProperty(ref editGoodCode, value); }
+        public string EditGoodName { get => editGoodName; set => SetProperty(ref editGoodName, value); }
+        public string EditGoodBarcode { get => editGoodBarcode; set => SetProperty(ref editGoodBarcode, value); }
+        public string EditGoodItemGroup { get => editGoodItemGroup; set => SetProperty(ref editGoodItemGroup, value); }
+        public string EditGoodVatGroup { get => editGoodVatGroup; set => SetProperty(ref editGoodVatGroup, value); }
+        public string EditGoodItemType { get => editGoodItemType; set => SetProperty(ref editGoodItemType, value); }
+        public string EditGoodSelectedItemType { get => editGoodSelectedItemType; set => SetProperty(ref editGoodSelectedItemType, value); }
+        public string EditGoodGeneralMeasure { get => editGoodGeneralMeasure; set => SetProperty(ref editGoodGeneralMeasure, value); }        
+        public string EditGoodPrice { get => editGoodPrice; set => SetProperty(ref editGoodPrice, value); }
+        public string EditGoodAdditionalIds { get => editGoodAdditionalIds; set => SetProperty(ref editGoodAdditionalIds, value); }
+        public Visibility EditPartnerGridVisibility { get => editPartnerGridVisibility; set => SetProperty(ref editPartnerGridVisibility, value); }
+        public string SaveBtnTitle { get => saveBtnTitle; set => SetProperty(ref saveBtnTitle, value); }
+        public string CancelBtnTitle { get => cancelBtnTitle; set => SetProperty(ref cancelBtnTitle, value); }
 
 
         /// <summary>
@@ -196,7 +207,6 @@ namespace AxisUno.ViewModels
                     this.partners = new ObservableCollection<PartnerModel>();
                     this.FillPartnersList();
                 }
-        public string TitlePartnerString { get => titlePartnerString; set => SetProperty(ref titlePartnerString, value); }        
 
                 return this.partners;
             }
@@ -217,22 +227,22 @@ namespace AxisUno.ViewModels
         /// Gets or sets list of groups of partners.
         /// </summary>
         /// <date>24.03.2022.</date>
-        public ObservableCollection<GroupModel> PartnersGroupsList
+        public ObservableCollection<GroupModel> PartnersGroupsTreeView
         {
             get
             {
-                if (this.partnersGroups == null)
+                if (this.partnersGroupsTreeView == null)
                 {
-                    this.partnersGroups = new ObservableCollection<GroupModel>();
+                    this.partnersGroupsTreeView = new ObservableCollection<GroupModel>();
                     this.FillNomenclaturesGroupsListAsync(ENomenclatures.PartnersGroups);
                 }
 
-                return this.partnersGroups;
+                return this.partnersGroupsTreeView;
             }
 
             set
             {
-                this.SetProperty(ref this.partnersGroups, value);
+                this.SetProperty(ref this.partnersGroupsTreeView, value);
             }
         }
 
@@ -279,55 +289,24 @@ namespace AxisUno.ViewModels
         /// Gets or sets list of groups of items.
         /// </summary>
         /// <date>24.03.2022.</date>
-        public ObservableCollection<GroupModel> ItemsGroupsList
+        public ObservableCollection<GroupModel> ItemsGroupsTreeView
         {
             get
             {
-                if (this.itemsGroups == null)
+                if (this.itemsGroupsTreeView == null)
                 {
-                    this.itemsGroups = new ObservableCollection<GroupModel>();
+                    this.itemsGroupsTreeView = new ObservableCollection<GroupModel>();
                     this.FillNomenclaturesGroupsListAsync(ENomenclatures.ItemsGroups);
                 }
 
-                return this.itemsGroups;
+                return this.itemsGroupsTreeView;
             }
 
             set
             {
-                this.SetProperty(ref this.itemsGroups, value);
+                this.SetProperty(ref this.itemsGroupsTreeView, value);
             }
         }
-
-        public Visibility EditGroupGridVisibility { get => editGroupGridVisibility; set => SetProperty(ref editGroupGridVisibility, value); }
-        public string EditGroupName { get => editGroupName; set => SetProperty(ref editGroupName, value); }
-        public string EditGroupDiscount { get => editGroupDiscount; set => SetProperty(ref editGroupDiscount, value); }
-        public GroupModel TmpGroupModel { get => tmpGroupModel; set => SetProperty(ref tmpGroupModel, value); }
-
-
-        public Visibility EditGoodGridVisibility { get => editGoodGridVisibility; set => SetProperty(ref editGoodGridVisibility, value); }
-        public string EditGoodCode { get => editGoodCode; set => SetProperty(ref editGoodCode, value); }
-        public string EditGoodName { get => editGoodName; set => SetProperty(ref editGoodName, value); }
-        public string EditGoodBarcode { get => editGoodBarcode; set => SetProperty(ref editGoodBarcode, value); }
-        public string EditGoodItemGroup { get => editGoodItemGroup; set => SetProperty(ref editGoodItemGroup, value); }
-        public ObservableCollection<GroupModel> GroupModels { get => groupModels; set => SetProperty(ref groupModels, value); }
-        public string EditGoodVatGroup { get => editGoodVatGroup; set => SetProperty(ref editGoodVatGroup, value); }
-        public ObservableCollection<VATGroupModel> VATGroups { get => vatGroups; set => SetProperty(ref vatGroups, value); }
-        public string EditGoodItemType { get => editGoodItemType; set => SetProperty(ref editGoodItemType, value); }
-        public string EditGoodSelectedItemType { get => editGoodSelectedItemType; set => SetProperty(ref editGoodSelectedItemType, value); }
-        public ObservableCollection<string> EditGoodItemTypes { get => editGoodItemTypes; set => SetProperty(ref editGoodItemTypes, value); }
-        public string EditGoodGeneralMeasure { get => editGoodGeneralMeasure; set => SetProperty(ref editGoodGeneralMeasure, value); }
-        public ObservableCollection<string> Measures { get => measures; set => SetProperty(ref measures, value); }
-        public string EditGoodPrice { get => editGoodPrice; set => SetProperty(ref editGoodPrice, value); }
-        public string EditGoodAdditionalIds { get => editGoodAdditionalIds; set=> SetProperty(ref editGoodAdditionalIds, value); }
-        public ItemModel TmpItemModel { get => tmpItemModel; set => SetProperty(ref tmpItemModel, value); }
-
-
-        public Visibility EditPartnerGridVisibility { get => editPartnerGridVisibility; set => SetProperty(ref editPartnerGridVisibility, value); }
-
-        public PartnerModel TmpPartnerModel { get => tmpPartnerModel; set => SetProperty(ref tmpPartnerModel, value); }
-
-        public string SaveBtnTitle { get=> saveBtnTitle; set => SetProperty(ref saveBtnTitle, value); }
-        public string CancelBtnTitle { get => cancelBtnTitle; set => SetProperty(ref cancelBtnTitle, value); }
 
         /// <summary>
         /// Gets or sets group of item selected by user.
@@ -406,6 +385,15 @@ namespace AxisUno.ViewModels
             get => this.searchString;
             set => this.SetProperty(ref this.searchString, value);
         }
+
+        public ItemModel TmpItemModel { get => tmpItemModel; set => SetProperty(ref tmpItemModel, value); }
+        public ObservableCollection<string> Measures { get => measures; set => SetProperty(ref measures, value); }
+        public ObservableCollection<ComboBoxItemModel> ItemsGroups { get => itemsGroups; set => SetProperty(ref itemsGroups, value); }
+        public ObservableCollection<VATGroupModel> VATGroups { get => vatGroups; set => SetProperty(ref vatGroups, value); }
+        public ObservableCollection<string> EditGoodItemTypes { get => editGoodItemTypes; set => SetProperty(ref editGoodItemTypes, value); }
+        public PartnerModel TmpPartnerModel { get => tmpPartnerModel; set => SetProperty(ref tmpPartnerModel, value); }
+        public ObservableCollection<ComboBoxItemModel> PartnersGroups { get => partnersGroups; set => SetProperty(ref partnersGroups, value); }
+        public GroupModel TmpGroup { get => tmpGroup; set => SetProperty(ref tmpGroup, value); }
 
         /// <summary>
         /// Gets serialization service for sale page.
@@ -693,10 +681,16 @@ namespace AxisUno.ViewModels
             switch (nomenclature)
             {
                 case ENomenclatures.PartnersGroups:
-                    this.FillNomenclaturesGroupsRecursion<PartnersGroup>(this.partnersGroups, await this.partnersGroupsRepository.GetPartnersGroupsAsync());
+                    this.FillNomenclaturesGroupsRecursion<PartnersGroup>(
+                        this.partnersGroupsTreeView,
+                        await this.partnersGroupsRepository.GetPartnersGroupsAsync(),
+                        this.partnersGroups);
                     break;
                 case ENomenclatures.ItemsGroups:
-                    this.FillNomenclaturesGroupsRecursion<ItemsGroup>(this.itemsGroups, await this.itemsGroupsRepository.GetItemsGroupsAsync());
+                    this.FillNomenclaturesGroupsRecursion<ItemsGroup>(
+                        this.itemsGroupsTreeView,
+                        await this.itemsGroupsRepository.GetItemsGroupsAsync(),
+                        this.itemsGroups);
                     break;
             }
         }
@@ -711,7 +705,7 @@ namespace AxisUno.ViewModels
         /// <param name="startIndex">Index to start of search in the list of groups.</param>
         /// <param name="parentGroupPath">Path of a parent group.</param>
         /// <date>01.04.2022.</date>
-        private void FillNomenclaturesGroupsRecursion<T>(ObservableCollection<GroupModel> groupsList, List<T> repositoryList, int pathLenght = 3, int startIndex = 0, string parentGroupPath = "")
+        private void FillNomenclaturesGroupsRecursion<T>(ObservableCollection<GroupModel> groupsList, List<T> repositoryList, ObservableCollection<ComboBoxItemModel> comboBoxList, int pathLenght = 3, int startIndex = 0, string parentGroupPath = "")
             where T : INomenclaturesGroups
         {
             GroupModel group;
@@ -725,10 +719,35 @@ namespace AxisUno.ViewModels
                     group.Name = repositoryList[startIndex].Name;
                     group.Path = repositoryList[startIndex].Path;
                     groupsList.Add(group);
+                    comboBoxList.Add(this.CreateComboItem(group));
 
-                    this.FillNomenclaturesGroupsRecursion(group.SubGroups, repositoryList, pathLenght + 3, startIndex + 1, group.Path);
+                    this.FillNomenclaturesGroupsRecursion(group.SubGroups, repositoryList, comboBoxList, pathLenght + 3, startIndex + 1, group.Path);
                 }
             }
+        }
+
+        /// <summary>
+        /// Create ComboBoxItemModel for a list of groups.
+        /// </summary>
+        /// <param name="group">Group of nomenclatures.</param>
+        /// <returns>Returns ComboBoxItemModel object.</returns>
+        /// <date>01.04.2022.</date>
+        private ComboBoxItemModel CreateComboItem(GroupModel group)
+        {
+            ComboBoxItemModel comboBoxItem = new ComboBoxItemModel()
+            {
+                Value = group,
+            };
+            if (group.Path.Length <= 3)
+            {
+                comboBoxItem.Text = group.Name;
+            }
+            else
+            {
+                comboBoxItem.Text = new string(' ', (int)Math.Pow(2, (double)((group.Path.Length / 3) - 1))) + group.Name;
+            }
+
+            return comboBoxItem;
         }
 
         /// <summary>
@@ -801,7 +820,7 @@ namespace AxisUno.ViewModels
                 }
             });
         }
-        public Visibility EditPanelVisibility { get => editPanelVisibility; set => SetProperty(ref editPanelVisibility, value); }
+
         public Visibility GoodsBtnPanelVisibility { get => goodsBtnPanelVisibility; set => SetProperty(ref goodsBtnPanelVisibility, value); }
 
         public Visibility GroupsBtnPanelVisibility { get => groupsBtnPanelVisibility; set => SetProperty(ref groupsBtnPanelVisibility, value); }
@@ -823,7 +842,6 @@ namespace AxisUno.ViewModels
             get => IsBtnPanelExpanded ? 0 : 180;
         }
 
-        public string OperationItemNameColumnHeader { get => operationItemNameColumnHeader; set => SetProperty(ref operationItemNameColumnHeader, value); }
         /// <summary>
         /// Add or remove a subscription to the PropertyChanged event of OperationItemModel.
         /// </summary>
