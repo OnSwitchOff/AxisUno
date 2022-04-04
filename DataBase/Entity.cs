@@ -6,7 +6,7 @@ namespace AxisUno.DataBase.Enteties
 {
     public abstract class Entity
     {
-        private readonly List<IDomainEvent> _domainEvents = new();
+        private readonly List<IDomainEvent> _domainEvents = new ();
 
         /// <summary>
         /// Occurred domain events.

@@ -15,6 +15,7 @@ using Microsoft.UI.Xaml.Navigation;
 using AxisUno.ViewModels;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using AxisUno.Extensions;
+using AxisUno.DataBase;
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -41,6 +42,11 @@ namespace AxisUno.Views
             navigationView.ItemInvoked += NavigationView_ItemInvoked;
             navigationView.SelectionChanged += NavigationView_SelectionChanged;
             frame.Navigated += Frame_Navigated;
+
+            using (DatabaseContext db = new DatabaseContext() )
+            {
+                var tmp = db.Vatgroups;
+            }
         }
 
         private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

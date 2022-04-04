@@ -16,10 +16,10 @@ namespace AxisUno.DataBase.My100REnteties.ApplicationLog
             await _databaseContext.ApplicationLogs.AddAsync(applicationLog);
         }
 
-        public IAsyncEnumerable<ApplicationLog> GetAllAsync()
-        {
-            return _databaseContext.ApplicationLogs.AsAsyncEnumerable();
-        }
+        //public IAsyncEnumerable<ApplicationLog> GetAllAsync()
+        //{
+        //    return _databaseContext.ApplicationLogs.AsAsyncEnumerable();
+        //}
 
         public Task<ApplicationLog?> GetByIdAsync(int applicationLogId)
         {

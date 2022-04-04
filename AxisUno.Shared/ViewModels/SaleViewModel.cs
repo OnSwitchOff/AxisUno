@@ -602,18 +602,18 @@ namespace AxisUno.ViewModels
                     break;
                 case nameof(this.SelectedItemGroup):
                     this.ItemsList.Clear();
-                    await foreach (ItemModel item in this.itemsRepository.GetItemsAsync(this.SelectedItemGroup.Path, this.SearchString))
-                    {
-                        this.ItemsList.Add(item);
-                    }
+                    //await foreach (ItemModel item in this.itemsRepository.GetItemsAsync(this.SelectedItemGroup.Path, this.SearchString))
+                    //{
+                    //    this.ItemsList.Add(item);
+                    //}
 
                     break;
                 case nameof(this.SelectedPartnerGroup):
                     this.PartnersList.Clear();
-                    await foreach (PartnerModel partner in this.partnersRepository.GetParnersAsync(this.SelectedPartnerGroup.Path, this.searchString))
-                    {
-                        this.PartnersList.Add(partner);
-                    }
+                    //await foreach (PartnerModel partner in this.partnersRepository.GetParnersAsync(this.SelectedPartnerGroup.Path, this.searchString))
+                    //{
+                    //    this.PartnersList.Add(partner);
+                    //}
 
                     break;
                 case nameof(this.SearchString):
@@ -622,19 +622,19 @@ namespace AxisUno.ViewModels
                         case ENomenclatures.Items:
                         case ENomenclatures.ItemsGroups:
                             this.ItemsList.Clear();
-                            await foreach (ItemModel item in this.itemsRepository.GetItemsAsync(this.SelectedItemGroup.Path, this.SearchString))
-                            {
-                                this.ItemsList.Add(item);
-                            }
+                            //await foreach (ItemModel item in this.itemsRepository.GetItemsAsync(this.SelectedItemGroup.Path, this.SearchString))
+                            //{
+                            //    this.ItemsList.Add(item);
+                            //}
 
                             break;
                         case ENomenclatures.Partners:
                         case ENomenclatures.PartnersGroups:
                             this.PartnersList.Clear();
-                            await foreach (PartnerModel partner in this.partnersRepository.GetParnersAsync(this.SelectedPartnerGroup.Path, this.searchString))
-                            {
-                                this.PartnersList.Add(partner);
-                            }
+                            //await foreach (PartnerModel partner in this.partnersRepository.GetParnersAsync(this.SelectedPartnerGroup.Path, this.searchString))
+                            //{
+                            //    this.PartnersList.Add(partner);
+                            //}
 
                             break;
                     }
@@ -652,10 +652,10 @@ namespace AxisUno.ViewModels
         private async void FillPartnersList()
         {
             string groupPath = await this.partnersGroupsRepository.GetPathByIdAsync((int)this.SerializationPartners[Enums.ESerializationKeys.SelectedGroupNodeTag]);
-            await foreach (PartnerModel partner in this.partnersRepository.GetParnersAsync(groupPath, string.Empty))
-            {
-                this.partners.Add(partner);
-            }
+            //await foreach (PartnerModel partner in this.partnersRepository.GetParnersAsync(groupPath, string.Empty))
+            //{
+            //    this.partners.Add(partner);
+            //}
         }
 
         /// <summary>
@@ -665,10 +665,10 @@ namespace AxisUno.ViewModels
         private async void FillItemsList()
         {
             string groupPath = await this.itemsGroupsRepository.GetPathByIdAsync((int)this.SerializationItems[Enums.ESerializationKeys.SelectedGroupNodeTag]);
-            await foreach (ItemModel item in this.itemsRepository.GetItemsAsync(groupPath, string.Empty))
-            {
-                this.items.Add(item);
-            }
+            //await foreach (ItemModel item in this.itemsRepository.GetItemsAsync(groupPath, string.Empty))
+            //{
+            //    this.items.Add(item);
+            //}
         }
 
         /// <summary>
@@ -762,10 +762,10 @@ namespace AxisUno.ViewModels
             {
                 this.PartnersList.Clear();
 
-                await foreach (Partner partner in this.partnersRepository.GetParnersAsync(this.SelectedPartnerString))
-                {
-                    this.PartnersList.Add(partner);
-                }
+                //await foreach (Partner partner in this.partnersRepository.GetParnersAsync(this.SelectedPartnerString))
+                //{
+                //    this.PartnersList.Add(partner);
+                //}
             });
         }
 
@@ -780,10 +780,10 @@ namespace AxisUno.ViewModels
             this.Dispatcher.TryEnqueue(async () =>
             {
                 this.ItemsList.Clear();
-                await foreach (ItemModel item in this.itemsRepository.GetItemsAsync(this.SelectedOperationItem.Name))
-                {
-                    this.ItemsList.Add(item);
-                }
+                //await foreach (ItemModel item in this.itemsRepository.GetItemsAsync(this.SelectedOperationItem.Name))
+                //{
+                //    this.ItemsList.Add(item);
+                //}
             });
         }
 
@@ -802,19 +802,19 @@ namespace AxisUno.ViewModels
                     case ENomenclatures.Items:
                     case ENomenclatures.ItemsGroups:
                         this.ItemsList.Clear();
-                        await foreach (ItemModel item in this.itemsRepository.GetItemsAsync(this.SelectedItemGroup.Path, this.SearchString))
-                        {
-                            this.ItemsList.Add(item);
-                        }
+                        //await foreach (ItemModel item in this.itemsRepository.GetItemsAsync(this.SelectedItemGroup.Path, this.SearchString))
+                        //{
+                        //    this.ItemsList.Add(item);
+                        //}
 
                         break;
                     case ENomenclatures.Partners:
                     case ENomenclatures.PartnersGroups:
                         this.PartnersList.Clear();
-                        await foreach (PartnerModel item in this.partnersRepository.GetParnersAsync(this.SelectedPartnerGroup.Path, this.SearchString))
-                        {
-                            this.PartnersList.Add(item);
-                        }
+                        //await foreach (PartnerModel item in this.partnersRepository.GetParnersAsync(this.SelectedPartnerGroup.Path, this.SearchString))
+                        //{
+                        //    this.PartnersList.Add(item);
+                        //}
 
                         break;
                 }
@@ -957,6 +957,10 @@ namespace AxisUno.ViewModels
             OperationItemsList.Add(operationItem);
             SelectedOperationItem = operationItem;
             OperationItemTotalAmountColumnVisibility = OperationItemTotalAmountColumnVisibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+
+
+
+            int tmp = (int)SerializationSale[Enums.ESerializationKeys.TbPartnerID];
         }
 
         /// <summary>

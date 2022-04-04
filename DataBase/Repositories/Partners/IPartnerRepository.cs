@@ -43,7 +43,7 @@ namespace AxisUno.DataBase.Repositories.Partners
         /// <param name="status">Status of partner.</param>
         /// <returns>List of partners.</returns>
         /// <date>28.03.2022.</date>
-        IAsyncEnumerable<Partner> GetParnersAsync(ENomenclatureStatuses status = ENomenclatureStatuses.Active);
+        //IAsyncEnumerable<Partner> GetParnersAsync(ENomenclatureStatuses status = ENomenclatureStatuses.Active);
 
         /// <summary>
         /// Gets list of partners in according to path of group, name, tax number, VAT number, e-mail and number of discount card.
@@ -52,7 +52,7 @@ namespace AxisUno.DataBase.Repositories.Partners
         /// <param name="searchKey">Key to search by other fields.</param>
         /// <returns>List of partners.</returns>
         /// <date>30.03.2022.</date>
-        IAsyncEnumerable<Partner> GetParnersAsync(string groupPath, string searchKey);
+        //IAsyncEnumerable<Partner> GetParnersAsync(string groupPath, string searchKey);
 
         /// <summary>
         /// Gets list of partners in according to name, tax number, VAT number, e-mail and number of discount card.
@@ -60,7 +60,7 @@ namespace AxisUno.DataBase.Repositories.Partners
         /// <param name="searchKey">Key to search data.</param>
         /// <returns>List of partners.</returns>
         /// <date>30.03.2022.</date>
-        IAsyncEnumerable<Partner> GetParnersAsync(string searchKey);
+        //IAsyncEnumerable<Partner> GetParnersAsync(string searchKey);
 
         /// <summary>
         /// Gets list of partners in according to id of partner group.
@@ -68,7 +68,7 @@ namespace AxisUno.DataBase.Repositories.Partners
         /// <param name="GroupID">Id of partner group to search data.</param>
         /// <returns>List of partners.</returns>
         /// <date>30.03.2022.</date>
-        IAsyncEnumerable<Partner> GetParnersAsync(int GroupID);
+        //IAsyncEnumerable<Partner> GetParnersAsync(int GroupID);
 
         /// <summary>
         /// Adds new partner to table with partners.

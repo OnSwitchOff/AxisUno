@@ -52,18 +52,18 @@ namespace AxisUno.DataBase.Repositories.Items
         /// <param name="searchKey">Key to search data.</param>
         /// <returns>List of items.</returns>
         /// <date>30.03.2022.</date>
-        public IAsyncEnumerable<Item> GetItemsAsync(string searchKey)
-        {
-            return this.dbContext.
-                    Items.
-                    Where(i =>
-                    string.IsNullOrEmpty(searchKey) ? 1 == 1 :
-                    (i.Name.ToLower().Contains(searchKey.ToLower()) ||
-                    i.Code.Contains(searchKey) ||
-                    i.Barcode.Contains(searchKey) ||
-                    i.ItemsCodes.Where(ic => ic.Code.Contains(searchKey)).FirstOrDefault() != null)).
-                    AsAsyncEnumerable();
-        }
+        //public IAsyncEnumerable<Item> GetItemsAsync(string searchKey)
+        //{
+        //    return this.dbContext.
+        //            Items.
+        //            Where(i =>
+        //            string.IsNullOrEmpty(searchKey) ? 1 == 1 :
+        //            (i.Name.ToLower().Contains(searchKey.ToLower()) ||
+        //            i.Code.Contains(searchKey) ||
+        //            i.Barcode.Contains(searchKey) ||
+        //            i.ItemsCodes.Where(ic => ic.Code.Contains(searchKey)).FirstOrDefault() != null)).
+        //            AsAsyncEnumerable();
+        //}
 
         /// <summary>
         /// Gets list of items in according to path of group, name, barcode and codes of item.
@@ -72,19 +72,19 @@ namespace AxisUno.DataBase.Repositories.Items
         /// <param name="searchKey">Key to search by other fields.</param>
         /// <returns>List of items.</returns>
         /// <date>30.03.2022.</date>
-        public IAsyncEnumerable<Item> GetItemsAsync(string groupPath, string searchKey)
-        {
-            return this.dbContext.
-                    Items.
-                    Where(i =>
-                    (groupPath.Equals("-2") ? 1 == 1 : i.Group.Path.StartsWith(groupPath)) &&
-                    (string.IsNullOrEmpty(searchKey) ? 1 == 1 :
-                    (i.Name.ToLower().Contains(searchKey.ToLower()) ||
-                    i.Code.Contains(searchKey) ||
-                    i.Barcode.Contains(searchKey) ||
-                    i.ItemsCodes.Where(ic => ic.Code.Contains(searchKey)).FirstOrDefault() != null))).
-                    AsAsyncEnumerable();
-        }
+        //public IAsyncEnumerable<Item> GetItemsAsync(string groupPath, string searchKey)
+        //{
+        //    return this.dbContext.
+        //            Items.
+        //            Where(i =>
+        //            (groupPath.Equals("-2") ? 1 == 1 : i.Group.Path.StartsWith(groupPath)) &&
+        //            (string.IsNullOrEmpty(searchKey) ? 1 == 1 :
+        //            (i.Name.ToLower().Contains(searchKey.ToLower()) ||
+        //            i.Code.Contains(searchKey) ||
+        //            i.Barcode.Contains(searchKey) ||
+        //            i.ItemsCodes.Where(ic => ic.Code.Contains(searchKey)).FirstOrDefault() != null))).
+        //            AsAsyncEnumerable();
+        //}
 
         /// <summary>
         /// Gets list of items in according to id of item group.
@@ -92,13 +92,13 @@ namespace AxisUno.DataBase.Repositories.Items
         /// <param name="groupId">Id of item group to search data.</param>
         /// <returns>List of items.</returns>
         /// <date>30.03.2022.</date>
-        public IAsyncEnumerable<Item> GetItemsByGroupIdAsync(int groupId)
-        {
-            return this.dbContext.
-                    Items.
-                    Where(i => i.Group.Id == groupId).
-                    AsAsyncEnumerable();
-        }
+        //public IAsyncEnumerable<Item> GetItemsByGroupIdAsync(int groupId)
+        //{
+        //    return this.dbContext.
+        //            Items.
+        //            Where(i => i.Group.Id == groupId).
+        //            AsAsyncEnumerable();
+        //}
 
         /// <summary>
         /// Adds new item to table of items.
