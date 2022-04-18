@@ -35,21 +35,21 @@ namespace AxisUno.DataBase
 
         //internal DbSet<Product> Products => Set<Product>();
         //internal DbSet<ProductGroup> ProductGroups => Set<ProductGroup>();
-        internal DbSet<ApplicationLog> ApplicationLogs => Set<ApplicationLog>(); 
-        internal DbSet<Document> Documents => Set<Document>();
-        internal DbSet<Exchange> Exchanges => Set<Exchange>();
-        internal DbSet<Item> Items => Set<Item>();
-        internal DbSet<ItemsCode> ItemsCodes => Set<ItemsCode>();
-        internal DbSet<ItemsGroup> ItemsGroups => Set<ItemsGroup>();
-        internal DbSet<OperationDetail> OperationDetails => Set<OperationDetail>();
-        internal DbSet<OperationHeader> OperationHeaders => Set<OperationHeader>();
-        internal DbSet<Partner> Partners => Set<Partner>();
-        internal DbSet<PartnersGroup> PartnersGroups => Set<PartnersGroup>();
-        internal DbSet<PaymentType> PaymentTypes => Set<PaymentType>();
-        internal DbSet<Serialization> Serializations => Set<Serialization>();
-        internal DbSet<Setting> Settings => Set<Setting>();
-        internal DbSet<Store> Stores => Set<Store>();
-        internal DbSet<Vatgroup> Vatgroups => Set<Vatgroup>();
+        public DbSet<ApplicationLog> ApplicationLogs => Set<ApplicationLog>();
+        public DbSet<Document> Documents => Set<Document>();
+        public DbSet<Exchange> Exchanges => Set<Exchange>();
+        public DbSet<Item> Items => Set<Item>();
+        public DbSet<ItemsCode> ItemsCodes => Set<ItemsCode>();
+        public DbSet<ItemsGroup> ItemsGroups => Set<ItemsGroup>();
+        public DbSet<OperationDetail> OperationDetails => Set<OperationDetail>();
+        public DbSet<OperationHeader> OperationHeaders => Set<OperationHeader>();
+        public DbSet<Partner> Partners => Set<Partner>();
+        public DbSet<PartnersGroup> PartnersGroups => Set<PartnersGroup>();
+        public DbSet<PaymentType> PaymentTypes => Set<PaymentType>();
+        public DbSet<Serialization> Serializations => Set<Serialization>();
+        public DbSet<Setting> Settings => Set<Setting>();
+        public DbSet<Store> Stores => Set<Store>();
+        public DbSet<Vatgroup> Vatgroups => Set<Vatgroup>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -57,7 +57,7 @@ namespace AxisUno.DataBase
             {
                 var connectionStringBuilder = new SqliteConnectionStringBuilder()
                 {
-                    DataSource = "Database.db",
+                    DataSource = "C:\\temp\\dataBase231.db",
                 };
 
                 optionsBuilder.UseSqlite(connectionStringBuilder.ToString());
@@ -67,7 +67,7 @@ namespace AxisUno.DataBase
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DatabaseContext).Assembly);
+            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(DatabaseContext).Assembly);
         }
     }
 }

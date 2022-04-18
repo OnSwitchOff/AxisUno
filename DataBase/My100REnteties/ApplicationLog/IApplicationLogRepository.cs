@@ -11,6 +11,6 @@ namespace AxisUno.DataBase.My100REnteties.ApplicationLog
 
         ValueTask AddAsync(ApplicationLog product);
 
-        IAsyncEnumerable<ApplicationLog> GetAllAsync();
+        //IAsyncEnumerable<ApplicationLog> GetAllAsync();
     }
 }
