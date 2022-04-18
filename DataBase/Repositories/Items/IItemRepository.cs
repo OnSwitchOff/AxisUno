@@ -34,7 +34,7 @@ namespace AxisUno.DataBase.Repositories.Items
         /// <param name="searchKey">Key to search data.</param>
         /// <returns>List of items.</returns>
         /// <date>30.03.2022.</date>
-        //IAsyncEnumerable<Item> GetItemsAsync(string searchKey);
+        IAsyncEnumerable<Item> GetItemsAsync(string searchKey);
 
         /// <summary>
         /// Gets list of items in according to path of group, name, barcode and codes of item.
@@ -43,7 +43,7 @@ namespace AxisUno.DataBase.Repositories.Items
         /// <param name="searchKey">Key to search by other fields.</param>
         /// <returns>List of items.</returns>
         /// <date>30.03.2022.</date>
-        //IAsyncEnumerable<Item> GetItemsAsync(string groupPath, string searchKey);
+        IAsyncEnumerable<Item> GetItemsAsync(string groupPath, string searchKey);
 
         /// <summary>
         /// Gets list of items in according to id of item group.
@@ -51,7 +51,7 @@ namespace AxisUno.DataBase.Repositories.Items
         /// <param name="groupId">Id of item group to search data.</param>
         /// <returns>List of items.</returns>
         /// <date>30.03.2022.</date>
-        //IAsyncEnumerable<Item> GetItemsByGroupIdAsync(int groupId);
+        IAsyncEnumerable<Item> GetItemsByGroupIdAsync(int groupId);
 
         /// <summary>
         /// Adds new item to table of items.

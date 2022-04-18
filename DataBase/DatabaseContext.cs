@@ -57,7 +57,8 @@ namespace AxisUno.DataBase
             {
                 var connectionStringBuilder = new SqliteConnectionStringBuilder()
                 {
-                    DataSource = "C:\\temp\\dataBase231.db",
+                    //DataSource = "C:\\temp\\dataBase231.db",
+                    DataSource = "dataBase231.db",
                 };
 
                 optionsBuilder.UseSqlite(connectionStringBuilder.ToString());
