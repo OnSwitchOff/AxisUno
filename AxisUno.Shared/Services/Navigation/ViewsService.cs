@@ -16,10 +16,14 @@ namespace AxisUno.Services.Navigation
         public ViewsService()
         {
             Configure<MainViewModel, MainView>();
-            Configure<ProductsViewModel, ProductsView>();
-            Configure<DashboardViewModel, DashboardView>();
-            Configure<SettingsViewModel, SettingsView>();
             Configure<SaleViewModel, SaleView>();
+            Configure<DocumentViewModel, DocumentView>();
+            Configure<CashRegisterViewModel, CashRegisterView>();
+            Configure<ExchangeViewModel, ExchangeView>();
+
+            Configure<ReportsViewModel, ReportsView>();
+            
+            Configure<SettingsViewModel, SettingsView>();
         }
 
         public Type GetViewType(string key)

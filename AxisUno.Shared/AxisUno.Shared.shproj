@@ -25,6 +25,7 @@
     <_Globbed_Compile Remove="AutofacModules\SearchDataModule.cs" />
     <_Globbed_Compile Remove="AutofacModules\SerializationModule.cs" />
     <_Globbed_Compile Remove="AutofacModules\SettingsModule.cs" />
+    <_Globbed_Compile Remove="AutofacModules\TranslationModule.cs" />
     <_Globbed_Compile Remove="Behaviors\NavigationViewHeader\NavigationViewHeaderBehavior.cs" />
     <_Globbed_Compile Remove="Behaviors\NavigationViewHeader\NavigationViewHeaderMode.cs" />
     <_Globbed_Compile Remove="BuildingBlocks\Application\Services\Activation\Handlers\ActivationHandler.cs" />
@@ -43,6 +44,12 @@
     <_Globbed_Compile Remove="Configurations\StartUp.cs" />
     <_Globbed_Compile Remove="Controls\CustomCommandBars\CommandBarMode.cs" />
     <_Globbed_Compile Remove="Controls\CustomCommandBars\CustomCommandBar.xaml.cs" />
+    <_Globbed_Compile Remove="Controls\CustomInfoBar.cs" />
+    <_Globbed_Compile Remove="Controls\CustomTextBox.cs" />
+    <_Globbed_Compile Remove="Controls\WelcomeFrame.xaml.cs" />
+    <_Globbed_Compile Remove="Converters\BoolToVisibilityConverter.cs" />
+    <_Globbed_Compile Remove="Converters\BoolToVisibilityReversedConverter.cs" />
+    <_Globbed_Compile Remove="Converters\VisibilityToBoolConverter.cs" />
     <_Globbed_Compile Remove="DataBase\DatabaseContext.cs" />
     <_Globbed_Compile Remove="DataBase\Enteties\Documents\Document.cs" />
     <_Globbed_Compile Remove="DataBase\Enteties\Entity.cs" />
@@ -102,6 +109,7 @@
     <_Globbed_Compile Remove="Exceptions\BusinessRuleValidationException.cs" />
     <_Globbed_Compile Remove="Extensions\FrameExtensions.cs" />
     <_Globbed_Compile Remove="Extensions\NavigationExtension.cs" />
+    <_Globbed_Compile Remove="Extensions\XmlExtensions.cs" />
     <_Globbed_Compile Remove="Helpers\DeviceSettingsHelper.cs" />
     <_Globbed_Compile Remove="Helpers\Extensions.cs" />
     <_Globbed_Compile Remove="Helpers\ObservableCollectionEx.cs" />
@@ -139,6 +147,8 @@
     <_Globbed_Compile Remove="Services\Navigation\NavigationService.cs" />
     <_Globbed_Compile Remove="Services\Navigation\NavigationViewService.cs" />
     <_Globbed_Compile Remove="Services\Navigation\ViewsService.cs" />
+    <_Globbed_Compile Remove="Services\Observer\IObserverService.cs" />
+    <_Globbed_Compile Remove="Services\Observer\ObserverService.cs" />
     <_Globbed_Compile Remove="Services\Payment\DeviceSettings.cs" />
     <_Globbed_Compile Remove="Services\Payment\IPaymentService.cs" />
     <_Globbed_Compile Remove="Services\Payment\NewPaymentService.cs" />
@@ -155,33 +165,50 @@
     <_Globbed_Compile Remove="Services\Settings\SettingsService.cs" />
     <_Globbed_Compile Remove="Services\ThemeSelector\IThemeSelectorService.cs" />
     <_Globbed_Compile Remove="Services\ThemeSelector\ThemeSelectorService.cs" />
+    <_Globbed_Compile Remove="Services\Translation\DictionaryModel.cs" />
+    <_Globbed_Compile Remove="Services\Translation\ITranslationService.cs" />
+    <_Globbed_Compile Remove="Services\Translation\TranslationService.cs" />
+    <_Globbed_Compile Remove="Services\Translation\TranslationServiceCommutator.cs" />
     <_Globbed_Compile Remove="TypedIdValueBase\TypedIdValueBase.cs" />
     <_Globbed_Compile Remove="ViewModels\BaseViewModel.cs" />
-    <_Globbed_Compile Remove="ViewModels\DashboardViewModel.cs" />
+    <_Globbed_Compile Remove="ViewModels\CashRegisterViewModel.cs" />
+    <_Globbed_Compile Remove="ViewModels\ExchangeViewModel.cs" />
     <_Globbed_Compile Remove="ViewModels\GenericCollectionViewModel.cs" />
     <_Globbed_Compile Remove="ViewModels\GenericDetailsViewModel.cs" />
     <_Globbed_Compile Remove="ViewModels\MainViewModel.cs" />
     <_Globbed_Compile Remove="ViewModels\OperationViewModel.cs" />
-    <_Globbed_Compile Remove="ViewModels\ProductsViewModel.cs" />
     <_Globbed_Compile Remove="ViewModels\ProductViewModel.cs" />
     <_Globbed_Compile Remove="ViewModels\SettingsViewModel.cs" />
+    <_Globbed_Compile Remove="Views\CashRegisterView.xaml.cs" />
     <_Globbed_Compile Remove="Views\DashboardView.xaml.cs" />
+    <_Globbed_Compile Remove="Views\ExchangeView.xaml.cs" />
     <_Globbed_Compile Remove="Views\MainPage.xaml.cs" />
     <_Globbed_Compile Remove="Views\MainView.xaml.cs" />
     <_Globbed_Compile Remove="Views\ProductsView.xaml.cs" />
     <_Globbed_Compile Remove="Views\SettingsView.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
+    <_Globbed_Content Remove="Assets\Application.png" />
+    <_Globbed_Content Remove="Assets\InputDataToLaptop.png" />
+    <_Globbed_Content Remove="Assets\OperationSchema.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <_Globbed_PRIResource Remove="Resources\Resources.resw" />
+    <_Globbed_PRIResource Remove="Resources\Resources1.resw" />
+  </ItemGroup>
+  <ItemGroup>
     <_Globbled_Page Remove="Controls\CustomCommandBars\CustomCommandBar.xaml" />
+    <_Globbled_Page Remove="Controls\WelcomeFrame.xaml" />
     <_Globbled_Page Remove="ResourceDictionary1.xaml" />
     <_Globbled_Page Remove="Resources\ConvertersRegistration.xaml" />
     <_Globbled_Page Remove="Resources\Converters\StylesRegistration.xaml" />
     <_Globbled_Page Remove="Resources\Styles\NavigationViewStyle.xaml" />
     <_Globbled_Page Remove="Resources\Styles\_FontSizes.xaml" />
     <_Globbled_Page Remove="Resources\Styles\_Thicknesses.xaml" />
-    <_Globbled_Page Remove="Views\DashboardView.xaml" />
+    <_Globbled_Page Remove="Themes\Generic.xaml" />
+    <_Globbled_Page Remove="Views\CashRegisterView.xaml" />
+    <_Globbled_Page Remove="Views\ExchangeView.xaml" />
     <_Globbled_Page Remove="Views\MainView.xaml" />
-    <_Globbled_Page Remove="Views\ProductsView.xaml" />
     <_Globbled_Page Remove="Views\SettingsView.xaml" />
   </ItemGroup>
 </Project>

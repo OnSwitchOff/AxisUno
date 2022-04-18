@@ -1,5 +1,4 @@
-﻿
-using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml.Controls;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using AxisUno.ViewModels;
 
@@ -11,14 +10,14 @@ namespace AxisUno.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class DashboardView : Page
+    public sealed partial class DocumentView : Page
     {
-        public DashboardView()
+        public DocumentView()
         {
-            ViewModel = Ioc.Default.GetRequiredService<DashboardViewModel>();
+            ViewModel = Ioc.Default.GetRequiredService<DocumentViewModel>();
             this.InitializeComponent();
         }
 
-        public DashboardViewModel ViewModel { get; }
+        public DocumentViewModel ViewModel { get; }
     }
 }

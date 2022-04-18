@@ -10,11 +10,13 @@ namespace AxisUno.AutofacModules
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<MainViewModel>().InstancePerDependency();
-            builder.RegisterType<DashboardViewModel>().InstancePerDependency();
-            builder.RegisterType<ProductsViewModel>().InstancePerDependency();
-            builder.RegisterType<ProductViewModel>().InstancePerDependency();
-            builder.RegisterType<SettingsViewModel>().InstancePerDependency();
             builder.RegisterType<SaleViewModel>().InstancePerDependency();
+            builder.RegisterType<DocumentViewModel>().InstancePerDependency();
+            builder.RegisterType<CashRegisterViewModel>().InstancePerDependency();
+            builder.RegisterType<ExchangeViewModel>().InstancePerDependency();
+            builder.RegisterType<ReportsViewModel>().InstancePerDependency();
+            builder.RegisterType<SettingsViewModel>().InstancePerDependency();
+            
             builder.RegisterType<ThemeSelectorService>().As<IThemeSelectorService>().InstancePerDependency();
             builder.RegisterType<GroupPathGenerator>().As<IGroupPathGenerator>().InstancePerDependency();
 

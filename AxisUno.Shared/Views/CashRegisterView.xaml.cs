@@ -12,8 +12,8 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using AxisUno.ViewModels;
+using CommunityToolkit.Mvvm.DependencyInjection;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -23,13 +23,23 @@ namespace AxisUno.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ProductsView : Page
+    public sealed partial class CashRegisterView : Page
     {
-        public ProductsView()
+        public CashRegisterView()
         {
+            ViewModel = Ioc.Default.GetRequiredService<CashRegisterViewModel>();
+            this.DataContext = ViewModel;
             this.InitializeComponent();
-            ViewModel = Ioc.Default.GetRequiredService<ProductsViewModel>();
         }
-        public ProductsViewModel ViewModel { get; }
+
+        public CashRegisterViewModel ViewModel { get; }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.PageClosing != null)
+            {
+                ViewModel.PageClosing.Invoke(string.Empty);
+            }
+        }
     }
 }

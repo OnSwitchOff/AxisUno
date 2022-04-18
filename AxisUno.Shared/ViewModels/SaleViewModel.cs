@@ -9,9 +9,13 @@ namespace AxisUno.ViewModels
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
     using System.ComponentModel;
+    using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Threading.Tasks;
     using System.Timers;
+    using System.Xml;
+    using System.Xml.Serialization;
     using AxisUno.DataBase.My100REnteties.Interfaces;
     using AxisUno.DataBase.My100REnteties.Items;
     using AxisUno.DataBase.My100REnteties.ItemsGroups;
@@ -23,8 +27,10 @@ namespace AxisUno.ViewModels
     using AxisUno.DataBase.Repositories.PartnersGroups;
     using AxisUno.DataBase.Repositories.Serialization;
     using AxisUno.Models;
+    using AxisUno.Services.Navigation;
     using AxisUno.Services.Serialization;
     using AxisUno.Services.Settings;
+    using AxisUno.Services.Translation;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using HarabaSourceGenerators.Common.Attributes;
@@ -33,12 +39,13 @@ namespace AxisUno.ViewModels
     using Microinvest.CommonLibrary.Helpers.Validator;
     using Microsoft.UI.Dispatching;
     using Microsoft.UI.Xaml;
+    using static AxisUno.Services.Translation.DictionaryModel;
 
     /// <summary>
     /// Contains fields and commands of operation of "Sale".
     /// </summary>
     [Inject]
-    public partial class SaleViewModel : ObservableObject, IDisposable
+    public partial class SaleViewModel : BaseViewModel, IDisposable
     {
         private readonly IMediator mediator;
         private readonly IItemRepository itemsRepository;
@@ -51,11 +58,20 @@ namespace AxisUno.ViewModels
         private readonly ISerializationService serializationItems;
         private readonly ISerializationService serializationPartners;
 
+        //private string? pageId = null;
+
+        //public delegate void PageCloseDelegate(string pageId);
+        //public PageCloseDelegate PageClose;
+        //public delegate void PageTitleChangedDelegate(string newPageTitle);
+        //public PageTitleChangedDelegate PageTitleChanged;
+        //public string PageId => this.pageId == null ? this.pageId = Guid.NewGuid().ToString() : this.pageId;
+
         private Timer findPartnerTimer = null;
         private Timer findItemTimer = null;
         private Timer searchTimer = null;
         private ENomenclatures activeNomenclature;
 
+        private bool isSaleTitleReadOnly = true;
         private PartnerModel selectedPartner = null;
         private string selectedPartnerString = string.Empty;
         private ObservableCollection<PartnerModel> partners;
@@ -81,7 +97,7 @@ namespace AxisUno.ViewModels
         private GroupModel tmpGroup = new GroupModel();
 
 
-        private string saleTitle = "Покупка";
+        
         private string titlePartnerString = "Партнёр:";
         private string totalAmountTitle = "Общая сумма:";
         private string operationItemNameColumnHeader = "Товар";
@@ -95,7 +111,7 @@ namespace AxisUno.ViewModels
         private Visibility partnersBtnPanelVisibility = Visibility.Collapsed;
         private Visibility groupsBtnPanelVisibility = Visibility.Collapsed;
         private bool isBtnPanelExpanded = false;
-        private bool isSaleTitleReadOnly;
+        
         private bool isSelectedPartnerLocked;
         private Visibility editPanelVisibility = Visibility.Collapsed;
         private Visibility editGroupGridVisibility = Visibility.Collapsed;
@@ -116,10 +132,12 @@ namespace AxisUno.ViewModels
         private string saveBtnTitle = "Save";
         private string cancelBtnTitle = "Cancel";
 
-        public string SaleTitle { get => saleTitle; set => SetProperty(ref saleTitle,value); }
+        private bool isColumnCodeVisible = false;
+        private bool isColumnBarcodeVisible = false;
+
         public string TitlePartnerString { get => titlePartnerString; set => SetProperty(ref titlePartnerString, value); }
         public string TotalAmountTitle { get => totalAmountTitle; set => SetProperty(ref totalAmountTitle, value); }
-        public bool IsSaleTitleReadOnly { get => isSaleTitleReadOnly; set => SetProperty(ref isSaleTitleReadOnly, value); }
+        
         public bool IsSelectedPartnerLocked { get => isSelectedPartnerLocked; set => SetProperty(ref isSelectedPartnerLocked, value); }
         public Visibility EditPanelVisibility { get => editPanelVisibility; set => SetProperty(ref editPanelVisibility, value); }
         public string OperationItemNameColumnHeader { get => operationItemNameColumnHeader; set => SetProperty(ref operationItemNameColumnHeader, value); }
@@ -162,6 +180,16 @@ namespace AxisUno.ViewModels
         {
             get => this.activeNomenclature;
             set => this.SetProperty(ref this.activeNomenclature, value);
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether title of the page can be changed.
+        /// </summary>
+        /// <date>24.03.2022.</date>
+        public bool IsSaleTitleReadOnly
+        {
+            get => this.isSaleTitleReadOnly;
+            set => this.SetProperty(ref this.isSaleTitleReadOnly, value);
         }
 
         /// <summary>
@@ -329,6 +357,7 @@ namespace AxisUno.ViewModels
                 if (this.operationItemList == null)
                 {
                     this.operationItemList = new ObservableCollection<OperationItemModel>();
+                    this.operationItemList.Add(new OperationItemModel());
                     this.operationItemList.CollectionChanged += this.OperationItemsList_CollectionChanged;
                 }
 
@@ -946,17 +975,14 @@ namespace AxisUno.ViewModels
             }
         }
 
+        /// <summary>
+        /// Enables field to change title of the page.
+        /// </summary>
+        /// <date>23.03.2022.</date>
         [ICommand]
         private void ChangeSaleTitleReadOnly()
         {
-            object obj = this.SelectedPartner;
-            OperationItemModel operationItem = new OperationItemModel();
-            operationItem.Name = "Product1";
-            operationItem.Measures.Add(new ItemCodeModel { Measure = "Asd2"});
-            operationItem.SelectedMeasure = operationItem.Measures[0];
-            OperationItemsList.Add(operationItem);
-            SelectedOperationItem = operationItem;
-            OperationItemTotalAmountColumnVisibility = OperationItemTotalAmountColumnVisibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+            this.IsSaleTitleReadOnly = !this.IsSaleTitleReadOnly;
         }
 
         /// <summary>
@@ -968,6 +994,11 @@ namespace AxisUno.ViewModels
         {
             // TODO: serialize data
             this.Dispose();
+
+            if (PageClosing != null)
+            {
+                PageClosing.Invoke(PageId);
+            }
         }
 
         [ICommand]

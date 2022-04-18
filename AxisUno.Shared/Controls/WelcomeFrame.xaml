@@ -1,0 +1,265 @@
+﻿<UserControl
+    x:Class="AxisUno.Controls.WelcomeFrame"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <UserControl.Resources>
+        <Style TargetType="RichTextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="TextIndent" Value="10"/>
+            <Setter Property="TextTrimming" Value="WordEllipsis"/>
+            <Setter Property="TextWrapping" Value="WrapWholeWords"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="IsTextSelectionEnabled" Value="False"/>
+            <Setter Property="Margin" Value="10, 0"/>
+        </Style>
+        <Style TargetType="RichTextBlockOverflow">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="10, 0"/>
+        </Style>
+        <Style TargetType="FontIcon">
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+            <Setter Property="Glyph" Value="&#xE7C8;"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Margin" Value="10, 0, 10, 0"/>
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical" Background="White">
+        <Image Source="/Assets/OperationSchema.png" Height="500" Stretch="Uniform"/>
+        <TextBlock Text="Благодарим Ви за избора на Axis My100R!" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="23"
+                   FontWeight="Bold"
+                   Foreground="#FF5B9BD5"
+                   FontFamily="Calibri"
+                   Margin="0, 10, 0, 10"/>
+        <RichTextBlock>
+            <Paragraph>
+                <Bold>Axis My100R</Bold> е съвременна система за управление на бизнес процесите в магазин, кафе, ресторант, склад или друг търговски обект.
+            </Paragraph>
+        </RichTextBlock>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="180"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0"  Grid.Column="0" Source="/Assets/Application.png" Stretch="Uniform"/>
+                <RichTextBlock Grid.Row="0" Grid.Column="1" 
+                               OverflowContentTarget="{Binding ElementName=richTextBlockOverflowFirst}">
+                    <Paragraph>
+                        Продуктът е изграден чрез авангардни технологии и предоставя висока ефективност на бизнес процесите, 
+                        съчетана с лесна работа и модерна визия. Пред вас е продукт от най-висок клас, притежаващ гъвкавост и удобство, 
+                        скорост и надеждност, интуитивност и визия, гарнирани с вкус и поглед към бъдещето.
+                        <LineBreak/>
+                    </Paragraph>
+                    <Paragraph>
+                        В
+                        <Bold>Axis My100R</Bold> сме вложили от душата си – продуктът е плод на цялостен анализ на търговската дейност и 
+                        предлага лесна работа при преобладаващата част от бизнес процесите на Търговските обекти в България.
+                        <LineBreak/>
+                    </Paragraph>
+                    <Paragraph>
+                        Запознайте се с продукта в дълбочина, постарали сме се всяка стъпка да е съпроводена от подсказки, 
+                        динамична помощна система и пълно видео представяне в детайли на екрана, полетата и функциите.
+                    </Paragraph>
+                </RichTextBlock>
+            </Grid>
+
+            <RichTextBlockOverflow x:Name="richTextBlockOverflowFirst" Grid.Row="1"/>
+
+            <Grid Grid.Row="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="250"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="400"/>
+                    </Grid.ColumnDefinitions>
+                    <RichTextBlock Grid.Row="0" Grid.Column="0" 
+                               OverflowContentTarget="{Binding ElementName=richTextBlockOverflowSecond}">
+
+                        <Paragraph HorizontalTextAlignment="Center" TextAlignment="Center" Margin="0,10,0,15"
+                               FontSize="23" FontWeight="Bold" Foreground="#FF5B9BD5" FontFamily="Calibri" >
+                            Предимството е в детайлите
+                        </Paragraph>
+
+                        <Paragraph>
+                            При създаването на
+                            <Bold>Axis My100R</Bold> бяха заложени редица амбициозни идеи:
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Опростена технология на работа без превключване между различни екрани и прозорци;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Изключителна скорост на обработка на операциите с минимално участие на оператора;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Поддръжка на основните процеси – Покупка, Продажба, Фактуриране, Сторно и Ревизия;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Мощни справки с удобна визуализация на данните и гъвкави критерии за търсене;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Управление на фискални устройства на всички български производители;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Автоматично търсене на стоки по баркод и партньори по ЕИК;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Работа с баркод четец, клиентски карти и картов платежен терминал;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer> Незабележимо обновяване на софтуера при всяка нова функция;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Помощна система за всяко действие на оператора;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Пълна съвместимост между версиите.
+                        </Paragraph>
+
+                        <Paragraph HorizontalTextAlignment="Center" TextAlignment="Center" Margin="0,10,0,15"
+                               FontSize="23" FontWeight="Bold" Foreground="#FF5B9BD5" FontFamily="Calibri" >
+                            Автоматична поддръжка
+                        </Paragraph>
+
+                        <Paragraph>
+                            <Bold>Axis My100R</Bold> изпълнява редица автоматични процеси, които елиминират необходимостта от скъпа компютърна поддръжка. 
+                            В програмата са вградени технически процедури, които се изпълняват по график и гарантират безпроблемна работа.
+                            <LineBreak/>
+                        </Paragraph>
+                        <Paragraph>
+                            При всяко стартиране
+                            <Bold>Axis My100R</Bold> изпълнява следните рутинни задачи:
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Съставя се архив на данните за деня;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Поддържа се набор от 3 архива за предходни дати, по-старите се изчистват за да не заемат излишно място;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Извършва се проверка на цялата база от данни за евентуални невалидни данни. Предприемат се мерки за гарантиране на съхранените данни;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Почистват се изтрити данни за спестяване на дисково пространство;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Базата от данни се пакетира по обем и се извършва преподреждане на записите за да заемат по-малко дисково пространство;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Изпълнява се опресняване на индексите в програмата за да използвате по-бързо търсене във всяка операция и справка;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Проверява се за нова версия и нови функции;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Тестват се модулите за да се провери дали няма външна намеса (например атака от вируси или промени от хакери), като системата се възстановява до фабричното си състояние;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Проверява се работоспособността на периферните устройства, доколкото това е възможно да се направи автоматично;
+                        </Paragraph>
+                        <Paragraph>
+                            <InlineUIContainer>
+                                <FontIcon/>
+                            </InlineUIContainer>
+                            Проверяват се компютърните параметри – свободна памет и наличие на достатъчно дисково пространство.
+                            <LineBreak/>
+                            <LineBreak/>
+                        </Paragraph>
+
+                        <Paragraph>
+                            Описаните действия са автоматични и незабележими за оператора, изпълняват се последователно и активират защитни и превантивни мерки. 
+                            Комбинацията от такива процедури заменя скъпата компютърна поддръжка и уведомява единствено при възникване на нерешими проблеми от 
+                            компетентност на сервизен инженер за хардуерните периферни устройства или компютърен специалист за поддръжка на софтуера.
+                        </Paragraph>
+                    </RichTextBlock>
+
+                    <Image Grid.Row="0"  Grid.Column="1" Source="/Assets/InputDataToLaptop.png" Stretch="Uniform"/>
+                </Grid>
+            </Grid>
+
+            <RichTextBlockOverflow x:Name="richTextBlockOverflowSecond" Grid.Row="3"/>
+        </Grid>
+    </StackPanel>
+    </ScrollViewer>
+</UserControl>

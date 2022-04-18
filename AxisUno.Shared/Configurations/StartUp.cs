@@ -40,6 +40,7 @@ namespace AxisUno.Configurations
 
             builder.RegisterModule<SettingsModule>();
             builder.RegisterModule<SerializationModule>();
+            //builder.RegisterModule<TranslationModule>();
             builder.RegisterModule<ScanningModule>();
             builder.RegisterModule<PaymentModule>();
             builder.RegisterModule<SearchDataModule>();

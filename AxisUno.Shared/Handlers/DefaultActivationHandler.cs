@@ -19,7 +19,7 @@ namespace AxisUno.Handlers
 
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs? args)
         {
-            _navigationService.Navigate<DashboardViewModel>(args?.Arguments);
+            _navigationService.Navigate<DocumentViewModel>(args?.Arguments);
 
             await _databaseMigrationService.MigrateAsync();
         }

@@ -10,6 +10,7 @@
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:primitives="using:CommunityToolkit.WinUI.UI.Controls.Primitives"
     xmlns:extensions="using:AxisUno.Extensions"
+    xmlns:converters="using:AxisUno.Converters"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     d:DataContext="{x:Bind ViewModel}"
     CornerRadius="0"
@@ -17,6 +18,10 @@
     <Page.Resources>
         <SolidColorBrush x:Key="DataGridCellFocusVisualPrimaryBrush">Transparent</SolidColorBrush>
         <SolidColorBrush x:Key="DataGridCellFocusVisualSecondaryBrush">Transparent</SolidColorBrush>
+
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+        <converters:BoolToVisibilityReversedConverter x:Key="BoolToVisibility_Reverse"/>
+        <converters:VisibilityToBoolConverter x:Key="VisibilityToBool"/>
     </Page.Resources>
     <Grid CornerRadius="0" >
         <Grid.ColumnDefinitions>
@@ -37,16 +42,33 @@
             <Grid Grid.Row="0" CornerRadius="0" Padding="5,3" Background="SteelBlue">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Background="Transparent" CornerRadius="0" BorderThickness="0"
-                         IsReadOnly="{x:Bind ViewModel.IsSaleTitleReadOnly}" 
-                         Text="{x:Bind ViewModel.SaleTitle, Mode=TwoWay}"/>
-                <Button Grid.Column="1" CornerRadius="0" Padding="6" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.ChangeSaleTitleReadOnlyCommand}" >
+                <TextBlock Grid.Column="0"
+                           Text="{Binding ElementName=textBoxTitle, Path=Text}"
+                           VerticalAlignment="Center"
+                           Visibility="{x:Bind ViewModel.IsSaleTitleReadOnly, Mode=OneWay, Converter={StaticResource BoolToVisibility}}"/>
+                <TextBox Grid.Column="1"
+                         x:Name="textBoxTitle"
+                         Background="Transparent" 
+                         CornerRadius="0" 
+                         BorderThickness="0"
+                         Visibility="{x:Bind ViewModel.IsSaleTitleReadOnly, Mode=OneWay, Converter={StaticResource BoolToVisibility_Reverse}}"
+                         IsEnabled="{Binding ElementName=textBoxTitle, Path=Visibility, Converter={StaticResource VisibilityToBool}, Mode=OneWay}"
+                         IsEnabledChanged="TextBoxTitle_EnabledChanged"
+                         LostFocus="TextBoxTitle_LostFocus"
+                         Text="{x:Bind ViewModel.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Column="2" 
+                        CornerRadius="0" 
+                        Padding="6" 
+                        Background="Transparent" 
+                        BorderThickness="0"
+                        Command="{x:Bind ViewModel.ChangeSaleTitleReadOnlyCommand}" >
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/edit_white.png" ShowAsMonochrome="False"/>
                 </Button>
-                <Button Grid.Column="2" CornerRadius="0" Padding="4" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.CloseSalePageCommand}">
+                <Button Grid.Column="3" CornerRadius="0" Padding="4" Background="Transparent" BorderThickness="0" Command="{x:Bind ViewModel.CloseSalePageCommand}">
                     <BitmapIcon UriSource="ms-appx:///Assets/Icons/close.png" ShowAsMonochrome="False"/>
                 </Button>
             </Grid>
@@ -82,8 +104,7 @@
                                GridLinesVisibility="Vertical"
                                BorderThickness="0"
                                BorderBrush="Gray"
-                               Background="White"
-                               >
+                               Background="White">
                 <controls:DataGrid.ColumnHeaderStyle>
                     <Style TargetType="primitives:DataGridColumnHeader">
                         <Setter Property="FontWeight" Value="Bold"/>
@@ -103,10 +124,24 @@
                     </Style>
                 </controls:DataGrid.CellStyle>
                 <controls:DataGrid.Columns>
-                    <controls:DataGridTextColumn Header="{x:Bind ViewModel.OperationItemNameColumnHeader}"
+                    <controls:DataGridTemplateColumn Header="{x:Bind ViewModel.OperationItemNameColumnHeader}"
+                                                     Width="*"
+                                                     MinWidth="100"
+                                                     Tag="Name">
+                        <controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox x:Name="textBoxName" 
+                                         MinWidth="100"
+                                         Width="{Binding Width, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                         Text="{Binding Name,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                         Tag="Name"/>
+                            </DataTemplate>
+                        </controls:DataGridTemplateColumn.CellTemplate>
+                    </controls:DataGridTemplateColumn>
+                    <!--<controls:DataGridTextColumn Header="{x:Bind ViewModel.OperationItemNameColumnHeader}"
                                                  Width="*"
                                                  MinWidth="100"
-                                                 Binding="{Binding Name,Mode=TwoWay}"/>
+                                                 Binding="{Binding Name,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
                     <!--<controls:DataGridComboBoxColumn Header="{x:Bind ViewModel.OperationItemMeasureColumnHeader}"
                                                  ItemsSource="{x:Bind ViewModel.SelectedOperationItem.MeasureList,Mode=OneWay}"
                                                  Binding="{Binding SelectedMeasure, Mode=TwoWay}"/>-->
@@ -144,7 +179,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="1" Width="200px" Height="26" CornerRadius="0" Margin="0"  VerticalContentAlignment="Bottom" IsReadOnly="{x:Bind ViewModel.IsSaleTitleReadOnly}" Text="{x:Bind ViewModel.SaleTitle, Mode=OneWay}"/>
+                <TextBox Grid.Column="1" Width="200px" Height="26" CornerRadius="0" Margin="0"  VerticalContentAlignment="Bottom" IsReadOnly="{x:Bind ViewModel.IsSaleTitleReadOnly}" Text="{x:Bind ViewModel.Title, Mode=OneWay}"/>
                 <BitmapIcon Grid.Column="1" UriSource="ms-appx:///Assets/Icons/Search_purple.png" ShowAsMonochrome="False"  HorizontalAlignment="Right" Width="20" Height="20" Margin="0,0,7,0" />
                 <Button Grid.Column="2" Content="Сохранить" Width="120px" Height="32" VerticalContentAlignment="Center" FontSize="14" CornerRadius="0" Margin="5,0"/>
             </Grid>

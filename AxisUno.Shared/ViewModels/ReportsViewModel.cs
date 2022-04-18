@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AxisUno.ViewModels
 {
-    public partial class ProductViewModel : ObservableObject
+    public sealed partial class ReportsViewModel : ObservableObject
     {
     }
 }

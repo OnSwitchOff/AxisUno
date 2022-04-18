@@ -1,5 +1,7 @@
 ﻿using AxisUno.Services.Navigation;
+using AxisUno.Services.Settings;
 using CommunityToolkit.Mvvm.ComponentModel;
+using HarabaSourceGenerators.Common.Attributes;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using System;
@@ -8,15 +10,28 @@ using System.Text;
 
 namespace AxisUno.ViewModels
 {
-    public  partial class MainViewModel : ObservableObject
+    [Inject]
+    public partial class MainViewModel : ObservableObject
     {
         private readonly INavigationService _navigationService;
         private readonly INavigationViewService _navigationViewService;
 
+        private readonly ISettingsService settingsService;
+
+        public ISettingsService SettingsService => settingsService;
+
         private string helpMessage;
+        private string licenseData = "Продукт активирован 24,09,1990 №123123123";
+
         public string HelpMessage {
             get => helpMessage;
             set => SetProperty(ref helpMessage, value);
+        }
+
+        public string LicenseData
+        {
+            get => licenseData;
+            set => SetProperty(ref licenseData, value);
         }
 
         private bool isBackEnabled;

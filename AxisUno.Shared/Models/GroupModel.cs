@@ -126,17 +126,20 @@ namespace AxisUno.Models
         /// </summary>
         /// <param name="partnersGroup">Data of group of partner from database.</param>
         /// <date>25.03.2022.</date>
-        public static explicit operator GroupModel(DataBase.My100REnteties.PartnersGroups.PartnersGroup partnersGroup)
+        public static explicit operator GroupModel?(DataBase.My100REnteties.PartnersGroups.PartnersGroup partnersGroup)
         {
-            GroupModel group = new GroupModel()
+            if (partnersGroup == null)
+            {
+                return null;
+            }
+
+            return new GroupModel()
             {
                 Id = partnersGroup.Id,
                 Path = partnersGroup.Path,
                 Name = partnersGroup.Name,
                 Discount = partnersGroup.Discount,
             };
-
-            return group;
         }
 
         /// <summary>

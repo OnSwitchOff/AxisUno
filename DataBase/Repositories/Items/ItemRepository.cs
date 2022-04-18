@@ -3,10 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AxisUno.DataBase.Repositories.Items
 {
-    public partial class ItemRepository : IItemRepository
+    public class ItemRepository : IItemRepository
     {
-        private readonly DatabaseContext dbContext = new DatabaseContext();
-
         /// <summary>
         /// Gets item from the database by barcode.
         /// </summary>
@@ -15,7 +13,10 @@ namespace AxisUno.DataBase.Repositories.Items
         /// <date>30.03.2022.</date>
         public Task<Item?> GetItemByBarcodeAsync(string barcode)
         {
-            return this.dbContext.Items.FirstOrDefaultAsync(i => i.Barcode.Equals(barcode));
+            using (DatabaseContext dbContext = new DatabaseContext())
+            {
+                return dbContext.Items.FirstOrDefaultAsync(i => i.Barcode.Equals(barcode));
+            }
         }
 
         /// <summary>
@@ -26,7 +27,10 @@ namespace AxisUno.DataBase.Repositories.Items
         /// <date>30.03.2022.</date>
         public Task<Item?> GetItemByIdAsync(int id)
         {
-            return this.dbContext.Items.FirstOrDefaultAsync(i => i.Id == id);
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                return context.Items.FirstOrDefaultAsync(i => i.Id == id);
+            }
         }
 
         /// <summary>
@@ -37,13 +41,16 @@ namespace AxisUno.DataBase.Repositories.Items
         /// <date>30.03.2022.</date>
         public Task<Item?> GetItemByKeyAsync(string key)
         {
-            return this.dbContext.
+            using (DatabaseContext databaseContext = new DatabaseContext())
+            {
+                return databaseContext.
                     Items.
                     FirstOrDefaultAsync(i =>
                     i.Name.Equals(key) ||
                     i.Code.Equals(key) ||
                     i.Barcode.Equals(key) ||
                     i.ItemsCodes.FirstOrDefault(ic => ic.Code.Equals(key)) != null);
+            }
         }
 
         /// <summary>
@@ -54,7 +61,9 @@ namespace AxisUno.DataBase.Repositories.Items
         /// <date>30.03.2022.</date>
         public IAsyncEnumerable<Item> GetItemsAsync(string searchKey)
         {
-            return this.dbContext.
+            using (DatabaseContext dbContext = new DatabaseContext())
+            {
+                return dbContext.
                     Items.
                     Where(i =>
                     string.IsNullOrEmpty(searchKey) ? 1 == 1 :
@@ -63,6 +72,7 @@ namespace AxisUno.DataBase.Repositories.Items
                     i.Barcode.Contains(searchKey) ||
                     i.ItemsCodes.Where(ic => ic.Code.Contains(searchKey)).FirstOrDefault() != null)).
                     AsAsyncEnumerable();
+            }
         }
 
         /// <summary>
@@ -74,7 +84,9 @@ namespace AxisUno.DataBase.Repositories.Items
         /// <date>30.03.2022.</date>
         public IAsyncEnumerable<Item> GetItemsAsync(string groupPath, string searchKey)
         {
-            return this.dbContext.
+            using (DatabaseContext dbContext = new DatabaseContext())
+            {
+                return dbContext.
                     Items.
                     Where(i =>
                     (groupPath.Equals("-2") ? 1 == 1 : i.Group.Path.StartsWith(groupPath)) &&
@@ -84,6 +96,7 @@ namespace AxisUno.DataBase.Repositories.Items
                     i.Barcode.Contains(searchKey) ||
                     i.ItemsCodes.Where(ic => ic.Code.Contains(searchKey)).FirstOrDefault() != null))).
                     AsAsyncEnumerable();
+            }
         }
 
         /// <summary>
@@ -94,10 +107,13 @@ namespace AxisUno.DataBase.Repositories.Items
         /// <date>30.03.2022.</date>
         public IAsyncEnumerable<Item> GetItemsByGroupIdAsync(int groupId)
         {
-            return this.dbContext.
+            using (DatabaseContext dbContext = new DatabaseContext())
+            {
+                return dbContext.
                     Items.
                     Where(i => i.Group.Id == groupId).
                     AsAsyncEnumerable();
+            }
         }
 
         /// <summary>
@@ -110,10 +126,13 @@ namespace AxisUno.DataBase.Repositories.Items
         {
             return Task.Run<int>(() =>
             {
-                this.dbContext.Items.Add(item);
-                this.dbContext.SaveChanges();
+                using (DatabaseContext dbContext = new DatabaseContext())
+                {
+                    dbContext.Items.Add(item);
+                    dbContext.SaveChanges();
 
-                return item.Id;
+                    return item.Id;
+                }
             });
         }
 
@@ -127,8 +146,11 @@ namespace AxisUno.DataBase.Repositories.Items
         {
             return Task.Run<bool>(() =>
             {
-                this.dbContext.Items.Update(item);
-                return this.dbContext.SaveChanges() > 0;
+                using (DatabaseContext dbContext = new DatabaseContext())
+                {
+                    dbContext.Items.Update(item);
+                    return dbContext.SaveChanges() > 0;
+                }
             });
         }
 
@@ -142,15 +164,18 @@ namespace AxisUno.DataBase.Repositories.Items
         {
             return Task.Run<bool>(() =>
             {
-                Item? item = this.dbContext.Items.FirstOrDefault(i => i.Id == itemId);
-                if (item == null)
+                using (DatabaseContext dbContext = new DatabaseContext())
                 {
-                    return false;
-                }
-                else
-                {
-                    this.dbContext.Items.Remove(item);
-                    return this.dbContext.SaveChanges() > 0;
+                    Item? item = dbContext.Items.FirstOrDefault(i => i.Id == itemId);
+                    if (item == null)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        dbContext.Items.Remove(item);
+                        return dbContext.SaveChanges() > 0;
+                    }
                 }
             });
         }
@@ -164,11 +189,14 @@ namespace AxisUno.DataBase.Repositories.Items
         {
             return await Task.Run<List<string>>(() =>
             {
-                List<string> list = new List<string>();
-                list.AddRange(this.dbContext.Items.Select(i => i.Measure).Distinct().ToList());
-                list.AddRange(this.dbContext.ItemsCodes.Select(ic => ic.Measure).Distinct().ToList());
+                using (DatabaseContext dbContext = new DatabaseContext())
+                {
+                    List<string> list = new List<string>();
+                    list.AddRange(dbContext.Items.Select(i => i.Measure).Distinct().ToList());
+                    list.AddRange(dbContext.ItemsCodes.Select(ic => ic.Measure).Distinct().ToList());
 
-                return list.Distinct().ToList();
+                    return list.Distinct().ToList();
+                }
             });
         }
     }

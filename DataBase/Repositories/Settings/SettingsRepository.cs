@@ -1,13 +1,9 @@
 ﻿using AxisUno.DataBase.My100REnteties.Settings;
-using HarabaSourceGenerators.Common.Attributes;
 
 namespace AxisUno.DataBase.Repositories.Settings
 {
-    [Inject]
     public partial class SettingsRepository : ISettingsRepository
     {
-        private readonly DatabaseContext databaseContext;
-
         /// <summary>
         /// Gets value of the setting by the key and name of group.
         /// </summary>
@@ -18,17 +14,20 @@ namespace AxisUno.DataBase.Repositories.Settings
         /// <date>25.03.2022.</date>
         public string GetValue(string groupName, string key, string defaultValue)
         {
-            Setting? setting = this.databaseContext.Settings.SingleOrDefault(s => s.Group.Equals(groupName) && s.Key.Equals(key));
-
-            if (setting != null)
+            using (DatabaseContext databaseContext = new DatabaseContext())
             {
-                return setting.Value;
-            }
-            else
-            {
-                this.SetValue(groupName, key, defaultValue);
+                Setting? setting = databaseContext.Settings.SingleOrDefault(s => s.Group.Equals(groupName) && s.Key.Equals(key));
 
-                return defaultValue;
+                if (setting != null)
+                {
+                    return setting.Value;
+                }
+                else
+                {
+                    this.SetValue(groupName, key, defaultValue);
+
+                    return defaultValue;
+                }
             }
         }
 
@@ -41,13 +40,16 @@ namespace AxisUno.DataBase.Repositories.Settings
         /// <date>25.03.2022.</date>
         public void SetValue(string groupName, string key, string value)
         {
-            this.databaseContext.Add(new Setting()
+            using (DatabaseContext dbContext = new DatabaseContext())
             {
-                Group = groupName,
-                Key = key,
-                Value = value,
-            });
-            this.databaseContext.SaveChanges();
+                dbContext.Add(new Setting()
+                {
+                    Group = groupName,
+                    Key = key,
+                    Value = value,
+                });
+                dbContext.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -59,17 +61,20 @@ namespace AxisUno.DataBase.Repositories.Settings
         /// <date>25.03.2022.</date>
         public void UpdateValue(string groupName, string key, string value)
         {
-            Setting? setting = this.databaseContext.Settings.SingleOrDefault(s => s.Group.Equals(groupName) && s.Key.Equals(key));
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                Setting? setting = context.Settings.SingleOrDefault(s => s.Group.Equals(groupName) && s.Key.Equals(key));
 
-            if (setting != null)
-            {
-                setting.Value = value;
-                this.databaseContext.Update(setting);
-                this.databaseContext.SaveChanges();
-            }
-            else
-            {
-                SetValue(groupName, key, value);
+                if (setting != null)
+                {
+                    setting.Value = value;
+                    context.Update(setting);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    SetValue(groupName, key, value);
+                }
             }
         }
     }

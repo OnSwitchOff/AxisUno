@@ -1,15 +1,15 @@
 ﻿<Page
-    x:Class="AxisUno.Views.ProductsView"
+    x:Class="AxisUno.Views.ExchangeView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AxisUno.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="using.AxisUno.ViewModels" 
     mc:Ignorable="d"
-    xmlns:behaviors="using:AxisUno.Behaviors.NavigationViewHeader"
-    behaviors:NavigationViewHeaderBehavior.HeaderMode="Always">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
     <Grid>
-        <TextBlock>Products Page</TextBlock>
+        <TextBlock Text ="Exchange page"/>
+
     </Grid>
 </Page>

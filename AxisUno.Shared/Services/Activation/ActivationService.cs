@@ -1,4 +1,6 @@
 ﻿using AxisUno.Handlers;
+using AxisUno.Services.Settings;
+using AxisUno.Services.Translation;
 using AxisUno.Views;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using HarabaSourceGenerators.Common.Attributes;
@@ -17,6 +19,8 @@ namespace AxisUno.Services.Activation
     {
         private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
         private readonly IEnumerable<IActivationHandler> _activationHandlers;
+        private readonly ISettingsService settings;
+        private ITranslationService translation;
         //private readonly IThemeSelectorService _themeSelectorService;
 
         private UIElement? _shell = null;
@@ -29,6 +33,9 @@ namespace AxisUno.Services.Activation
 
             if (App.MainWindow.Content is null)
             {
+                //this.settings.AppLanguage = Microinvest.CommonLibrary.Enums.ELanguages.Russian;
+                this.translation = TranslationService.CreateInstance();
+                this.translation.InitializeDictionary(this.settings.AppLanguage.CombineCode);
                 _shell = Ioc.Default.GetService<MainView>();
                 App.MainWindow.Content = _shell ?? new Frame();
             }

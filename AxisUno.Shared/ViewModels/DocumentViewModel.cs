@@ -10,7 +10,7 @@ using System.Text;
 namespace AxisUno.ViewModels
 {
     [Inject]
-    public partial class DashboardViewModel : ObservableObject
+    public partial class DocumentViewModel : ObservableObject
     {
         private readonly IMediator _mediator;
         //private readonly IProductRepository _productRepository;
