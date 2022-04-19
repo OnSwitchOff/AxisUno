@@ -21,6 +21,7 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview1" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Behaviors" Version="7.1.2" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
+		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Layout" Version="7.1.2" />
 		<PackageReference Include="FluentValidation" Version="10.3.6" />
 		<PackageReference Include="HarabaSourceGenerators.Generators" Version="1.0.4" />
 		<PackageReference Include="Mapster" Version="7.3.0" />

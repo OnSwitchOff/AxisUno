@@ -8,10 +8,19 @@
     xmlns:vm="using.AxisUno.ViewModels" 
     mc:Ignorable="d"
     xmlns:behaviors="using:AxisUno.Behaviors.NavigationViewHeader"
+    xmlns:container="using:AxisUno.Controls"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Always"
     NavigationCacheMode="Required">
     <Grid>
-        <TextBlock>Products Page</TextBlock>
-        <TextBox></TextBox>
+        <container:OperationContainer>
+            <container:OperationContainer.OperationArea>
+                <StackPanel>
+                    <TextBlock Text="Operation area"/>
+                </StackPanel>
+            </container:OperationContainer.OperationArea>
+            <!--<container.OperationContainer.OperationArea>
+                <TextBlock Text ="OperationArea"/>
+            </container.OperationContainer.OperationArea>-->
+        </container:OperationContainer>
     </Grid>
 </Page>

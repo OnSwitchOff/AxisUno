@@ -74,6 +74,7 @@
     <EntryPointProjectUniqueName>..\AxisUno.Windows.Desktop\AxisUno.Windows.Desktop.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Layout" Version="7.1.2" />
     <PackageReference Include="Microinvest.CommonLibrary" Version="1.0.0" />
     <PackageReference Include="Microinvest.DeviceService" Version="1.0.0" />
     <PackageReference Include="Microinvest.IntegrationService" Version="1.0.0" />

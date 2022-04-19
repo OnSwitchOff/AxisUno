@@ -194,7 +194,18 @@
       <Value Lang="hy-AM">Not translated</Value>
       <Value Lang="ka-GE">Not translated</Value>
     </Data>
+    
     <!--Продажа-->
+    <Data Key="strPartner">
+      <Value Lang="bg-BG">Партньор</Value>
+      <Value Lang="el-GR">Not translated</Value>
+      <Value Lang="en-GB">Partner</Value>
+      <Value Lang="ro-RO">Not translated</Value>
+      <Value Lang="ru-RU">Партнёр</Value>
+      <Value Lang="uk-UA">Партнер</Value>
+      <Value Lang="hy-AM">Not translated</Value>
+      <Value Lang="ka-GE">Not translated</Value>
+    </Data>
     <Data Key="strUSN">
       <Value Lang="bg-BG">Уникален номер на продажба</Value>
       <Value Lang="el-GR">Not translated</Value>
@@ -325,6 +336,18 @@
       <Value Lang="ro-RO">Not translated</Value>
       <Value Lang="ru-RU">Настройки приложения позволяют вводить данные вашей компании, подключаться к устройствам и службам (COM-сканер, фискальное устройство, POS-терминал, AxisCloud) и т.д.</Value>
       <Value Lang="uk-UA">Налаштування програми дозволяють вводити дані вашої компанії, підключатися до пристроїв і служб (COM-сканер, фіскальний пристрій, POS-термінал, AxisCloud) і т.д.</Value>
+      <Value Lang="hy-AM">Not translated</Value>
+      <Value Lang="ka-GE">Not translated</Value>
+    </Data>
+
+    <!--Продажа-->
+    <Data Key="EnterPartnerData">
+      <Value Lang="bg-BG">Въведете фирма или част от името на фирма за да филтрирате таблицата отдясно. Филтърът работи по Код, ЕИК, Адрес и всички други полета от таблицата с партньорите. За потвърждение изберете партньор от дясната част или натиснете Enter. Полето може да бъде заключено с катинара, при което всички следващи операции ще се извършат със същата фирма.</Value>
+      <Value Lang="el-GR">Not translated</Value>
+      <Value Lang="en-GB">Enter partner name fully or part. Filter works by code, tax code, VAT code, address and other fields of Partners table. To confirm choice of partner you have to select one on the right side or press Enter. The field can be locked and all nex operation will be performed with this partner.</Value>
+      <Value Lang="ro-RO">Not translated</Value>
+      <Value Lang="ru-RU">Введите имя партнера полностью или частично. Фильтр работает по коду, налогому номеру, номеру плательщика НДС, адресу и другим полям таблицы Партнеры. Чтобы подтвердить выбор партнера, вам нужно выбрать его справа или нажать Enter. Поле можно заблокировать, и все последующие операции будут выполняться с этим партнером.</Value>
+      <Value Lang="uk-UA">Введіть ім'я партнера повністю або частково. Фільтр працює за кодом, податковим номером, номером платника ПДВ, адресою та іншими полями таблиці Партнери. Щоб підтвердити вибір партнера, вам необхідно вибрати його справа або натиснути Enter. Поле можна заблокувати, і всі наступні операції будуть виконуватися з цим партнером.</Value>
       <Value Lang="hy-AM">Not translated</Value>
       <Value Lang="ka-GE">Not translated</Value>
     </Data>

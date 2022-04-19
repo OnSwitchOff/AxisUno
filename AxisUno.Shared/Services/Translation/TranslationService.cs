@@ -164,6 +164,11 @@ namespace AxisUno.Services.Translation
 
             foreach (string dictionaryPath in names)
             {
+                if (!dictionaryPath.Contains("Dictionary.xml"))
+                {
+                    continue;
+                }
+
                 using (Stream? stream = assembly.GetManifestResourceStream(names[0]))
                 {
                     if (stream != null)

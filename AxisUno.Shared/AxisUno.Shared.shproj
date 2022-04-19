@@ -44,8 +44,10 @@
     <_Globbed_Compile Remove="Configurations\StartUp.cs" />
     <_Globbed_Compile Remove="Controls\CustomCommandBars\CommandBarMode.cs" />
     <_Globbed_Compile Remove="Controls\CustomCommandBars\CustomCommandBar.xaml.cs" />
+    <_Globbed_Compile Remove="Controls\CustomControl1.cs" />
     <_Globbed_Compile Remove="Controls\CustomInfoBar.cs" />
     <_Globbed_Compile Remove="Controls\CustomTextBox.cs" />
+    <_Globbed_Compile Remove="Controls\OperationContainer.xaml.cs" />
     <_Globbed_Compile Remove="Controls\WelcomeFrame.xaml.cs" />
     <_Globbed_Compile Remove="Converters\BoolToVisibilityConverter.cs" />
     <_Globbed_Compile Remove="Converters\BoolToVisibilityReversedConverter.cs" />
@@ -198,6 +200,7 @@
   </ItemGroup>
   <ItemGroup>
     <_Globbled_Page Remove="Controls\CustomCommandBars\CustomCommandBar.xaml" />
+    <_Globbled_Page Remove="Controls\OperationContainer.xaml" />
     <_Globbled_Page Remove="Controls\WelcomeFrame.xaml" />
     <_Globbled_Page Remove="ResourceDictionary1.xaml" />
     <_Globbled_Page Remove="Resources\ConvertersRegistration.xaml" />
