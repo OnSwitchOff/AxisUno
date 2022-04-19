@@ -12,7 +12,7 @@
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Always"
     NavigationCacheMode="Required">
     <Grid>
-        <container:OperationContainer>
+        <container:OperationContainer PageCloseCommand="{x:Bind PageClose}" x:Name="OperData">
             <container:OperationContainer.OperationArea>
                 <StackPanel>
                     <TextBlock Text="Operation area"/>

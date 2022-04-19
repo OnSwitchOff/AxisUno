@@ -28,6 +28,7 @@ namespace AxisUno.ViewModels
     using AxisUno.DataBase.Repositories.Serialization;
     using AxisUno.Models;
     using AxisUno.Services.Navigation;
+    using AxisUno.Services.Payment;
     using AxisUno.Services.Serialization;
     using AxisUno.Services.Settings;
     using AxisUno.Services.Translation;
@@ -57,14 +58,7 @@ namespace AxisUno.ViewModels
         private readonly ISerializationService serializationSale;
         private readonly ISerializationService serializationItems;
         private readonly ISerializationService serializationPartners;
-
-        //private string? pageId = null;
-
-        //public delegate void PageCloseDelegate(string pageId);
-        //public PageCloseDelegate PageClose;
-        //public delegate void PageTitleChangedDelegate(string newPageTitle);
-        //public PageTitleChangedDelegate PageTitleChanged;
-        //public string PageId => this.pageId == null ? this.pageId = Guid.NewGuid().ToString() : this.pageId;
+        private readonly IPaymentService paymentService;
 
         private Timer findPartnerTimer = null;
         private Timer findItemTimer = null;
@@ -72,8 +66,11 @@ namespace AxisUno.ViewModels
         private ENomenclatures activeNomenclature;
 
         private bool isSaleTitleReadOnly = true;
-        private PartnerModel selectedPartner = null;
+        private bool? choiceOfPartnerEnabled = null;
         private string selectedPartnerString = string.Empty;
+        private PartnerModel selectedPartner = null;
+        private string? totalAmount = null;
+
         private ObservableCollection<PartnerModel> partners;
         private PartnerModel selectedPartnerRow = null;
         private ObservableCollection<GroupModel> partnersGroupsTreeView;
@@ -85,7 +82,7 @@ namespace AxisUno.ViewModels
         private string searchString = string.Empty;
         private ObservableCollection<OperationItemModel> operationItemList;
         private OperationItemModel selectedOperationItem;
-        private string totalAmount = null;
+        
 
         private ItemModel tmpItemModel = new ItemModel();
         private ObservableCollection<string> measures = new ObservableCollection<string> { "шт.", "л/" };
@@ -96,10 +93,9 @@ namespace AxisUno.ViewModels
         private ObservableCollection<ComboBoxItemModel> partnersGroups = new ObservableCollection<ComboBoxItemModel>();
         private GroupModel tmpGroup = new GroupModel();
 
+        private bool paymentPanelVisible = false;
 
-        
-        private string titlePartnerString = "Партнёр:";
-        private string totalAmountTitle = "Общая сумма:";
+
         private string operationItemNameColumnHeader = "Товар";
         private string operationItemMeasureColumnHeader = "Ед.изм.";
         private string operationItemQuantityColumnHeader = "Кол-во";
@@ -112,7 +108,7 @@ namespace AxisUno.ViewModels
         private Visibility groupsBtnPanelVisibility = Visibility.Collapsed;
         private bool isBtnPanelExpanded = false;
         
-        private bool isSelectedPartnerLocked;
+        
         private Visibility editPanelVisibility = Visibility.Collapsed;
         private Visibility editGroupGridVisibility = Visibility.Collapsed;
         private string editGroupName = "Наименование";
@@ -134,11 +130,7 @@ namespace AxisUno.ViewModels
 
         private bool isColumnCodeVisible = false;
         private bool isColumnBarcodeVisible = false;
-
-        public string TitlePartnerString { get => titlePartnerString; set => SetProperty(ref titlePartnerString, value); }
-        public string TotalAmountTitle { get => totalAmountTitle; set => SetProperty(ref totalAmountTitle, value); }
         
-        public bool IsSelectedPartnerLocked { get => isSelectedPartnerLocked; set => SetProperty(ref isSelectedPartnerLocked, value); }
         public Visibility EditPanelVisibility { get => editPanelVisibility; set => SetProperty(ref editPanelVisibility, value); }
         public string OperationItemNameColumnHeader { get => operationItemNameColumnHeader; set => SetProperty(ref operationItemNameColumnHeader, value); }
         public string OperationItemMeasureColumnHeader { get => operationItemMeasureColumnHeader; set => SetProperty(ref operationItemMeasureColumnHeader, value); }
@@ -172,6 +164,26 @@ namespace AxisUno.ViewModels
         /// <date>29.03.2022.</date>
         public DispatcherQueue Dispatcher { get; set; }
 
+        private IDevice? FiscalDevice
+        {
+            get
+            {
+                if (!this.paymentService.FiscalDeviceInitialized)
+                {
+                    if ((bool)this.setting.FiscalPrinterSettings[Enums.ESettingKeys.DeviceIsUsed])
+                    {
+                        this.paymentService.SetPaymentTool(new RealDevice(this.setting));
+                    }
+                    else
+                    {
+                        this.paymentService.SetPaymentTool(new NoDevice(this.setting));
+                    }
+                }
+
+                return this.paymentService.FiscalDevice;
+            }
+        }
+
         /// <summary>
         /// Gets or sets active nomenclature.
         /// </summary>
@@ -190,6 +202,47 @@ namespace AxisUno.ViewModels
         {
             get => this.isSaleTitleReadOnly;
             set => this.SetProperty(ref this.isSaleTitleReadOnly, value);
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether field to select partner is enabled.
+        /// </summary>
+        /// <date>24.03.2022.</date>
+        public bool ChoiceOfPartnerEnabled
+        {
+            get
+            {
+                if (this.choiceOfPartnerEnabled == null)
+                {
+                    if ((int)this.SerializationSale[Enums.ESerializationKeys.TbPartnerID] > 0)
+                    {
+                        this.choiceOfPartnerEnabled = (bool)this.SerializationSale[Enums.ESerializationKeys.TbPartnerEnabled];
+                    }
+                    else
+                    {
+                        this.choiceOfPartnerEnabled = true;
+                    }
+                }
+
+                return (bool)this.choiceOfPartnerEnabled;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.choiceOfPartnerEnabled, value);
+
+                this.SerializationSale[Enums.ESerializationKeys.TbPartnerEnabled].Value = value.ToString();
+                this.SerializationSale[Enums.ESerializationKeys.TbPartnerEnabled].UpdateData();
+            }
+        }
+
+        /// <summary>
+        /// Gets unique sale number.
+        /// </summary>
+        /// <date>19.04.2022.</date>
+        public string USN
+        {
+            get => this.FiscalDevice.ReceiptNumber;
         }
 
         /// <summary>
@@ -220,6 +273,25 @@ namespace AxisUno.ViewModels
         {
             get => this.selectedPartnerString;
             set => this.SetProperty(ref this.selectedPartnerString, value);
+        }
+
+        /// <summary>
+        /// Gets or sets amount to pay by document.
+        /// </summary>
+        /// <date>24.03.2022.</date>
+        public string TotalAmount
+        {
+            get
+            {
+                if (this.totalAmount == null)
+                {
+                    this.totalAmount = 0.ToString(this.setting.PriceFormat);
+                }
+
+                return this.totalAmount;
+            }
+
+            set => this.SetProperty(ref this.totalAmount, value);
         }
 
         /// <summary>
@@ -377,25 +449,6 @@ namespace AxisUno.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets amount to pay by document.
-        /// </summary>
-        /// <date>24.03.2022.</date>
-        public string TotalAmount
-        {
-            get
-            {
-                if (this.totalAmount == null)
-                {
-                    this.totalAmount = 0.ToString(this.setting.PriceFormat);
-                }
-
-                return this.totalAmount;
-            }
-
-            set => this.SetProperty(ref this.totalAmount, value);
-        }
-
-        /// <summary>
         /// Gets or sets operation item selected by user.
         /// </summary>
         /// <date>24.03.2022.</date>
@@ -403,6 +456,16 @@ namespace AxisUno.ViewModels
         {
             get => this.selectedOperationItem;
             set => this.SetProperty(ref this.selectedOperationItem, value);
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether payment panel is visible.
+        /// </summary>
+        /// <date>19.04.2022.</date>
+        public bool PaymentPanelVisible
+        {
+            get => this.paymentPanelVisible;
+            set => this.SetProperty(ref this.paymentPanelVisible, value);
         }
 
         /// <summary>
@@ -992,19 +1055,32 @@ namespace AxisUno.ViewModels
         [ICommand]
         private void CloseSalePage()
         {
-            // TODO: serialize data
             this.Dispose();
 
-            if (PageClosing != null)
+            if (this.PageClosing != null)
             {
-                PageClosing.Invoke(PageId);
+                this.PageClosing.Invoke(this.PageId);
             }
         }
 
+        /// <summary>
+        /// Change property "Enabled" of TextBox to select partner.
+        /// </summary>
+        /// <date>19.04.2022.</date>
         [ICommand]
         private void ChangeSelectedPartnerLocked()
         {
+            this.ChoiceOfPartnerEnabled = !this.ChoiceOfPartnerEnabled;
+        }
 
+        /// <summary>
+        /// Change property "Visibility" of the panel to select a way to payment.
+        /// </summary>
+        /// <date>19.04.2022.</date>
+        [ICommand]
+        private void PaymentSale()
+        {
+            this.PaymentPanelVisible = !this.PaymentPanelVisible;
         }
 
         [ICommand]
@@ -1019,10 +1095,6 @@ namespace AxisUno.ViewModels
 
         }
 
-        [ICommand]
-        private void ChangeBtnPanelExpandMode()
-        {
-            IsBtnPanelExpanded = !IsBtnPanelExpanded;
-        }
+        
     }
 }

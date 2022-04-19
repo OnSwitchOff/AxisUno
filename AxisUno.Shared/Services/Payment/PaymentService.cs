@@ -41,6 +41,12 @@ namespace AxisUno.Services.Payment
         }
 
         /// <summary>
+        /// Gets a value indicating whether the class to make a payment is initialized.
+        /// </summary>
+        /// <date>19/04/2022.</date>
+        public bool FiscalDeviceInitialized => this.fiscalDevice != null;
+
+        /// <summary>
         /// Gets number of receipt.
         /// </summary>
         /// <param name="fiscalDevice">Class to make a payment.</param>

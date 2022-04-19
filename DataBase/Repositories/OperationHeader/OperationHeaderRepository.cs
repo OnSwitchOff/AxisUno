@@ -30,7 +30,20 @@ namespace AxisUno.DataBase.Repositories.OperationHeader
             {
                 using (DatabaseContext dbContext = new DatabaseContext())
                 {
-                    return dbContext.OperationHeaders.Where(oh => oh.OperType == EOperTypes.Sale && oh.Usn.Equals(fiscalDeviceNumber)).Max(oh=> oh.EcrreceiptNumber);
+                    List<My100REnteties.OperationHeaders.OperationHeader> listItems = dbContext.
+                    OperationHeaders.
+                    Where(oh => oh.OperType == EOperTypes.Sale && oh.Usn.Equals(fiscalDeviceNumber)).
+                    ToList();
+
+                    if (listItems != null && listItems.Count > 0)
+                    {
+                        return listItems.Max(oh => oh.EcrreceiptNumber);
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                    
                 }
             });
         }

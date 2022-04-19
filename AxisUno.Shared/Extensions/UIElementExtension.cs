@@ -91,6 +91,12 @@ namespace AxisUno.Extensions
                 case ToolTip toolTip:
                     toolTip.Content = localizedValue;
                     break;
+                case Button button:
+                    button.Content = localizedValue;
+                    break;
+                case Expander expander:
+                    expander.Header = localizedValue;
+                    break;
             }
         }
 

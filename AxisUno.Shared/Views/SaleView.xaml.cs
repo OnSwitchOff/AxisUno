@@ -45,8 +45,8 @@ namespace AxisUno.Views
             pageId = Guid.NewGuid().ToString();
             this.InitializeComponent();
 
-            tbx_partner.GotFocus += Tbx_partner_GotFocus;
-            dg.GotFocus += Gr_GotFocus;
+            //tbx_partner.GotFocus += Tbx_partner_GotFocus;
+            //dg.GotFocus += Gr_GotFocus;
         }
 
         private void TextBoxTitle_EnabledChanged(object sender, DependencyPropertyChangedEventArgs e)

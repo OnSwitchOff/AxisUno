@@ -15,8 +15,6 @@ namespace AxisUno.Controls
     public sealed partial class OperationContainer : UserControl
     {
         #region "Declarations"
-        // базовая модель, описывающая текущую страницу-шаблон
-        private BaseViewModel ViewModel = new BaseViewModel();
         // предыдущая высота смещения бегунка полосы прокрутки
         private double previousOffset = 0;
         // массив для хранения высоты страниц
@@ -33,80 +31,132 @@ namespace AxisUno.Controls
         {
             this.InitializeComponent();
 
-            DataContext = ViewModel;
             zoomRatio = 1.0f;
         }
 
+        
+        
+        
+       
+        
 
-        #region "Properties"
+        
+
+
         /// <summary>
-        /// Установка контента в зону "работы с данными"
+        /// Gets or sets a UIElements of area of title.
         /// </summary>
-        /// <developer>Сергей Рознюк</developer>
-        /// <date>04.12.2020</date>
-        public object OperationArea
+        /// <date>19.04.2022.</date>
+        public object TitleArea
         {
-            get { return GetValue(OperationAreaProperty); }
-            set { SetValue(OperationAreaProperty, value); }
+            get => this.GetValue(TitleAreaProperty);
+            set => this.SetValue(TitleAreaProperty, value);
         }
 
         /// <summary>
-        /// Установка контента в зону со справочной информацией 
+        /// Register property "TitleArea".
         /// </summary>
-        /// <developer>Сергей Рознюк</developer>
-        /// <date>04.12.2020</date>
-        public object NomenclatureArea
-        {
-            get { return GetValue(NomenclatureAreaProperty); }
-            set { SetValue(NomenclatureAreaProperty, value); }
-        }
+        /// <date>19.04.2022.</date>
+        public static readonly DependencyProperty TitleAreaProperty =
+            DependencyProperty.Register("TitleArea", typeof(object), typeof(OperationContainer), null);
 
         /// <summary>
-        /// Установка контента в дополнительную (вспомогательную) зону (напр., печатная форма)
+        /// Gets or sets a command to invoke when button "X" was pressed.
         /// </summary>
-        /// <developer>Сергей Рознюк</developer>
-        /// <date>04.12.2020</date>
-        public object PrintContainer
-        {
-            get { return GetValue(PrintContainerProperty); }
-            set { SetValue(PrintContainerProperty, value); }
-        }
-
-        /// <summary>
-        /// Видимость дополнительной (вспомогательной) зоны
-        /// </summary>
-        /// <developer>Сергей Рознюк</developer>
-        /// <date>04.12.2020</date>
-        public Visibility PrintContainerVisibility
-        {
-            get { return (Visibility)GetValue(PrintContainerVisibilityProperty); }
-            set
-            {
-                SetValue(PrintContainerVisibilityProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Оглавление текущей операции
-        /// </summary>
-        /// <developer>Сергей Рознюк</developer>
-        /// <date>04.12.2020</date>
-        public string Header
-        {
-            get { return (string)GetValue(HeaderProperty); }
-            set { SetValue(HeaderProperty, value); }
-        }
-
-        /// <summary>
-        /// Команда, выполняемая при нажатии на кнопку "Закрыть"
-        /// </summary>
-        /// <developer>Сергей Рознюк</developer>
-        /// <date>04.12.2020</date>
+        /// <date>19.04.2022.</date>
         public IRelayCommand PageCloseCommand
         {
-            get { return (IRelayCommand)GetValue(PageCloseCommandProperty); }
-            set { SetValue(PageCloseCommandProperty, value); }
+            get => (IRelayCommand)this.GetValue(PageCloseCommandProperty);
+            set => this.SetValue(PageCloseCommandProperty, value);
         }
+
+        /// <summary>
+        /// Register property "PageCloseCommand".
+        /// </summary>
+        /// <date>19.04.2022.</date>
+        public static readonly DependencyProperty PageCloseCommandProperty =
+            DependencyProperty.Register("PageCloseCommand", typeof(IRelayCommand), typeof(OperationContainer), null);
+
+        /// <summary>
+        /// Gets or sets a UIElements of area with data of operation.
+        /// </summary>
+        /// <date>19.04.2022.</date>
+        public object OperationArea
+        {
+            get => this.GetValue(OperationAreaProperty);
+            set => this.SetValue(OperationAreaProperty, value);
+        }
+
+        /// <summary>
+        /// Register property "OperationArea".
+        /// </summary>
+        /// <date>19.04.2022.</date>
+        public static readonly DependencyProperty OperationAreaProperty =
+            DependencyProperty.Register("OperationArea", typeof(object), typeof(OperationContainer), null);
+
+        /// <summary>
+        /// Gets or sets a UIElements of area with data of nomenclatures.
+        /// </summary>
+        /// <date>19.04.2022.</date>
+        public object NomenclatureArea
+        {
+            get => this.GetValue(NomenclatureAreaProperty);
+            set => this.SetValue(NomenclatureAreaProperty, value);
+        }
+
+        /// <summary>
+        /// Register property "NomenclatureArea".
+        /// </summary>
+        /// <date>19.04.2022.</date>
+        public static readonly DependencyProperty NomenclatureAreaProperty =
+            DependencyProperty.Register("NomenclatureArea", typeof(object), typeof(OperationContainer), null);
+
+        /// <summary>
+        /// Gets or sets a value indicating whether area with data is visible.
+        /// </summary>
+        /// <date>19.04.2022.</date>
+        public bool OperationAreaVisible
+        {
+            get => (bool)this.GetValue(OperationAreaVisibleProperty);
+            set => this.SetValue(OperationAreaVisibleProperty, value);
+        }
+
+        /// <summary>
+        /// Register property "OperationAreaVisible".
+        /// </summary>
+        /// <date>19.04.2022.</date>
+        public static readonly DependencyProperty OperationAreaVisibleProperty =
+           DependencyProperty.Register("OperationAreaVisible", typeof(bool), typeof(OperationContainer), new PropertyMetadata(true, null));
+
+
+        /// <summary>
+        /// Gets or sets a UIElements of area with data of document to print.
+        /// </summary>
+        /// <date>19.04.2022.</date>
+        public object PrintContainer
+        {
+            get => this.GetValue(PrintContainerProperty);
+            set => this.SetValue(PrintContainerProperty, value);
+        }
+
+        /// <summary>
+        /// Register property "PrintContainer".
+        /// </summary>
+        /// <date>19.04.2022.</date>
+        public static readonly DependencyProperty PrintContainerProperty =
+           DependencyProperty.Register("PrintContainer", typeof(object), typeof(OperationContainer), null);
+
+        /// <summary>
+        /// Hide container with data of document to print.
+        /// </summary>
+        /// <param name="sender">Button.</param>
+        /// <param name="e">Event args.</param>
+        /// <date>19.04.2022.</date>
+        private void HidePrintContainer(object sender, RoutedEventArgs e)
+        {
+            this.OperationAreaVisible = !this.OperationAreaVisible;
+        }
+
 
         /// <summary>
         /// Ширина страниц в области печати 
@@ -389,27 +439,8 @@ namespace AxisUno.Controls
             get { return (bool)GetValue(IsDocumentVersionPrintingPanelVisibilityProperty); }
             set { SetValue(IsDocumentVersionPrintingPanelVisibilityProperty, value); }
         }
-        #endregion
 
-        #region "Register properties"
-        public static readonly DependencyProperty OperationAreaProperty =
-            DependencyProperty.Register("OperationArea", typeof(object), typeof(OperationContainer), new PropertyMetadata(null, OnValueChanged));
-
-        public static readonly DependencyProperty NomenclatureAreaProperty =
-            DependencyProperty.Register("NomenclatureArea", typeof(object), typeof(OperationContainer), new PropertyMetadata(null, OnValueChanged));
-
-        public static readonly DependencyProperty PrintContainerProperty =
-            DependencyProperty.Register("PrintContainer", typeof(object), typeof(OperationContainer), new PropertyMetadata(null, OnValueChanged));
-
-        public static readonly DependencyProperty PrintContainerVisibilityProperty =
-           DependencyProperty.Register("PrintContainerVisibility", typeof(Visibility), typeof(OperationContainer), new PropertyMetadata(Visibility.Collapsed, OnValueChanged));
-
-        public static readonly DependencyProperty HeaderProperty =
-            DependencyProperty.Register("Header", typeof(string), typeof(OperationContainer), new PropertyMetadata("Header", OnValueChanged));
-
-        public static readonly DependencyProperty PageCloseCommandProperty =
-            DependencyProperty.Register("PageCloseCommand", typeof(IRelayCommand), typeof(OperationContainer), new PropertyMetadata(null, OnValueChanged));
-
+        
         public static readonly DependencyProperty PdfPagesProperty =
             DependencyProperty.Register("PdfPages", typeof(ObservableCollection<BitmapImage>), typeof(OperationContainer), new PropertyMetadata(null, OnValueChanged));
 
@@ -475,7 +506,7 @@ namespace AxisUno.Controls
 
         public static readonly DependencyProperty IsDocumentVersionPrintingPanelVisibilityProperty =
             DependencyProperty.Register("IsDocumentVersionPrintingPanelVisibility", typeof(bool), typeof(OperationContainer), new PropertyMetadata(true, OnValueChanged));
-        #endregion
+        
 
         /// <summary>
         /// Обработка изменения всех зарегистрированных свойств

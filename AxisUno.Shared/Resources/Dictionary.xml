@@ -206,6 +206,16 @@
       <Value Lang="hy-AM">Not translated</Value>
       <Value Lang="ka-GE">Not translated</Value>
     </Data>
+    <Data Key="strUSNShort">
+      <Value Lang="bg-BG">УНП: </Value>
+      <Value Lang="el-GR">Not translated</Value>
+      <Value Lang="en-GB">USN: </Value>
+      <Value Lang="ro-RO">Not translated</Value>
+      <Value Lang="ru-RU">УНП: </Value>
+      <Value Lang="uk-UA">УНП: </Value>
+      <Value Lang="hy-AM">Not translated</Value>
+      <Value Lang="ka-GE">Not translated</Value>
+    </Data>
     <Data Key="strUSN">
       <Value Lang="bg-BG">Уникален номер на продажба</Value>
       <Value Lang="el-GR">Not translated</Value>
@@ -216,16 +226,30 @@
       <Value Lang="hy-AM">Not translated</Value>
       <Value Lang="ka-GE">Not translated</Value>
     </Data>
-    <Data Key="strTotalRow">
-      <Value Lang="bg-BG">ОБЩО</Value>
+    <Data Key="strTotalSum">
+      <Value Lang="bg-BG">Обща сума</Value>
       <Value Lang="el-GR">Not translated</Value>
-      <Value Lang="en-GB">TOTAL</Value>
+      <Value Lang="en-GB">Total amount</Value>
       <Value Lang="ro-RO">Not translated</Value>
-      <Value Lang="ru-RU">ИТОГО</Value>
-      <Value Lang="uk-UA">РАЗОМ</Value>
+      <Value Lang="ru-RU">Общая сумма</Value>
+      <Value Lang="uk-UA">Загальна сума</Value>
       <Value Lang="hy-AM">Not translated</Value>
       <Value Lang="ka-GE">Not translated</Value>
     </Data>
+
+
+    <Data Key="strPayment">
+      <Value Lang="bg-BG">Разплащане</Value>
+      <Value Lang="el-GR">Not translated</Value>
+      <Value Lang="en-GB">Payment</Value>
+      <Value Lang="ro-RO">Not translated</Value>
+      <Value Lang="ru-RU">Оплата</Value>
+      <Value Lang="uk-UA">Оплата</Value>
+      <Value Lang="hy-AM">Not translated</Value>
+      <Value Lang="ka-GE">Not translated</Value>
+    </Data>
+    
+    
     <Data Key="strFastSearch">
       <Value Lang="bg-BG">Бързо търсене</Value>
       <Value Lang="el-GR">Not translated</Value>

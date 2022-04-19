@@ -52,6 +52,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\OperationContainer.xaml.cs">
       <DependentUpon>OperationContainer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\PaymentButton.xaml.cs">
+      <DependentUpon>PaymentButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\WelcomeFrame.xaml.cs">
       <DependentUpon>WelcomeFrame.xaml</DependentUpon>
     </Compile>
@@ -194,6 +197,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\OperationContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\PaymentButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

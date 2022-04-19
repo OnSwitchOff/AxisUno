@@ -31,5 +31,13 @@ namespace AxisUno.Views
             ViewModel = Ioc.Default.GetRequiredService<ReportsViewModel>();
         }
         public ReportsViewModel ViewModel { get; }
+
+        public CommunityToolkit.Mvvm.Input.IRelayCommand PageClose
+        {
+            get => new CommunityToolkit.Mvvm.Input.RelayCommand(() =>
+            {
+                OperData.OperationAreaVisible = !OperData.OperationAreaVisible;
+            });
+        }
     }
 }

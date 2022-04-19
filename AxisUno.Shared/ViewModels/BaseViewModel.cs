@@ -13,6 +13,7 @@ namespace AxisUno.ViewModels
     public class BaseViewModel : ObservableObject
     {
         private string? pageId = null;
+        private bool operationAreaVisible = true;
         private string title;
 
         /// <summary>
@@ -20,6 +21,16 @@ namespace AxisUno.ViewModels
         /// </summary>
         /// <date>15.04.2022.</date>
         public string PageId => this.pageId ?? (this.pageId = Guid.NewGuid().ToString());
+
+        /// <summary>
+        /// Gets or sets a value indicating whether area with operation data is visible.
+        /// </summary>
+        /// <date>24.03.2022.</date>
+        public bool OperationAreaVisible
+        {
+            get => this.operationAreaVisible;
+            set => this.SetProperty(ref this.operationAreaVisible, value);
+        }
 
         /// <summary>
         /// Gets or sets title of the page.
