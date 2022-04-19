@@ -31,12 +31,33 @@
             <Setter Property="VerticalAlignment" Value="Stretch"/>
         </Style>
 
+        <converters:BoolReversedConverter x:Key="BoolReversed"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
         <converters:BoolToVisibilityReversedConverter x:Key="BoolToVisibility_Reverse"/>
         <converters:VisibilityToBoolConverter x:Key="VisibilityToBool"/>
     </Page.Resources>
 
     <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="LockPartnerGroup">
+                <VisualState x:Name="Lock">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.ChoiceOfPartnerEnabled, Mode=OneWay}"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LockPartnerImage.UriSource" Value="ms-appx:///Assets/Icons/Lock_purple.png"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="UnLock">
+                                                <VisualState.Setters>
+                                                    <Setter Target="LockPartnerImage.(UriSource)" Value="ms-appx:///Assets/Icons/bank.png"/>
+                                                </VisualState.Setters>
+                                                <VisualState.StateTriggers>
+                                                    <StateTrigger  IsActive="{x:Bind ViewModel.ChoiceOfPartnerEnabled, Converter={StaticResource BoolReversed}, Mode=OneWay}"/>
+                                                </VisualState.StateTriggers>
+                                            </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <containers:OperationContainer OperationAreaVisible="{x:Bind ViewModel.OperationAreaVisible, Mode=OneWay}"
                                        PageCloseCommand="{x:Bind ViewModel.CloseSalePageCommand}">
             <containers:OperationContainer.TitleArea>
@@ -111,10 +132,12 @@
                                     CornerRadius="0, 3, 3, 0"
                                     Margin="0"
                                     Padding="2"
-                                    Background="#28AEB9"
+                                    Background="Transparent"
                                     BorderThickness="0"
-                                    Command="{x:Bind ViewModel.ChangeSelectedPartnerLockedCommand}" >
-                                <BitmapIcon UriSource="ms-appx:///Assets/Icons/Lock_purple.png" ShowAsMonochrome="False"/>
+                                    Command="{x:Bind ViewModel.ChangeSelectedPartnerLockedCommand}">
+                                <BitmapIcon x:Name="LockPartnerImage" ShowAsMonochrome="False">
+                                    
+                                </BitmapIcon>
                             </Button>
                         </Grid>
                         <Border Grid.Column="1" 

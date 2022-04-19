@@ -50,6 +50,7 @@
     <_Globbed_Compile Remove="Controls\OperationContainer.xaml.cs" />
     <_Globbed_Compile Remove="Controls\PaymentButton.xaml.cs" />
     <_Globbed_Compile Remove="Controls\WelcomeFrame.xaml.cs" />
+    <_Globbed_Compile Remove="Converters\BoolReversedConverter.cs" />
     <_Globbed_Compile Remove="Converters\BoolToVisibilityConverter.cs" />
     <_Globbed_Compile Remove="Converters\BoolToVisibilityReversedConverter.cs" />
     <_Globbed_Compile Remove="Converters\VisibilityToBoolConverter.cs" />
