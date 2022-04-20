@@ -169,7 +169,7 @@ namespace AxisUno.Services.Translation
                     continue;
                 }
 
-                using (Stream? stream = assembly.GetManifestResourceStream(names[0]))
+                using (Stream? stream = assembly.GetManifestResourceStream(dictionaryPath))
                 {
                     if (stream != null)
                     {
