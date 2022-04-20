@@ -19,7 +19,7 @@
                                 extensions:UIElementExtension.HelpMessage="OperationOfSale"
                                 extensions:NavigationExtension.NavigateTo="AxisUno.ViewModels.SaleViewModel">
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/prodajba.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/sale.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItem x:Name="InvoiceItem"
@@ -28,7 +28,7 @@
                                 extensions:UIElementExtension.HelpMessage="OperationOfInvoicing"
                                 extensions:UIElementExtension.LocalizedText="strInvoices">
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/fakturirane.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/invoice.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItem x:Name="ProformInvoiceItem"
@@ -37,7 +37,7 @@
                                 extensions:UIElementExtension.HelpMessage=""
                                 extensions:UIElementExtension.LocalizedText="strProformInvoices">
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/fakturirane.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/invoice.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItem x:Name="DebitNoteItem"
@@ -46,7 +46,7 @@
                                 extensions:UIElementExtension.HelpMessage=""
                                 extensions:UIElementExtension.LocalizedText="strDebitNotes">
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/fakturirane.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/invoice.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItem x:Name="CreditNoteItem"
@@ -55,7 +55,7 @@
                                 extensions:UIElementExtension.HelpMessage=""
                                 extensions:UIElementExtension.LocalizedText="strCreditNotes">
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/fakturirane.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/invoice.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItem x:Name="CashRegisterItem"
@@ -63,7 +63,7 @@
                                 extensions:UIElementExtension.HelpMessage="CashRegister"
                                 extensions:UIElementExtension.LocalizedText="strCashRegister">
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/kasovAparat.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/cashRegister.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItem x:Name="ExchangeItem"
@@ -71,7 +71,7 @@
                                 extensions:UIElementExtension.HelpMessage="OperationOfExchange"
                                 extensions:UIElementExtension.LocalizedText="strExchange">
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/obmen.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/exchange.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>            
             <NavigationViewItem x:Name="ReportsItem"
@@ -79,7 +79,7 @@
                                 extensions:UIElementExtension.HelpMessage="Reports"
                                 extensions:UIElementExtension.LocalizedText="strReports">
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/spravki.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/reports.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItemSeparator/>
@@ -92,7 +92,7 @@
                                 extensions:UIElementExtension.LocalizedText="strSettings"
                                 extensions:UIElementExtension.HelpMessage="Settings">
                 <NavigationViewItem.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/Settings.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Icons/settings.png" ShowAsMonochrome="False" Width="18" Height="18" Margin="0"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
         </NavigationView.FooterMenuItems>

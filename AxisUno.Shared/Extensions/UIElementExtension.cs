@@ -4,6 +4,7 @@
 
 namespace AxisUno.Extensions
 {
+    using AxisUno.Controls;
     using AxisUno.Services.Translation;
     using AxisUno.Views;
     using Microsoft.UI.Xaml;
@@ -96,6 +97,9 @@ namespace AxisUno.Extensions
                     break;
                 case Expander expander:
                     expander.Header = localizedValue;
+                    break;
+                case PaymentButton paymentButton:
+                    paymentButton.Text = localizedValue;
                     break;
             }
         }

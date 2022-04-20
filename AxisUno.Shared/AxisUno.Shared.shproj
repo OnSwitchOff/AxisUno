@@ -193,6 +193,18 @@
   </ItemGroup>
   <ItemGroup>
     <_Globbed_Content Remove="Assets\Application.png" />
+    <_Globbed_Content Remove="Assets\Icons\cashRegister.png" />
+    <_Globbed_Content Remove="Assets\Icons\close.png" />
+    <_Globbed_Content Remove="Assets\Icons\exchange.png" />
+    <_Globbed_Content Remove="Assets\Icons\invoice.png" />
+    <_Globbed_Content Remove="Assets\Icons\lock.png" />
+    <_Globbed_Content Remove="Assets\Icons\reports.png" />
+    <_Globbed_Content Remove="Assets\Icons\sale.png" />
+    <_Globbed_Content Remove="Assets\Icons\settings.jpg" />
+    <_Globbed_Content Remove="Assets\Icons\settings.png" />
+    <_Globbed_Content Remove="Assets\Icons\unlock.jpg" />
+    <_Globbed_Content Remove="Assets\Icons\unlock.png" />
+    <_Globbed_Content Remove="Assets\Icons\YouTube.png" />
     <_Globbed_Content Remove="Assets\InputDataToLaptop.png" />
     <_Globbed_Content Remove="Assets\OperationSchema.png" />
   </ItemGroup>

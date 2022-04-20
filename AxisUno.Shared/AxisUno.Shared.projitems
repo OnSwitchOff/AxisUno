@@ -275,17 +275,25 @@
 		 without manipulating the projitem file.
 	-->
     <Content Include="$(MSBuildThisFileDirectory)Assets\Application.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Add.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Cancel.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Customers.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Delete.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Edit.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Home.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Lamp.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Order.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Save.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Settings.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\Warning.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\payment_bank.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\payment_cash.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\close.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\payment_card.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\editPageTitle.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\lock.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\lock1.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\settings.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\payment_otherType.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\payment_points.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\cashRegister.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\exchange.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\invoice.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\reports.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\sale.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\unlock.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\unlock1.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\payment_voucher.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\YouTube.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\InputDataToLaptop.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\OperationSchema.png" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Dictionary.xml" />
@@ -300,7 +308,6 @@
     <_Globbed_PRIResource Include="$(MSBuildThisFileDirectory)**/*.resw" Exclude="@(PRIResource)" />
     <PRIResource Include="@(_Globbed_PRIResource)" />
     <_Globbed_Content Include="$(MSBuildThisFileDirectory)Assets/**/*.*" Exclude="@(Content)" />
-    <Content Include="@(_Globbed_Content)" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Commands\AppSettings\UpdateAxisCloudProperties\" />

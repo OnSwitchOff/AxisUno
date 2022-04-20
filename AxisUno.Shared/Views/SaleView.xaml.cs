@@ -116,6 +116,10 @@ namespace AxisUno.Views
             
         }
 
-        
+        private void TextBoxPartner_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            buttonLockPartner.Height = textBoxPartner.ActualHeight;
+            buttonLockPartner.Width = textBoxPartner.ActualHeight;
+        }
     }
 }

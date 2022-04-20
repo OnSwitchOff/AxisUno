@@ -23,13 +23,6 @@
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="White"/>
         </Style>
-        <Style TargetType="Button" x:Key="PaymentButton">
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="CornerRadius" Value="0"/>
-            <Setter Property="Background" Value="#28AEB9"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="VerticalAlignment" Value="Stretch"/>
-        </Style>
 
         <converters:BoolReversedConverter x:Key="BoolReversed"/>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
@@ -45,17 +38,17 @@
                         <StateTrigger IsActive="{x:Bind ViewModel.ChoiceOfPartnerEnabled, Mode=OneWay}"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="LockPartnerImage.UriSource" Value="ms-appx:///Assets/Icons/Lock_purple.png"/>
+                        <Setter Target="bmIconLockPartner.UriSource" Value="ms-appx:///Assets/Icons/unlock.png"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="UnLock">
-                                                <VisualState.Setters>
-                                                    <Setter Target="LockPartnerImage.(UriSource)" Value="ms-appx:///Assets/Icons/bank.png"/>
-                                                </VisualState.Setters>
-                                                <VisualState.StateTriggers>
-                                                    <StateTrigger  IsActive="{x:Bind ViewModel.ChoiceOfPartnerEnabled, Converter={StaticResource BoolReversed}, Mode=OneWay}"/>
-                                                </VisualState.StateTriggers>
-                                            </VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="bmIconLockPartner.UriSource" Value="ms-appx:///Assets/Icons/lock.png"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <StateTrigger  IsActive="{x:Bind ViewModel.ChoiceOfPartnerEnabled, Converter={StaticResource BoolReversed}, Mode=OneWay}"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <containers:OperationContainer OperationAreaVisible="{x:Bind ViewModel.OperationAreaVisible, Mode=OneWay}"
@@ -87,7 +80,7 @@
                             Background="Transparent"
                             BorderThickness="0"
                             Command="{x:Bind ViewModel.ChangeSaleTitleReadOnlyCommand}" >
-                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/edit_white.png" 
+                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/editPageTitle.png" 
                                     ShowAsMonochrome="False"/>
                     </Button>
                 </Grid>
@@ -125,19 +118,17 @@
                                      BorderThickness="0"
                                      IsEnabled="{x:Bind ViewModel.ChoiceOfPartnerEnabled, Mode=OneWay}"
                                      Text="{x:Bind ViewModel.SelectedPartnerString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     extensions:UIElementExtension.HelpMessage="EnterPartnerData"/>
+                                     extensions:UIElementExtension.HelpMessage="EnterPartnerData"
+                                     SizeChanged="TextBoxPartner_SizeChanged"/>
                             <Button Grid.Column="2"
-                                    Width="{Binding ElementName=textBoxPartner, Path=ActualHeight, Mode=OneWay}"
-                                    Height="{Binding ElementName=textBoxPartner, Path=ActualHeight, Mode=OneWay}"
+                                    x:Name="buttonLockPartner"
                                     CornerRadius="0, 3, 3, 0"
                                     Margin="0"
                                     Padding="2"
                                     Background="Transparent"
                                     BorderThickness="0"
                                     Command="{x:Bind ViewModel.ChangeSelectedPartnerLockedCommand}">
-                                <BitmapIcon x:Name="LockPartnerImage" ShowAsMonochrome="False">
-                                    
-                                </BitmapIcon>
+                                <BitmapIcon x:Name="bmIconLockPartner" ShowAsMonochrome="False"/>
                             </Button>
                         </Grid>
                         <Border Grid.Column="1" 
@@ -190,22 +181,14 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <containers:PaymentButton Grid.Row="0" Grid.Column="0"/>
-                        <!--<Button Grid.Row="0" 
-                                Grid.Column="0" 
-                                Style="{StaticResource PaymentButton}"
-                                VerticalContentAlignment="Center"
-                                HorizontalContentAlignment="Center">
-                            <Button.Content>
-                                <StackPanel Orientation="Vertical">
-                                    <Image Source="/Assets/Icons/cash.png" Stretch="None"/>
-                                    <TextBlock Text="textBlockCash"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>-->
+                        <containers:PaymentButton Grid.Row="0" 
+                                                  Grid.Column="0"
+                                                  ButtonClickCommand="{x:Bind ViewModel.PaymentSaleCommand}"
+                                                  PaymentType="Voucher"
+                                                  ImagePath="/Assets/Icons/payment_voucher.png"
+                                                  extensions:UIElementExtension.LocalizedText="strVoucher"/>
                         <Button Grid.Row="0" 
                                 Grid.Column="1" 
-                                Style="{StaticResource PaymentButton}"
                                 VerticalContentAlignment="Center"
                                 HorizontalContentAlignment="Center">
                             <Button.Content>
@@ -217,7 +200,6 @@
                         </Button>
                         <Button Grid.Row="0" 
                                 Grid.Column="2" 
-                                Style="{StaticResource PaymentButton}"
                                 VerticalContentAlignment="Center"
                                 HorizontalContentAlignment="Center">
                             <Button.Content>
@@ -229,7 +211,6 @@
                         </Button>
                         <Button Grid.Row="1" 
                                 Grid.Column="0" 
-                                Style="{StaticResource PaymentButton}"
                                 VerticalContentAlignment="Center"
                                 HorizontalContentAlignment="Center">
                             <Button.Content>
@@ -241,7 +222,6 @@
                         </Button>
                         <Button Grid.Row="1" 
                                 Grid.Column="1" 
-                                Style="{StaticResource PaymentButton}"
                                 VerticalContentAlignment="Center"
                                 HorizontalContentAlignment="Center">
                             <Button.Content>
@@ -253,7 +233,6 @@
                         </Button>
                         <Button Grid.Row="1" 
                                 Grid.Column="2" 
-                                Style="{StaticResource PaymentButton}"
                                 VerticalContentAlignment="Center"
                                 HorizontalContentAlignment="Center">
                             <Button.Content>
@@ -295,7 +274,7 @@
                                 BorderThickness="2"
                                 Width="120px"
                                 extensions:UIElementExtension.LocalizedText="strPayment"
-                                Command="{x:Bind ViewModel.PaymentSaleCommand}"/>
+                                Command="{x:Bind ViewModel.ShowPaymentTypesPanelCommand}"/>
                     </Grid>
                 </Grid>
             </containers:OperationContainer.OperationArea>

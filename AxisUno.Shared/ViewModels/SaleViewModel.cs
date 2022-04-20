@@ -1078,9 +1078,19 @@ namespace AxisUno.ViewModels
         /// </summary>
         /// <date>19.04.2022.</date>
         [ICommand]
-        private void PaymentSale()
+        private void ShowPaymentTypesPanel()
         {
             this.PaymentPanelVisible = !this.PaymentPanelVisible;
+        }
+
+        /// <summary>
+        /// Pay the order.
+        /// </summary>
+        /// <date>20.04.2022.</date>
+        [ICommand]
+        private void PaymentSale(EPaymentTypes paymentType)
+        {
+
         }
 
         [ICommand]
