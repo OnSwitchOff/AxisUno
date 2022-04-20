@@ -9,6 +9,10 @@ namespace AxisUno.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null)
+            {
+                return false;
+            }
             if ((Visibility)value == Visibility.Visible)
             {
                 return true;
