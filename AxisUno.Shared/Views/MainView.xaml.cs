@@ -216,7 +216,18 @@ namespace AxisUno.Views
 
                     if (navigationItem != null)
                     {
-                        this.navigationView.MenuItems.Remove(navigationItem);
+                        for (int i = this.navigationView.MenuItems.Count - 1; i >= 0; i--)
+                        {
+                            if (this.navigationView.MenuItems[i] is NavigationViewItemBase item &&
+                                item.Tag != null &&
+                                item.Tag.ToString().Equals((navigationItem as NavigationViewItemBase).Tag.ToString()))
+                            {
+                                this.navigationView.MenuItems.RemoveAt(i);
+                                break;
+                            }
+                        }
+
+                        //this.navigationView.MenuItems.Remove(navigationItem);
                         //this.saleViewModeList.Remove(pageId);
                         this.saleViewList.Remove(pageId);
                         sale.ViewModel.PageClosing -= this.PageClose;
