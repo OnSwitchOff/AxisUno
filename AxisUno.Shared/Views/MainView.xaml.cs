@@ -19,7 +19,8 @@ namespace AxisUno.Views
     public sealed partial class MainView : Page
     {
         private readonly ITranslationService translationService;
-        private readonly Dictionary<string, SaleViewModel> saleViewModeList;
+        //private readonly Dictionary<string, SaleViewModel> saleViewModeList;
+        private readonly Dictionary<string, SaleView> saleViewList;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainView"/> class.
@@ -31,7 +32,8 @@ namespace AxisUno.Views
             this.translationService = TranslationService.CreateInstance();
             this.translationService.LanguageChanged += this.LanguageChanged;
 
-            this.saleViewModeList = new Dictionary<string, SaleViewModel>();
+            //this.saleViewModeList = new Dictionary<string, SaleViewModel>();
+            this.saleViewList = new Dictionary<string, SaleView>();
 
             this.ViewModel = Ioc.Default.GetRequiredService<MainViewModel>();
 
@@ -138,18 +140,26 @@ namespace AxisUno.Views
                                     };
                                     saleItem?.SetValue(NavigationExtension.NavigateToProperty, "AxisUno.ViewModels.SaleViewModel");
 
-                                    this.saleViewModeList.Add(saleView.ViewModel.PageId, saleView.ViewModel);
+                                    //this.saleViewModeList.Add(saleView.ViewModel.PageId, saleView.ViewModel);
+                                    this.saleViewList.Add(saleView.ViewModel.PageId, saleView);
                                     this.navigationView.MenuItems.Add(saleItem);
                                     this.navigationView.SelectedItem = saleItem;
                                 }
                             }
                             else
                             {
+                                //if (selectedItem.Tag != null &&
+                                //    selectedItem.Tag is string key &&
+                                //    this.saleViewModeList.ContainsKey(key))
+                                //{
+                                //    this.frame.Navigate(typeof(SaleView), this.saleViewModeList[key]);
+                                //}
+
                                 if (selectedItem.Tag != null &&
                                     selectedItem.Tag is string key &&
-                                    this.saleViewModeList.ContainsKey(key))
+                                    this.saleViewList.ContainsKey(key))
                                 {
-                                    this.frame.Navigate(typeof(SaleView), this.saleViewModeList[key]);
+                                    this.frame.Content = this.saleViewList[key];
                                 }
 
                                 return;
@@ -207,7 +217,8 @@ namespace AxisUno.Views
                     if (navigationItem != null)
                     {
                         this.navigationView.MenuItems.Remove(navigationItem);
-                        this.saleViewModeList.Remove(pageId);
+                        //this.saleViewModeList.Remove(pageId);
+                        this.saleViewList.Remove(pageId);
                         sale.ViewModel.PageClosing -= this.PageClose;
                         sale.ViewModel.PageTitleChanging -= this.PageTitleChanged;
                     }
@@ -228,9 +239,14 @@ namespace AxisUno.Views
                     break;
             }
 
-            if (this.saleViewModeList.Count > 0)
+            //if (this.saleViewModeList.Count > 0)
+            //{
+            //    this.frame.Navigate(typeof(SaleView), this.saleViewModeList.Values.Last());
+            //    this.navigationView.SelectedItem = this.navigationView.MenuItems[this.navigationView.MenuItems.Count - 1];
+            //}
+            if (this.saleViewList.Count > 0)
             {
-                this.frame.Navigate(typeof(SaleView), this.saleViewModeList.Values.Last());
+                this.frame.Content = this.saleViewList.Values.Last();
                 this.navigationView.SelectedItem = this.navigationView.MenuItems[this.navigationView.MenuItems.Count - 1];
             }
             else

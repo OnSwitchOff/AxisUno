@@ -35,22 +35,38 @@ namespace AxisUno.Views
     /// </summary>
     public sealed partial class SaleView : Page, INotifyPropertyChanged
     {
-        private readonly ITranslationService _translationService = TranslationService.CreateInstance();
-        private readonly string pageId;
+        //private readonly ITranslationService _translationService = TranslationService.CreateInstance();
+        //private readonly string pageId;
         public SaleView()
         {
             ViewModel = Ioc.Default.GetRequiredService<SaleViewModel>();
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
             ViewModel.Dispatcher = this.DispatcherQueue;
-            pageId = Guid.NewGuid().ToString();
+            //pageId = Guid.NewGuid().ToString();
             this.InitializeComponent();
-
             //tbx_partner.GotFocus += Tbx_partner_GotFocus;
             //dg.GotFocus += Gr_GotFocus;
         }
 
+        /// <summary>
+        /// Describes structure of the PageClosing event.
+        /// </summary>
+        /// <param name="pageId">Id of the page.</param>
+        /// <date>15.04.2022.</date>
+        public delegate void PageClosingDelegate(string pageId);
+
+        /// <summary>
+        /// Tells about closing of a page.
+        /// </summary>
+        /// <date>15.04.2022.</date>
+        public event PageClosingDelegate PageClosing;
+
         private void TextBoxTitle_EnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+            if (PageClosing != null)
+            {
+                PageClosing("");
+            }
             if (sender is TextBox box && box.IsEnabled)
             {
                 box.Focus(FocusState.Programmatic);
@@ -72,7 +88,7 @@ namespace AxisUno.Views
             ViewModel.PartnersBtnPanelVisibility = Visibility.Collapsed;
         }
 
-        private void Tbx_partner_GotFocus(object sender, RoutedEventArgs e)
+        private void TextBoxPartner_GotFocus(object sender, RoutedEventArgs e)
         {
             ViewModel.GroupsBtnPanelVisibility = Visibility.Collapsed;
             ViewModel.GoodsBtnPanelVisibility = Visibility.Collapsed;
@@ -121,5 +137,16 @@ namespace AxisUno.Views
             buttonLockPartner.Height = textBoxPartner.ActualHeight;
             buttonLockPartner.Width = textBoxPartner.ActualHeight;
         }
+
+        private void TextBoxPaidAmount_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
+        {
+            //@"^\d+(,|.)*\d$"
+            //@"(^[0-9]+$)|([0-9]+[.,]?)"
+            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(@"(^[0-9]+$)|(^[0-9]+[.,]?$)|(^[0-9]+[.,][0-9]+$)");
+            if (!regex.IsMatch(args.NewText))
+            {
+                args.Cancel = true;
+            }
+       }
     }
 }

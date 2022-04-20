@@ -119,6 +119,7 @@
                                      IsEnabled="{x:Bind ViewModel.ChoiceOfPartnerEnabled, Mode=OneWay}"
                                      Text="{x:Bind ViewModel.SelectedPartnerString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                      extensions:UIElementExtension.HelpMessage="EnterPartnerData"
+                                     GotFocus="TextBoxPartner_GotFocus"
                                      SizeChanged="TextBoxPartner_SizeChanged"/>
                             <Button Grid.Column="2"
                                     x:Name="buttonLockPartner"
@@ -187,61 +188,74 @@
                                                   PaymentType="Voucher"
                                                   ImagePath="/Assets/Icons/payment_voucher.png"
                                                   extensions:UIElementExtension.LocalizedText="strVoucher"/>
-                        <Button Grid.Row="0" 
-                                Grid.Column="1" 
-                                VerticalContentAlignment="Center"
-                                HorizontalContentAlignment="Center">
-                            <Button.Content>
-                                <StackPanel Orientation="Vertical">
-                                    <Image Source="/Assets/Icons/cash.png" Stretch="None"/>
-                                    <TextBlock Text="textBlockCash"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button Grid.Row="0" 
-                                Grid.Column="2" 
-                                VerticalContentAlignment="Center"
-                                HorizontalContentAlignment="Center">
-                            <Button.Content>
-                                <StackPanel Orientation="Vertical">
-                                    <Image Source="/Assets/Icons/cash.png" Stretch="None"/>
-                                    <TextBlock Text="textBlockCash"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button Grid.Row="1" 
-                                Grid.Column="0" 
-                                VerticalContentAlignment="Center"
-                                HorizontalContentAlignment="Center">
-                            <Button.Content>
-                                <StackPanel Orientation="Vertical">
-                                    <Image Source="/Assets/Icons/cash.png" Stretch="None"/>
-                                    <TextBlock Text="textBlockCash"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button Grid.Row="1" 
-                                Grid.Column="1" 
-                                VerticalContentAlignment="Center"
-                                HorizontalContentAlignment="Center">
-                            <Button.Content>
-                                <StackPanel Orientation="Vertical">
-                                    <Image Source="/Assets/Icons/cash.png" Stretch="None"/>
-                                    <TextBlock Text="textBlockCash"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button Grid.Row="1" 
-                                Grid.Column="2" 
-                                VerticalContentAlignment="Center"
-                                HorizontalContentAlignment="Center">
-                            <Button.Content>
-                                <StackPanel Orientation="Vertical">
-                                    <Image Source="/Assets/Icons/cash.png" Stretch="None"/>
-                                    <TextBlock Text="textBlockCash"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
+                        <containers:PaymentButton Grid.Row="0" 
+                                                  Grid.Column="1"
+                                                  ButtonClickCommand="{x:Bind ViewModel.PaymentSaleCommand}"
+                                                  PaymentType="ElectronicPoints"
+                                                  ImagePath="/Assets/Icons/payment_points.png"
+                                                  extensions:UIElementExtension.LocalizedText="strPoints"/>
+                        <containers:PaymentButton Grid.Row="0" 
+                                                  Grid.Column="2"
+                                                  ButtonClickCommand="{x:Bind ViewModel.PaymentSaleCommand}"
+                                                  PaymentType="Other1"
+                                                  ImagePath="/Assets/Icons/payment_otherType.png"
+                                                  extensions:UIElementExtension.LocalizedText="strOtherPaymentType"/>
+                        <containers:PaymentButton Grid.Row="1" 
+                                                  Grid.Column="0"
+                                                  ButtonClickCommand="{x:Bind ViewModel.PaymentSaleCommand}"
+                                                  PaymentType="Card"
+                                                  ImagePath="/Assets/Icons/payment_card.png"
+                                                  extensions:UIElementExtension.LocalizedText="strCard"/>
+                        <containers:PaymentButton Grid.Row="1" 
+                                                  Grid.Column="1"
+                                                  ButtonClickCommand="{x:Bind ViewModel.PaymentSaleCommand}"
+                                                  PaymentType="Bank"
+                                                  ImagePath="/Assets/Icons/payment_bank.png"
+                                                  extensions:UIElementExtension.LocalizedText="strByAccount"/>
+                        <containers:PaymentButton Grid.Row="1" 
+                                                  Grid.Column="2"
+                                                  Visibility="{x:Bind ViewModel.CashPanelVisible, Converter={StaticResource BoolToVisibility_Reverse}, Mode=OneWay}"
+                                                  ButtonClickCommand="{x:Bind ViewModel.ShowCashPanelCommand}"
+                                                  PaymentType="Cash"
+                                                  ImagePath="/Assets/Icons/payment_cash.png"
+                                                  extensions:UIElementExtension.LocalizedText="strInCash"/>
+                        <Grid Grid.Row="1"
+                              Grid.Column="2"
+                              Visibility="{x:Bind ViewModel.CashPanelVisible, Converter={StaticResource BoolToVisibility}, Mode=OneWay}"
+                              Background="#FF1B7E83"
+                              Margin="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0"
+                                           HorizontalAlignment="Center"
+                                           HorizontalTextAlignment="Center"
+                                           extensions:UIElementExtension.LocalizedText="strPaidSumInCash"/>
+                                <Button Grid.Column="1"
+                                        CornerRadius="0"
+                                        Padding="4"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Command="{x:Bind ViewModel.HideCashPanelCommand}">
+                                    <Button.Content>
+                                        <BitmapIcon UriSource="ms-appx:///Assets/Icons/close.png" ShowAsMonochrome="False"/>
+                                    </Button.Content>
+                                </Button>
+                            </Grid>
+                            <TextBox Grid.Row="1"
+                                     Text="{x:Bind ViewModel.PaidAmount, Mode=TwoWay}"
+                                     BeforeTextChanging="TextBoxPaidAmount_BeforeTextChanging"/>
+                            <!--<TextBox Grid.Row="1"
+                                     Text="{x:Bind ViewModel.PaidAmount, Mode=TwoWay}"/>-->
+                        </Grid>
                     </Grid>
                     <Grid Grid.Row="3"
                           Padding="3">

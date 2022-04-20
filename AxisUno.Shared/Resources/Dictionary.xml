@@ -258,6 +258,76 @@
       <Value Lang="hy-AM">Not translated</Value>
       <Value Lang="ka-GE">Not translated</Value>
     </Data>
+    <Data Key="strPoints">
+      <Value Lang="bg-BG">Електронни точки</Value>
+      <Value Lang="el-GR">Not translated</Value>
+      <Value Lang="en-GB">Points</Value>
+      <Value Lang="ro-RO">Not translated</Value>
+      <Value Lang="ru-RU">Баллы</Value>
+      <Value Lang="uk-UA">Бали</Value>
+      <Value Lang="hy-AM">Not translated</Value>
+      <Value Lang="ka-GE">Not translated</Value>
+    </Data>
+    <Data Key="strOtherPaymentType">
+      <Value Lang="bg-BG">Друг тип плащане</Value>
+      <Value Lang="el-GR">Not translated</Value>
+      <Value Lang="en-GB">Other payment type</Value>
+      <Value Lang="ro-RO">Not translated</Value>
+      <Value Lang="ru-RU">Другой тип оплаты</Value>
+      <Value Lang="uk-UA">Інший тип оплати</Value>
+      <Value Lang="hy-AM">Not translated</Value>
+      <Value Lang="ka-GE">Not translated</Value>
+    </Data>
+    <Data Key="strCard">
+      <Value Lang="bg-BG">Дебитна/Кредитна</Value>
+      <Value Lang="el-GR">Not translated</Value>
+      <Value Lang="en-GB">Debit/Credit</Value>
+      <Value Lang="ro-RO">Not translated</Value>
+      <Value Lang="ru-RU">Дебитная/Кредитная</Value>
+      <Value Lang="uk-UA">Дебітна/Кредитна</Value>
+      <Value Lang="hy-AM">Not translated</Value>
+      <Value Lang="ka-GE">Not translated</Value>
+    </Data>
+    <Data Key="strByAccount">
+      <Value Lang="bg-BG">По сметка</Value>
+      <Value Lang="el-GR">Not translated</Value>
+      <Value Lang="en-GB">By account</Value>
+      <Value Lang="ro-RO">Not translated</Value>
+      <Value Lang="ru-RU">По счёту</Value>
+      <Value Lang="uk-UA">За рахунком</Value>
+      <Value Lang="hy-AM">Not translated</Value>
+      <Value Lang="ka-GE">Not translated</Value>
+    </Data>
+    <Data Key="strInCash">
+      <Value Lang="bg-BG">В брой</Value>
+      <Value Lang="el-GR">Not translated</Value>
+      <Value Lang="en-GB">In cash</Value>
+      <Value Lang="ro-RO">Not translated</Value>
+      <Value Lang="ru-RU">Наличными</Value>
+      <Value Lang="uk-UA">Готівкою</Value>
+      <Value Lang="hy-AM">Not translated</Value>
+      <Value Lang="ka-GE">Not translated</Value>
+    </Data>
+    <Data Key="strPaidSumInCash">
+      <Value Lang="bg-BG">Платено</Value>
+      <Value Lang="el-GR">Not translated</Value>
+      <Value Lang="en-GB">Paid up in cash</Value>
+      <Value Lang="ro-RO">Not translated</Value>
+      <Value Lang="ru-RU">Оплачено</Value>
+      <Value Lang="uk-UA">Сплачено</Value>
+      <Value Lang="hy-AM">Not translated</Value>
+      <Value Lang="ka-GE">Not translated</Value>
+    </Data>
+    <Data Key="strChange">
+      <Value Lang="bg-BG">Ресто</Value>
+      <Value Lang="el-GR">Not translated</Value>
+      <Value Lang="en-GB">Change</Value>
+      <Value Lang="ro-RO">Not translated</Value>
+      <Value Lang="ru-RU">Сдача</Value>
+      <Value Lang="uk-UA">Решта</Value>
+      <Value Lang="hy-AM">Not translated</Value>
+      <Value Lang="ka-GE">Not translated</Value>
+    </Data>
     
     
     <Data Key="strFastSearch">

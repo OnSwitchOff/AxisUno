@@ -159,6 +159,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Translation\ITranslationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Translation\TranslationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Translation\TranslationServiceCommutator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Validation\IValidationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Validation\ValidationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TypedIdValueBase\TypedIdValueBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validation\InvalidCommandException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />

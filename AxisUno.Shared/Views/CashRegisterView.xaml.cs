@@ -36,10 +36,10 @@ namespace AxisUno.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (ViewModel.PageClosing != null)
-            {
-                ViewModel.PageClosing.Invoke(string.Empty);
-            }
+            //if (ViewModel.PageClosing != null)
+            //{
+            //    ViewModel.PageClosing.Invoke(string.Empty);
+            //}
         }
     }
 }

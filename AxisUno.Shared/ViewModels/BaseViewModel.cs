@@ -10,7 +10,7 @@ namespace AxisUno.ViewModels
     /// <summary>
     /// Describes base properties of a page.
     /// </summary>
-    public class BaseViewModel : ObservableObject
+    public class BaseViewModel : ObservableObject, IDisposable
     {
         private string? pageId = null;
         private bool operationAreaVisible = true;
@@ -61,7 +61,7 @@ namespace AxisUno.ViewModels
         /// Tells about closing of a page.
         /// </summary>
         /// <date>15.04.2022.</date>
-        public PageClosingDelegate PageClosing;
+        public event PageClosingDelegate PageClosing;
 
         /// <summary>
         /// Describes structure of PageTitleChanged event.
@@ -74,6 +74,18 @@ namespace AxisUno.ViewModels
         /// Tells about changing of a title of page.
         /// </summary>
         /// <date>15.04.2022.</date>
-        public PageTitleChangingDelegate PageTitleChanging;
+        public event PageTitleChangingDelegate PageTitleChanging;
+
+        /// <summary>
+        /// Raise PageClosing event.
+        /// </summary>
+        /// <date>15.04.2022.</date>
+        public void Dispose()
+        {
+            if (this.PageClosing != null)
+            {
+                this.PageClosing(this.PageId);
+            }
+        }
     }
 }

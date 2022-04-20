@@ -94,7 +94,8 @@ namespace AxisUno.ViewModels
         private GroupModel tmpGroup = new GroupModel();
 
         private bool paymentPanelVisible = false;
-
+        private bool cashPanelVisible = false;
+        private string paidAmount = string.Empty;
 
         private string operationItemNameColumnHeader = "Товар";
         private string operationItemMeasureColumnHeader = "Ед.изм.";
@@ -469,6 +470,26 @@ namespace AxisUno.ViewModels
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether cash panel is visible.
+        /// </summary>
+        /// <date>20.04.2022.</date>
+        public bool CashPanelVisible
+        {
+            get => this.cashPanelVisible;
+            set => this.SetProperty(ref this.cashPanelVisible, value);
+        }
+
+        /// <summary>
+        /// Gets or sets amount to pay.
+        /// </summary>
+        /// <date>20.04.2022.</date>
+        public string PaidAmount
+        {
+            get => this.paidAmount;
+            set => this.SetProperty(ref this.paidAmount, value);
+        }
+
+        /// <summary>
         /// Gets or sets value to search nomenclatures in according to data entered by user.
         /// </summary>
         /// <date>24.03.2022.</date>
@@ -662,6 +683,8 @@ namespace AxisUno.ViewModels
             }
 
             this.OperationItemsList.CollectionChanged -= this.OperationItemsList_CollectionChanged;
+
+            base.Dispose();
         }
 
         /// <summary>
@@ -1056,11 +1079,6 @@ namespace AxisUno.ViewModels
         private void CloseSalePage()
         {
             this.Dispose();
-
-            if (this.PageClosing != null)
-            {
-                this.PageClosing.Invoke(this.PageId);
-            }
         }
 
         /// <summary>
@@ -1086,11 +1104,32 @@ namespace AxisUno.ViewModels
         /// <summary>
         /// Pay the order.
         /// </summary>
+        /// <param name="paymentType">Type of payment.</param>
         /// <date>20.04.2022.</date>
         [ICommand]
         private void PaymentSale(EPaymentTypes paymentType)
         {
+            // TODO: initialize method
+        }
 
+        /// <summary>
+        /// Show panel to enter amount to paid.
+        /// </summary>
+        /// <date>20.04.2022.</date>
+        [ICommand]
+        private void ShowCashPanel()
+        {
+            this.CashPanelVisible = true;
+        }
+
+        /// <summary>
+        /// Hide panel to enter amount to paid.
+        /// </summary>
+        /// <date>20.04.2022.</date>
+        [ICommand]
+        private void HideCashPanel()
+        {
+            this.CashPanelVisible = false;
         }
 
         [ICommand]

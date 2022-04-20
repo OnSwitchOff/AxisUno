@@ -173,6 +173,8 @@
     <_Globbed_Compile Remove="Services\Translation\ITranslationService.cs" />
     <_Globbed_Compile Remove="Services\Translation\TranslationService.cs" />
     <_Globbed_Compile Remove="Services\Translation\TranslationServiceCommutator.cs" />
+    <_Globbed_Compile Remove="Services\Validation\IValidationService.cs" />
+    <_Globbed_Compile Remove="Services\Validation\ValidationService.cs" />
     <_Globbed_Compile Remove="TypedIdValueBase\TypedIdValueBase.cs" />
     <_Globbed_Compile Remove="ViewModels\BaseViewModel.cs" />
     <_Globbed_Compile Remove="ViewModels\CashRegisterViewModel.cs" />

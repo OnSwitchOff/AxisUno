@@ -19,6 +19,12 @@ namespace AxisUno.AutofacModules
             builder.RegisterType<NavigationService>().As<INavigationService>().InstancePerLifetimeScope();
 
             builder.RegisterType<MainView>().InstancePerDependency();
+            builder.RegisterType<SaleView>().InstancePerDependency();
+            builder.RegisterType<DocumentView>().InstancePerDependency();
+            builder.RegisterType<CashRegisterView>().InstancePerDependency();
+            builder.RegisterType<ExchangeView>().InstancePerDependency();
+            builder.RegisterType<ReportsView>().InstancePerDependency();
+            builder.RegisterType<SettingsView>().InstancePerDependency();
         }
     }
 }
