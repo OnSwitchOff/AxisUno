@@ -19,9 +19,8 @@ namespace AxisUno.Views
     public sealed partial class MainView : Page
     {
         private readonly ITranslationService translationService;
-        //private readonly Dictionary<string, SaleViewModel> saleViewModeList;
         private readonly Dictionary<string, SaleView> saleViewList;
-        private NavigationViewItemBase selectedItem;
+        private NavigationViewItemBase? selectedItem;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainView"/> class.
@@ -33,7 +32,6 @@ namespace AxisUno.Views
             this.translationService = TranslationService.CreateInstance();
             this.translationService.LanguageChanged += this.LanguageChanged;
 
-            //this.saleViewModeList = new Dictionary<string, SaleViewModel>();
             this.saleViewList = new Dictionary<string, SaleView>();
 
             this.ViewModel = Ioc.Default.GetRequiredService<MainViewModel>();
@@ -43,17 +41,6 @@ namespace AxisUno.Views
 
             this.frame.Content = new Controls.WelcomeFrame();
             this.frame.Navigated += this.Frame_Navigated;
-        }
-
-        private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-        {
-            this.selectedItem = args.SelectedItem as NavigationViewItemBase;
-            //if (args.SelectedItem is NavigationViewItem item && item.Name.Equals("CreateNewSaleViewItem"))
-            //{
-            //    item.IsSelected = false;
-            //    this.NavigationView.SelectedItem = this.NavigationView.MenuItems[this.NavigationView.MenuItems.Count - 1];
-            //}
-            ////throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -68,8 +55,11 @@ namespace AxisUno.Views
         /// <date>01.04.2022.</date>
         public NavigationView NavigationView => this.navigationView;
 
+        /// <summary>
+        /// Gets default frame to show.
+        /// </summary>
+        /// <date>21.04.2022.</date>
         private Controls.WelcomeFrame DefaultFrame { get; } = new Controls.WelcomeFrame();
-
 
         /// <summary>
         /// Changes values of the items of the NavigationView and the current page.
@@ -132,7 +122,10 @@ namespace AxisUno.Views
                     switch (viewKey)
                     {
                         case "AxisUno.ViewModels.SaleViewModel":
-                            this.selectedItem.IsSelected = false;
+                            if (this.selectedItem != null)
+                            {
+                                this.selectedItem.IsSelected = false;
+                            }
 
                             if (selectedItem.Name == "CreateNewSaleViewItem")
                             {
@@ -159,7 +152,6 @@ namespace AxisUno.Views
                                     };
                                     saleItem?.SetValue(NavigationExtension.NavigateToProperty, "AxisUno.ViewModels.SaleViewModel");
 
-                                    //this.saleViewModeList.Add(saleView.ViewModel.PageId, saleView.ViewModel);
                                     this.saleViewList.Add(saleView.ViewModel.PageId, saleView);
                                     this.navigationView.MenuItems.Add(saleItem);
                                     this.navigationView.SelectedItem = saleItem;
@@ -167,13 +159,6 @@ namespace AxisUno.Views
                             }
                             else
                             {
-                                //if (selectedItem.Tag != null &&
-                                //    selectedItem.Tag is string key &&
-                                //    this.saleViewModeList.ContainsKey(key))
-                                //{
-                                //    this.frame.Navigate(typeof(SaleView), this.saleViewModeList[key]);
-                                //}
-
                                 if (selectedItem.Tag != null &&
                                     selectedItem.Tag is string key &&
                                     this.saleViewList.ContainsKey(key))
@@ -213,7 +198,23 @@ namespace AxisUno.Views
             }
         }
 
-        private List<string> testList = new List<string>() { "", "", ""};
+        /// <summary>
+        /// Sets SelectedItem of NavigationView to selectedItem field.
+        /// </summary>
+        /// <param name="sender">NavigationView.</param>
+        /// <param name="args">Event args.</param>
+        /// <date>21.04.2022.</date>
+        private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            if (args.SelectedItem is NavigationViewItemBase itemBase && itemBase.Tag == null)
+            {
+                this.selectedItem = itemBase;
+            }
+            else
+            {
+                this.selectedItem = null;
+            }
+        }
 
         /// <summary>
         /// Deletes closed page from the lists.
@@ -231,16 +232,9 @@ namespace AxisUno.Views
                         {
                             if (item.Tag != null && item.Tag.ToString() == pageId)
                             {
-                                try
-                                {
-                                    item.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
-                                    testList.RemoveAt(testList.Count - 1);
-                                    //this.navigationView.MenuItems.RemoveAt(i);
-                                }
-                                catch (System.Exception ex)
-                                {
+                                item.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
 
-                                }
+                                // this.navigationView.MenuItems.Remove(item);
                                 this.saleViewList.Remove(pageId);
                                 sale.ViewModel.PageClosing -= this.PageClose;
                                 sale.ViewModel.PageTitleChanging -= this.PageTitleChanged;
@@ -248,33 +242,6 @@ namespace AxisUno.Views
                             }
                         }
                     }
-
-                    //var navigationItem = this.navigationView.MenuItems.Where(i =>
-                    //{
-                    //    if (i is NavigationViewItem viewItem && viewItem.Tag != null)
-                    //    {
-                    //        return viewItem.Tag.ToString() == pageId;
-                    //    }
-
-                    //    return false;
-                    //}).FirstOrDefault();
-
-                    //if (navigationItem != null)
-                    //{
-                    //    try
-                    //    {
-                    //        this.navigationView.MenuItems.Remove(navigationItem);
-                    //    }
-                    //    catch (System.Exception ex)
-                    //    {
-
-                    //    }
-                        
-                    //    //this.saleViewModeList.Remove(pageId);
-                    //    this.saleViewList.Remove(pageId);
-                    //    sale.ViewModel.PageClosing -= this.PageClose;
-                    //    sale.ViewModel.PageTitleChanging -= this.PageTitleChanged;
-                    //}
 
                     break;
                 default:
@@ -292,15 +259,22 @@ namespace AxisUno.Views
                     break;
             }
 
-            //if (this.saleViewModeList.Count > 0)
-            //{
-            //    this.frame.Navigate(typeof(SaleView), this.saleViewModeList.Values.Last());
-            //    this.navigationView.SelectedItem = this.navigationView.MenuItems[this.navigationView.MenuItems.Count - 1];
-            //}
             if (this.saleViewList.Count > 0)
             {
                 this.frame.Content = this.saleViewList.Values.Last();
-                this.navigationView.SelectedItem = this.navigationView.MenuItems.Last();// [this.navigationView.MenuItems.Count - 1];
+                this.navigationView.SelectedItem = this.navigationView.
+                    MenuItems.
+                    Reverse().
+                    Where(i =>
+                    {
+                        if (i is NavigationViewItem item && item.Tag != null && item.Visibility == Microsoft.UI.Xaml.Visibility.Visible)
+                        {
+                            return true;
+                        }
+
+                        return false;
+                    }).
+                    FirstOrDefault();
             }
             else
             {
