@@ -213,6 +213,8 @@ namespace AxisUno.Views
             }
         }
 
+        private List<string> testList = new List<string>() { "", "", ""};
+
         /// <summary>
         /// Deletes closed page from the lists.
         /// </summary>
@@ -231,7 +233,9 @@ namespace AxisUno.Views
                             {
                                 try
                                 {
-                                    this.navigationView.MenuItems.RemoveAt(i);
+                                    item.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+                                    testList.RemoveAt(testList.Count - 1);
+                                    //this.navigationView.MenuItems.RemoveAt(i);
                                 }
                                 catch (System.Exception ex)
                                 {
@@ -296,7 +300,7 @@ namespace AxisUno.Views
             if (this.saleViewList.Count > 0)
             {
                 this.frame.Content = this.saleViewList.Values.Last();
-                this.navigationView.SelectedItem = this.navigationView.MenuItems[this.navigationView.MenuItems.Count - 1];
+                this.navigationView.SelectedItem = this.navigationView.MenuItems.Last();// [this.navigationView.MenuItems.Count - 1];
             }
             else
             {
