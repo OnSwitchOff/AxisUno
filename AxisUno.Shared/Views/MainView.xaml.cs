@@ -55,6 +55,9 @@ namespace AxisUno.Views
         /// <date>01.04.2022.</date>
         public NavigationView NavigationView => this.navigationView;
 
+        private Controls.WelcomeFrame DefaultFrame { get; } = new Controls.WelcomeFrame();
+
+
         /// <summary>
         /// Changes values of the items of the NavigationView and the current page.
         /// </summary>
@@ -143,6 +146,7 @@ namespace AxisUno.Views
                                     //this.saleViewModeList.Add(saleView.ViewModel.PageId, saleView.ViewModel);
                                     this.saleViewList.Add(saleView.ViewModel.PageId, saleView);
                                     this.navigationView.MenuItems.Add(saleItem);
+                                    this.navigationView.SelectedItem = null;
                                     this.navigationView.SelectedItem = saleItem;
                                 }
                             }
@@ -182,7 +186,7 @@ namespace AxisUno.Views
                             this.frame.Navigate(typeof(SettingsView));
                             break;
                         default:
-                            this.frame.Content = new Controls.WelcomeFrame();
+                            this.frame.Content = this.DefaultFrame;
                             break;
                     }
                 }
@@ -204,32 +208,54 @@ namespace AxisUno.Views
             switch (this.frame.Content)
             {
                 case SaleView sale:
-                    var navigationItem = this.navigationView.MenuItems.Where(i =>
+                    for (int i = this.navigationView.MenuItems.Count - 1; i >= 0; i--)
                     {
-                        if (i is NavigationViewItem viewItem && viewItem.Tag != null)
+                        if (this.navigationView.MenuItems[i] is NavigationViewItem item)
                         {
-                            return viewItem.Tag.ToString() == pageId;
-                        }
+                            if (item.Tag != null && item.Tag.ToString() == pageId)
+                            {
+                                try
+                                {
+                                    this.navigationView.MenuItems.RemoveAt(i);
+                                }
+                                catch (System.Exception ex)
+                                {
 
-                        return false;
-                    }).FirstOrDefault();
-
-                    if (navigationItem != null)
-                    {
-                        try
-                        {
-                            this.navigationView.MenuItems.Remove(navigationItem);
+                                }
+                                this.saleViewList.Remove(pageId);
+                                sale.ViewModel.PageClosing -= this.PageClose;
+                                sale.ViewModel.PageTitleChanging -= this.PageTitleChanged;
+                                break;
+                            }
                         }
-                        catch (System.Exception ex)
-                        {
-
-                        }
-                        
-                        //this.saleViewModeList.Remove(pageId);
-                        this.saleViewList.Remove(pageId);
-                        sale.ViewModel.PageClosing -= this.PageClose;
-                        sale.ViewModel.PageTitleChanging -= this.PageTitleChanged;
                     }
+
+                    //var navigationItem = this.navigationView.MenuItems.Where(i =>
+                    //{
+                    //    if (i is NavigationViewItem viewItem && viewItem.Tag != null)
+                    //    {
+                    //        return viewItem.Tag.ToString() == pageId;
+                    //    }
+
+                    //    return false;
+                    //}).FirstOrDefault();
+
+                    //if (navigationItem != null)
+                    //{
+                    //    try
+                    //    {
+                    //        this.navigationView.MenuItems.Remove(navigationItem);
+                    //    }
+                    //    catch (System.Exception ex)
+                    //    {
+
+                    //    }
+                        
+                    //    //this.saleViewModeList.Remove(pageId);
+                    //    this.saleViewList.Remove(pageId);
+                    //    sale.ViewModel.PageClosing -= this.PageClose;
+                    //    sale.ViewModel.PageTitleChanging -= this.PageTitleChanged;
+                    //}
 
                     break;
                 default:
@@ -259,7 +285,7 @@ namespace AxisUno.Views
             }
             else
             {
-                this.frame.Content = new Controls.WelcomeFrame();
+                this.frame.Content = this.DefaultFrame;
                 this.navigationView.SelectedItem = null;
             }
         }
