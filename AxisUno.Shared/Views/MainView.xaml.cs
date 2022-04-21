@@ -21,6 +21,7 @@ namespace AxisUno.Views
         private readonly ITranslationService translationService;
         //private readonly Dictionary<string, SaleViewModel> saleViewModeList;
         private readonly Dictionary<string, SaleView> saleViewList;
+        private NavigationViewItemBase selectedItem;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainView"/> class.
@@ -38,9 +39,21 @@ namespace AxisUno.Views
             this.ViewModel = Ioc.Default.GetRequiredService<MainViewModel>();
 
             this.navigationView.ItemInvoked += this.NavigationView_ItemInvoked;
+            this.navigationView.SelectionChanged += this.NavigationView_SelectionChanged;
 
             this.frame.Content = new Controls.WelcomeFrame();
             this.frame.Navigated += this.Frame_Navigated;
+        }
+
+        private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            this.selectedItem = args.SelectedItem as NavigationViewItemBase;
+            //if (args.SelectedItem is NavigationViewItem item && item.Name.Equals("CreateNewSaleViewItem"))
+            //{
+            //    item.IsSelected = false;
+            //    this.NavigationView.SelectedItem = this.NavigationView.MenuItems[this.NavigationView.MenuItems.Count - 1];
+            //}
+            ////throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -119,6 +132,8 @@ namespace AxisUno.Views
                     switch (viewKey)
                     {
                         case "AxisUno.ViewModels.SaleViewModel":
+                            this.selectedItem.IsSelected = false;
+
                             if (selectedItem.Name == "CreateNewSaleViewItem")
                             {
                                 this.frame.Navigate(typeof(SaleView));
@@ -140,13 +155,13 @@ namespace AxisUno.Views
                                             Margin = new Microsoft.UI.Xaml.Thickness(0),
                                         },
                                         Tag = saleView.ViewModel.PageId,
+                                        IsSelected = true,
                                     };
                                     saleItem?.SetValue(NavigationExtension.NavigateToProperty, "AxisUno.ViewModels.SaleViewModel");
 
                                     //this.saleViewModeList.Add(saleView.ViewModel.PageId, saleView.ViewModel);
                                     this.saleViewList.Add(saleView.ViewModel.PageId, saleView);
                                     this.navigationView.MenuItems.Add(saleItem);
-                                    this.navigationView.SelectedItem = null;
                                     this.navigationView.SelectedItem = saleItem;
                                 }
                             }
